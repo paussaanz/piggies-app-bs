@@ -1,0 +1,607 @@
+// -------------- Sistema de diseño --------------
+// Las variables que se definan aquí hay que aplicarlas en las variables de bootstrap definidas a continuación
+
+// Configuración fuentes generales
+$cor-font-family-sans-serif: "Matrice" !default;
+$cor-font-family-body: "Avenir" !default; // Nueva fuente para el cuerpo
+
+// Configuración fuentes Headings añadidas en _mixins.scss
+$cor-font-family-headings: "Matrice" !default;
+
+// Espacio para los bloques
+$cor-spacer: 1rem !default;
+
+// Color corporativo
+
+$cor-secondary: #9FC6C8 !default; // piggies
+$cor-primary: #FA6900 !default; //piggies
+$cor-cream: #EFEDE4 !default; // piggies
+$cor-beige: #fcfae5 !default;
+$cor-light-beige: #fffffb !default;
+
+// Color corporativo Secundarios
+$cor-secondary-orange: #ffa945;
+$cor-secondary-blue: #41a4ff;
+$cor-mid-green: #076554;
+$cor-red: #ff4f46;
+
+// Colores para los iconos reemplazamos # por %23
+$cor-color-icons-svg: str-replace(#{$cor-primary}, "#", "%23");
+$cor-color-icons-svg-white: str-replace(#{$cor-light-beige}, "#", "%23");
+$cor-color-icons-svg-black: str-replace(#{$cor-secondary}, "#", "%23");
+
+// Define la paleta de colores básica
+$cor-black: #43595F !default; // piggies
+$cor-white: #ffffff !default; // Respetar siempre en blanco puro
+
+// Configuración colores del body
+$cor-body-color: $cor-black;
+$cor-body-bg: $cor-cream;
+
+// Configuración containers
+$cor-container-max-widths-sm: 540px;
+$cor-container-max-widths-md: 720px;
+$cor-container-max-widths-lg: 960px;
+$cor-container-max-widths-xl: 1140px;
+$cor-container-max-widths-xxl: 1320px; //Este es mi container
+
+// Fonts base
+$cor-font-size-base: 0.9375rem !default;
+$cor-font-size-base-text: 1rem !default; 
+$cor-line-height-base: 1.6 !default; // Línea de texto 
+
+// Fuentes extra fs-7 fs-8 añadidas en _utils.css
+$cor-font-legend: $cor-font-size-base-text * 0.9375 !default;
+$cor-font-legend-md: $cor-font-size-base-text * 0.9375 !default;
+$cor-font-tag: $cor-font-size-base-text * 0.6875 !default;
+$cor-font-tag-md: $cor-font-size-base-text * 0.6875 !default;
+$cor-font-table: $cor-font-size-base-text * 0.9375 !default;
+$cor-font-table-md: $cor-font-size-base-text * 0.875 !default;
+
+// Headings
+$cor-headings-line-height: 1.4 !default;
+$cor-headings-font-weight: 600;
+
+// Headings y .fs-*
+$cor-h1-font-size: $cor-font-size-base-text * toRem(70) !default;
+$cor-h2-font-size: $cor-font-size-base-text * toRem(50) !default;
+$cor-h3-font-size: $cor-font-size-base-text * toRem(40) !default;
+$cor-h4-font-size: $cor-font-size-base-text * toRem(28) !default;
+$cor-h5-font-size: $cor-font-size-base-text * toRem(26) !default;
+$cor-h6-font-size: $cor-font-size-base-text * toRem(22) !default;
+
+// Configuraciones altura de linea añadidas en _mixins.scss
+$cor-h1-line-height: 1.1 !default;
+$cor-h2-line-height: 1.3 !default;
+$cor-h3-line-height: 1.25 !default;
+$cor-h4-line-height: 1.42 !default;
+$cor-h5-line-height: 1.2 !default;
+$cor-h6-line-height: 1.36 !default;
+
+// Configuraciones altura de linea añadidas en _mixins.scss
+$cor-h1-letter-spacing: $cor-h1-font-size * -0.04 !default;
+$cor-h2-letter-spacing: $cor-h1-font-size * -0.03 !default;
+$cor-h3-letter-spacing: $cor-h1-font-size * -0.02 !default;
+$cor-h4-letter-spacing: $cor-h1-font-size * -0.02 !default;
+$cor-h5-letter-spacing: $cor-h1-font-size * -0.02 !default;
+$cor-h6-letter-spacing: $cor-h1-font-size * -0.02 !default;
+
+// Configuración Headings  a partir de md añadidas en _utils.scss
+$cor-h1-font-size-md: $cor-font-size-base-text * toRem(70) !default; //Tamaño de los h1
+$cor-h2-font-size-md: $cor-font-size-base-text * toRem(50) !default; //Tamaño de los h2
+$cor-h3-font-size-md: $cor-font-size-base-text * toRem(40) !default; //Tamaño de los h3
+$cor-h4-font-size-md: $cor-font-size-base-text * toRem(28) !default; //Tamaño de los h4
+$cor-h5-font-size-md: $cor-font-size-base-text * toRem(26) !default; //Tamaño de los h5
+$cor-h6-font-size-md: $cor-font-size-base-text * toRem(22) !default; //Tamaño de los h6
+
+// Configuración fuentes a partir de md .fs-1 .fs-2 y fs-md-1 que corresponde a los tamaños de los encabezados pero para textos añadidas en _utils.css
+$cor-font-size-base-1-md: $cor-h1-font-size-md;
+$cor-font-size-base-2-md: $cor-h2-font-size-md;
+$cor-font-size-base-3-md: $cor-h3-font-size-md;
+$cor-font-size-base-4-md: $cor-h4-font-size-md;
+$cor-font-size-base-5-md: $cor-font-size-base-text * toRem(18) !default; //Body large
+$cor-font-size-base-6-md: $cor-font-size-base-text * toRem(16) !default; //Body small
+
+// Configuración fuentes extra-grandes .display-1 .display-2... añadidas en _utils.scss
+$cor-display-font-sizes-1: $cor-font-size-base-text * 5 !default;
+$cor-display-font-sizes-2: $cor-font-size-base-text * 4.5 !default;
+$cor-display-font-sizes-3: $cor-font-size-base-text * 4 !default;
+$cor-display-font-sizes-4: $cor-font-size-base-text * 3.5 !default;
+$cor-display-font-sizes-5: $cor-font-size-base-text * 3 !default;
+$cor-display-font-sizes-6: $cor-font-size-base-text * 2.5 !default;
+
+$cor-display-font-sizes-1-md: $cor-font-size-base-text * 9 !default;
+$cor-display-font-sizes-2-md: $cor-font-size-base-text * 4.5 !default;
+$cor-display-font-sizes-3-md: $cor-font-size-base-text * 4 !default;
+$cor-display-font-sizes-4-md: $cor-font-size-base-text * 3.5 !default;
+$cor-display-font-sizes-5-md: $cor-font-size-base-text * 3 !default;
+$cor-display-font-sizes-6-md: $cor-font-size-base-text * 2.5 !default;
+
+// Configuración cards
+$cor-card-title: $cor-font-size-base-text * 1.625 !default;
+$cor-card-title-md: $cor-font-size-base-text * 2 !default;
+$card-spacer-y: $cor-spacer;
+$card-spacer-x: $cor-spacer;
+$card-spacer-y-md: $cor-spacer * 1.5;
+$card-spacer-x-md: $cor-spacer * 1.5;
+$cor-card-border-width: 0px !default;
+$cor-card-border-radius: 0.375rem !default;
+$cor-card-border-radius-md: 0.375rem !default;
+
+// Configuración cards extra incluidas en overrides/_cards
+
+// Configuración sombras
+$cor-box-shadow: 0px 2px 10px 0px rgba(80, 73, 73, 0.15) !default;
+
+// Configuración botones
+$cor-btn-padding-y: 1rem !default;
+$cor-btn-padding-x: 1.5rem !default;
+$cor-btn-md-padding-y: 1.3rem !default;
+$cor-btn-md-padding-x: 2.4rem !default;
+//$cor-btn-padding-top:            .8rem !default;
+$cor-btn-line-height: 1 !default;
+
+$cor-input-btn-padding-y-lg: 0.5rem !default;
+$cor-input-btn-padding-top-lg: 0.6rem !default;
+$cor-input-btn-padding-x-lg: 0.7rem !default;
+$cor-btn-font-size: $cor-font-size-base-text * 0.9375 !default;
+$cor-btn-font-size-md: $cor-font-size-base-text * 1.125 !default;
+$cor-input-btn-font-size-lg: $cor-font-size-base-text * 0.75 !default;
+$cor-btn-font-weight: 700;
+
+$cor-btn-border-radius: 5rem !default;
+$cor-btn-border-radius-lg: $cor-btn-border-radius !default;
+
+// Configuración Bordes
+$cor-border-radius: 0.375rem !default;
+$cor-border-radius-md: 0.375rem !default;
+
+// Configuración formularios
+$cor-input-padding-y: 0.88rem !default;
+$cor-input-padding-x: 1.5rem !default;
+$cor-input-bg: $cor-light-beige;
+$cor-input-color: $cor-secondary;
+$cor-input-border-width: 0px !default;
+$cor-input-border-radius: 5.625rem;
+$cor-input-focus-color: $cor-secondary;
+$cor-input-placeholder-color: $cor-secondary;
+
+$input-color-placeholder: $cor-secondary;
+
+// Configuración checkbox
+
+$cor-form-check-input-width: 1.125rem !default;
+//$cor-form-check-input-position:               1rem !default;
+//$cor-form-check-min-height:                   $font-size-base * $line-height-base !default;
+$cor-form-check-padding-start: $cor-form-check-input-width + 0.5rem !default;
+$cor-form-check-input-bg: $cor-white !default;
+$cor-form-check-input-border: 2px solid $cor-secondary !default;
+$cor-form-check-input-border-radius: 50% !default;
+$cor-form-check-input-focus-border: 1px solid $cor-secondary !default;
+$cor-form-check-input-checked-bg-color: $cor-white !default;
+$cor-form-check-input-checked-border-color: $cor-secondary !default;
+$cor-form-check-input-checked-bg-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='3' fill='#{$cor-color-icons-svg-black}'/></svg>") !default;
+$cor-form-check-radio-checked-bg-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='2' fill='#{$cor-color-icons-svg-black}'/></svg>") !default;
+$cor-form-check-label-color: $cor-secondary !default;
+
+// Configuración dropdown
+$cor-dropdown-min-width: 8.8rem !default;
+$cor-dropdown-padding-x: 0.19rem !default;
+$cor-dropdown-padding-y: 0.19rem !default;
+$cor-dropdown-spacer: 0.125rem !default;
+$cor-dropdown-font-size: $cor-btn-font-size;
+$cor-dropdown-color: $cor-black !default;
+$cor-dropdown-bg: $cor-white !default;
+$cor-dropdown-border-color: none !default;
+$cor-dropdown-border-radius: 1.5rem !default;
+$cor-dropdown-border-width: 0 !default;
+$cor-dropdown-inner-border-radius: 5rem !default; // stylelint-disable-line function-disallowed-list
+$cor-dropdown-link-color: $cor-black !default;
+$cor-dropdown-link-hover-bg: rgba($cor-black, 0.08) !default;
+$cor-dropdown-link-active-color: $cor-black !default;
+$cor-dropdown-link-active-bg: $cor-cream !default;
+$cor-dropdown-item-padding-y: $cor-spacer * 0.8 !default;
+$cor-dropdown-item-padding-x: $cor-spacer * 1 !default;
+
+// Configuración Navs nav-variables
+// Configuración nav-variables
+$cor-nav-link-font-weight: 600 !default;
+$cor-nav-link-padding-y: 0.5rem !default;
+$cor-nav-link-padding-x: 1rem !default;
+$cor-nav-link-font-size: null !default;
+$cor-nav-link-color: $cor-black !default;
+$cor-nav-link-hover-color: rgba($cor-black, 0.5) !default;
+
+// Configuración Navbar nav-variables
+$cor-navbar-nav-link-padding-x: 0.94rem !default;
+$cor-navbar-light-color: $cor-black !default;
+$cor-navbar-light-hover-color: rgba($cor-black, 0.5) !default;
+$cor-navbar-light-active-color: rgba($cor-black, 0.5) !default;
+
+// Configuración Close
+$cor-btn-close-color: $cor-black !default;
+$cor-btn-close-bg: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M13.0675 12.1832C13.1256 12.2412 13.1717 12.3102 13.2031 12.386C13.2345 12.4619 13.2507 12.5432 13.2507 12.6253C13.2507 12.7075 13.2345 12.7888 13.2031 12.8647C13.1717 12.9405 13.1256 13.0095 13.0675 13.0675C13.0095 13.1256 12.9405 13.1717 12.8647 13.2031C12.7888 13.2345 12.7075 13.2507 12.6253 13.2507C12.5432 13.2507 12.4619 13.2345 12.386 13.2031C12.3102 13.1717 12.2412 13.1256 12.1832 13.0675L7.00035 7.88394L1.81753 13.0675C1.70026 13.1848 1.5412 13.2507 1.37535 13.2507C1.2095 13.2507 1.05044 13.1848 0.93316 13.0675C0.815885 12.9503 0.75 12.7912 0.75 12.6253C0.75 12.4595 0.815885 12.3004 0.93316 12.1832L6.11675 7.00035L0.93316 1.81753C0.815885 1.70026 0.75 1.5412 0.75 1.37535C0.75 1.2095 0.815885 1.05044 0.93316 0.93316C1.05044 0.815885 1.2095 0.75 1.37535 0.75C1.5412 0.75 1.70026 0.815885 1.81753 0.93316L7.00035 6.11675L12.1832 0.93316C12.3004 0.815885 12.4595 0.75 12.6253 0.75C12.7912 0.75 12.9503 0.815885 13.0675 0.93316C13.1848 1.05044 13.2507 1.2095 13.2507 1.37535C13.2507 1.5412 13.1848 1.70026 13.0675 1.81753L7.88394 7.00035L13.0675 12.1832Z" fill="#00382E"/></svg>') !default;
+$cor-btn-close-focus-shadow: 0 !default;
+$cor-btn-close-opacity: 1 !default;
+$cor-btn-close-hover-opacity: 0.75 !default;
+
+// -------------- FIN Sistema de diseño --------------
+
+/// --------- configuración de bootstrap --------------
+// scss-docs-end color-variables CORPORATIVOS
+
+// Color system
+
+$body-color: $cor-body-color;
+$body-bg: $cor-body-bg;
+// scss-docs-start gray-color-variables
+$white: $cor-white;
+$gray-100: #f8f9fa !default;
+$gray-200: #e9ecef !default;
+$gray-300: #dee2e6 !default;
+$gray-400: #ced4da !default;
+$gray-500: #adb5bd !default;
+$gray-600: #6c757d !default;
+$gray-700: #495057 !default;
+$gray-800: #343a40 !default;
+$gray-900: #212529 !default;
+$black: $cor-black;
+// scss-docs-end gray-color-variables
+
+// scss-docs-start gray-colors-map
+$grays: (
+	"100": $gray-100,
+	"200": $gray-200,
+	"300": $gray-300,
+	"400": $gray-400,
+	"500": $gray-500,
+	"600": $gray-600,
+	"700": $gray-700,
+	"800": $gray-800,
+	"900": $gray-900,
+	) !default;
+// scss-docs-end gray-colors-map
+
+// scss-docs-start color-variables
+$blue: #0d6efd !default;
+$indigo: #6610f2 !default;
+$purple: #6f42c1 !default;
+$pink: #d63384 !default;
+$red: #dc3545 !default;
+$orange: #fd7e14 !default;
+$yellow: #ffc107 !default;
+$green: #198754 !default;
+$teal: #20c997 !default;
+$cyan: #0dcaf0 !default;
+// scss-docs-end color-variables
+
+// scss-docs-start colors-map
+$colors: (
+	"blue": $blue,
+	"indigo": $indigo,
+	"purple": $purple,
+	"pink": $pink,
+	"red": $red,
+	"orange": $orange,
+	"yellow": $yellow,
+	"green": $green,
+	"teal": $teal,
+	"cyan": $cyan,
+	"black": $black,
+	"white": $white,
+	"gray": $gray-600,
+	"gray-dark": $gray-800,
+	"cream": $cor-cream,
+	"beige": $cor-beige,
+	) !default;
+// scss-docs-end colors-map
+
+// scss-docs-start theme-color-variables
+$primary: $cor-primary !default;
+$secondary: $cor-secondary;
+$success: $green !default;
+$info: $cyan !default;
+$warning: $yellow !default;
+$danger: $red !default;
+$light: $gray-100 !default;
+$dark: $gray-900 !default;
+// scss-docs-end theme-color-variables
+
+// scss-docs-start theme-colors-map
+$theme-colors: (
+	"primary": $primary,
+	"secondary": $secondary,
+	"success": $success,
+	"info": $info,
+	"warning": $warning,
+	"danger": $danger,
+	"light": $light,
+	"dark": $dark,
+	"cream": $cor-cream,
+	"beige": $cor-beige,
+	"orange": $cor-secondary-orange,
+	) !default;
+// scss-docs-end theme-colors-map
+
+// scss-docs-start container-max-widths
+$container-max-widths: (
+	sm: $cor-container-max-widths-sm,
+	md: $cor-container-max-widths-md,
+	lg: $cor-container-max-widths-lg,
+	xl: $cor-container-max-widths-xl,
+	xxl: $cor-container-max-widths-xxl,
+	) !default;
+// scss-docs-end container-max-widths
+
+// scss-docs-start spacer-variables-maps
+$spacer: $cor-spacer !default;
+$spacers: (
+	0: 0,
+	1: $spacer * 0.25,
+	2: $spacer * 0.5,
+	3: $spacer,
+	4: $spacer * 1.5,
+	5: $spacer * 3,
+	) !default;
+// scss-docs-end spacer-variables-maps
+
+// scss-docs-start font-variables
+// stylelint-disable value-keyword-case
+$font-family-sans-serif: $cor-font-family-body;
+$font-family-monospace: SFMono-Regular,
+	Menlo,
+	Monaco,
+	Consolas,
+	"Liberation Mono",
+	"Courier New",
+	monospace !default;
+// stylelint-enable value-keyword-case
+
+// $font-size-root affects the value of `rem`, which is used for as well font sizes, paddings, and margins
+// $font-size-base affects the font size of the body text
+$font-size-root: null !default;
+$font-size-base: $cor-font-size-base; // Assumes the browser default, typically `16px`
+$font-size-sm: $cor-font-size-base * 0.875 !default;
+$font-size-lg: $cor-font-size-base * 1.25 !default;
+
+$font-weight-lighter: lighter !default;
+$font-weight-light: 300 !default;
+$font-weight-normal: 400 !default;
+$font-weight-medium: 500 !default;
+$font-weight-semibold: 600 !default;
+$font-weight-bold: 700 !default;
+$font-weight-bolder: bolder !default;
+
+$font-weight-base: $font-weight-normal !default;
+
+$line-height-base: $cor-line-height-base;
+$line-height-sm: 1.25 !default;
+$line-height-lg: 2 !default;
+
+$h1-font-size: $cor-h1-font-size;
+$h2-font-size: $cor-h2-font-size;
+$h3-font-size: $cor-h3-font-size;
+$h4-font-size: $cor-h4-font-size;
+$h5-font-size: $cor-h5-font-size;
+$h6-font-size: $cor-h6-font-size;
+// scss-docs-end font-variables
+// scss-docs-start font-sizes
+$font-sizes: (
+	1: $h1-font-size,
+	2: $h2-font-size,
+	3: $h3-font-size,
+	4: $h4-font-size,
+	5: $h5-font-size,
+	6: $h6-font-size,
+	) !default;
+// scss-docs-end font-sizes
+
+// scss-docs-start headings-variables
+$headings-margin-bottom: $spacer * 0.5 !default;
+$headings-font-family: null !default;
+$headings-font-style: null !default;
+$headings-font-weight: $cor-headings-font-weight;
+$headings-line-height: $cor-headings-line-height;
+$headings-color: inherit !default;
+// scss-docs-end headings-variables
+
+// scss-docs-start display-headings
+$display-font-sizes: (
+	1: 5rem,
+	2: 4.5rem,
+	3: 4rem,
+	4: 3.5rem,
+	5: 3rem,
+	6: 2.5rem,
+	) !default;
+
+$display-font-family: null !default;
+$display-font-style: null !default;
+$display-font-weight: 300 !default;
+$display-line-height: $headings-line-height !default;
+// scss-docs-end display-headings
+
+// scss-docs-start box-shadow-variables
+$box-shadow: $cor-box-shadow !default;
+$box-shadow-sm: 0 0.125rem 0.25rem rgba($black, 0.075) !default;
+$box-shadow-lg: 0 1rem 3rem rgba($black, 0.175) !default;
+$box-shadow-inset: inset 0 1px 2px rgba($black, 0.075) !default;
+// scss-docs-end box-shadow-variables
+
+// Cards
+
+// scss-docs-start card-variables
+$card-spacer-y: $spacer;
+$card-spacer-x: $spacer;
+$card-title-spacer-y: $spacer * 0.5;
+$card-border-width: $cor-card-border-width;
+$card-box-shadow: $cor-box-shadow;
+$card-border-radius: $cor-card-border-radius;
+$card-cap-padding-y: $card-spacer-y * 0.5;
+$card-cap-padding-x: $card-spacer-x;
+$card-cap-bg: rgba($black, 0.03
+);
+$card-cap-color: null;
+$card-height: null;
+$card-color: null;
+$card-bg: $white;
+$card-img-overlay-padding: $spacer;
+// scss-docs-end card-variables
+
+// Buttons
+//
+// For each of Bootstrap's buttons, define text, background, and border color.
+
+// scss-docs-start btn-variables
+$btn-padding-y: $cor-btn-padding-y;
+$btn-padding-x: $cor-btn-padding-x;
+$btn-line-height: $cor-btn-line-height;
+$input-btn-padding-y-lg: $cor-input-btn-padding-y-lg;
+$input-btn-padding-x-lg: $cor-input-btn-padding-x-lg;
+$btn-font-size: $cor-btn-font-size;
+$input-btn-font-size-lg: $cor-input-btn-font-size-lg;
+$btn-font-weight: $cor-btn-font-weight;
+// Allows for customizing button radius independently from global border radius
+$btn-border-radius: $cor-btn-border-radius;
+$btn-border-radius-lg: $cor-btn-border-radius-lg;
+
+// scss-docs-end btn-variables
+
+// scss-docs-start border-radius-variables
+$border-radius: $cor-border-radius;
+$border-radius-sm: 0.25rem !default;
+$border-radius-lg: 0.5rem !default;
+$border-radius-xl: 1rem !default;
+$border-radius-xxl: 2rem !default;
+$border-radius-pill: 50rem !default;
+// scss-docs-end border-radius-variables
+
+// scss-docs-start form-input-variables
+$input-padding-y: $cor-input-padding-y;
+$input-padding-x: $cor-input-padding-x;
+$input-bg: $cor-input-bg;
+$input-color: $cor-input-color;
+$input-border-width: $cor-input-border-width;
+$input-border-radius: $cor-input-border-radius;
+$input-focus-color: $cor-input-focus-color;
+$input-placeholder-color: $cor-input-placeholder-color;
+//// scss-docs-end form-input-variables
+
+//// scss-docs-start form-check-variables
+$form-check-input-width: $cor-form-check-input-width;
+$form-check-padding-start: $cor-form-check-padding-start;
+$form-check-input-bg: $cor-form-check-input-bg;
+$form-check-input-border: $cor-form-check-input-border;
+$form-check-input-border-radius: $cor-form-check-input-border-radius;
+$form-check-input-focus-border: $cor-form-check-input-focus-border;
+$form-check-input-checked-bg-color: $cor-form-check-input-checked-bg-color;
+$form-check-input-checked-border-color: $cor-form-check-input-checked-border-color;
+$form-check-input-checked-bg-image: $cor-form-check-input-checked-bg-image;
+$form-check-radio-checked-bg-image: $cor-form-check-radio-checked-bg-image;
+$form-check-label-color: $cor-form-check-label-color;
+// scss-docs-end form-check-variables
+
+// scss-docs-start dropdown-variables
+$dropdown-min-width: $cor-dropdown-min-width;
+$dropdown-padding-x: $cor-dropdown-padding-x;
+$dropdown-padding-y: $cor-dropdown-padding-y;
+$dropdown-spacer: $cor-dropdown-spacer;
+$dropdown-font-size: $cor-dropdown-font-size;
+$dropdown-color: $cor-dropdown-color;
+$dropdown-bg: $cor-dropdown-bg;
+$dropdown-border-color: $cor-dropdown-border-color;
+$dropdown-border-radius: $cor-dropdown-border-radius;
+$dropdown-border-width: $cor-dropdown-border-width;
+$dropdown-inner-border-radius: $cor-dropdown-inner-border-radius;
+$dropdown-link-color: $cor-dropdown-link-color;
+$dropdown-link-hover-bg: $cor-dropdown-link-hover-bg;
+$dropdown-link-active-color: $cor-dropdown-link-active-color;
+$dropdown-link-active-bg: $cor-dropdown-link-active-bg;
+$dropdown-item-padding-y: $cor-dropdown-item-padding-y;
+$dropdown-item-padding-x: $cor-dropdown-item-padding-x;
+// scss-docs-end dropdown-variables
+
+// Navs
+// scss-docs-start nav-variables
+$nav-link-padding-y: $cor-nav-link-padding-y;
+$nav-link-padding-x: $cor-nav-link-padding-x;
+$nav-link-font-size: $cor-nav-link-font-size;
+$nav-link-color: $cor-nav-link-color;
+$nav-link-hover-color: $cor-nav-link-hover-color;
+
+$nav-tabs-border-color: green !default;
+$nav-tabs-border-width: 0 !default;
+$nav-tabs-border-radius: 0rem !default;
+$nav-tabs-link-hover-border-color: red blue $nav-tabs-border-color !default;
+$nav-tabs-link-active-color: $cor-black !default;
+$nav-tabs-link-active-bg: $cor-cream !default;
+//$nav-tabs-link-active-border-color: red orange $nav-tabs-link-active-bg !default;
+
+// Navbar
+//// scss-docs-start navbar-variables
+$navbar-nav-link-padding-x: $cor-navbar-nav-link-padding-x;
+$navbar-light-color: $cor-navbar-light-color;
+$navbar-light-hover-color: $cor-navbar-light-hover-color;
+$navbar-light-active-color: $cor-navbar-light-active-color;
+//// scss-docs-end navbar-variables
+
+// Close
+// scss-docs-start close-variables
+$btn-close-color: $cor-btn-close-color;
+$btn-close-bg: $cor-btn-close-bg;
+$btn-close-focus-shadow: $cor-btn-close-focus-shadow;
+$btn-close-opacity: $cor-btn-close-opacity;
+$btn-close-hover-opacity: $cor-btn-close-hover-opacity;
+// scss-docs-end close-variables
+
+// Breadcrumbs
+// scss-docs-start breadcrumb-variables
+$breadcrumb-font-size: null !default;
+$breadcrumb-padding-y: 0 !default;
+$breadcrumb-padding-x: 0 !default;
+$breadcrumb-item-padding-x: 0.5rem !default;
+$breadcrumb-margin-bottom: 1rem !default;
+$breadcrumb-divider: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="7" height="11" viewBox="0 0 7 11" fill="none"><path d="M5.51552 5.23448L1.76552 1.48448C1.73068 1.44964 1.68932 1.422 1.64379 1.40314C1.59827 1.38429 1.54948 1.37458 1.50021 1.37458C1.45094 1.37458 1.40214 1.38429 1.35662 1.40314C1.3111 1.422 1.26974 1.44964 1.2349 1.48448C1.20005 1.51932 1.17242 1.56068 1.15356 1.6062C1.1347 1.65173 1.125 1.70052 1.125 1.74979C1.125 1.79906 1.1347 1.84786 1.15356 1.89338C1.17242 1.9389 1.20005 1.98026 1.2349 2.0151L4.72005 5.49979L1.2349 8.98448C1.16453 9.05484 1.125 9.15028 1.125 9.24979C1.125 9.3493 1.16453 9.44474 1.2349 9.5151C1.30526 9.58547 1.4007 9.625 1.50021 9.625C1.59972 9.625 1.69516 9.58547 1.76552 9.5151L5.51552 5.7651C5.55039 5.73028 5.57805 5.68892 5.59692 5.64339C5.61579 5.59787 5.6255 5.54907 5.6255 5.49979C5.6255 5.45051 5.61579 5.40171 5.59692 5.35619C5.57805 5.31066 5.55039 5.26931 5.51552 5.23448Z" fill="#{$cor-color-icons-svg-black}" stroke="#{$cor-color-icons-svg-black}"/></svg>') !default;
+$breadcrumb-active-color: rgba($cor-black, 0.6) !default;
+$breadcrumb-border-radius: null !default;
+// scss-docs-end breadcrumb-variables
+
+// Accordion
+
+// scss-docs-start accordion-variables
+$accordion-padding-y: 0.75rem !default;
+$accordion-padding-x: 0rem !default;
+//$accordion-color:                         var(--#{$prefix}body-color) !default;
+$accordion-bg: transparent !default;
+$accordion-border-width: 0 !default;
+//$accordion-border-color:                  var(--#{$prefix}border-color) !default;
+//$accordion-border-radius:                 var(--#{$prefix}border-radius) !default;
+//$accordion-inner-border-radius:           subtract($accordion-border-radius, $accordion-border-width) !default;
+//
+$accordion-body-padding-y: 0rem !default;
+$accordion-body-padding-x: 0 !default;
+//
+//$accordion-button-padding-y:              $accordion-padding-y !default;
+//$accordion-button-padding-x:              $accordion-padding-x !default;
+//$accordion-button-color:                  var(--#{$prefix}body-color) !default;
+//$accordion-button-bg:                     var(--#{$prefix}accordion-bg) !default;
+//$accordion-transition:                    $btn-transition, border-radius .15s ease !default;
+$accordion-button-active-bg: transparent !default;
+$accordion-button-active-color: $cor-black !default;
+//
+//$accordion-button-focus-border-color:     $input-focus-border-color !default;
+$accordion-button-focus-box-shadow: 0 !default;
+//
+//$accordion-icon-width:                    1.25rem !default;
+//$accordion-icon-color:                    $body-color !default;
+//$accordion-icon-active-color:             $primary-text-emphasis !default;
+//$accordion-icon-transition:               transform .2s ease-in-out !default;
+$accordion-icon-transform: rotate(00deg) !default;
+
+$accordion-button-icon: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">/<line y1="9" x2="20" y2="9" stroke="#00382E" stroke-width="2"/><line x1="10" y1="4.37114e-08" x2="10" y2="20" stroke="#00382E" stroke-width="2"/></svg>') !default;
+$accordion-button-active-icon: url('data:image/svg+xml,<svg width="20" height="3" viewBox="0 0 20 3" fill="none" xmlns="http://www.w3.org/2000/svg"><line y1="1.5" x2="20" y2="1.5" stroke="#00382E" stroke-width="2"/></svg>') !default;
+// scss-docs-end accordion-variables
+
+//https://github.com/twbs/bootstrap/issues/38683
+//!! Deshabilitamos el modo oscuro para no importar todas las variables de dark y se pueda compilar sin problema
+$enable-dark-mode: false;

@@ -1,0 +1,121 @@
+/* General */
+/* 
+.pt-6{
+  padding-top: 60px;
+}
+.pt-7{
+  padding-top: 70px;
+}
+.pt-8{
+  padding-top: 80px;
+}
+.pt-9{
+  padding-top: 90px;
+}
+.pt-10{
+  padding-top: 100px;
+}
+.ps-6{
+  padding-left: 60px;
+}
+.py-6{
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+.pb-6{
+  padding-bottom: 60px;
+}
+.pb-9{
+  padding-bottom: 90px;
+}
+.primary-color{
+  color:#43595F;
+
+}
+.secondary-color{
+  color:#EFEDE4;
+}
+.tertiary-color{
+  color:#9FC6C8;
+}
+.accent-color{
+  color:#FA6900;
+} */
+/* Background */
+/* .bg-primary-piggies{
+  background-color: #43595F;
+}
+.bg-secondary-piggies{
+  background-color: #EFEDE4;
+}
+
+.btn-outline-accent{
+  --bs-btn-color: #FA6900;
+    --bs-btn-border-color: #FA6900;
+    --bs-btn-hover-color: #EFEDE4;
+    --bs-btn-hover-bg: #FA6900;
+    --bs-btn-hover-border-color: #FA6900;
+    --bs-btn-focus-shadow-rgb: 255,193,7;
+    --bs-btn-active-color: #EFEDE4;
+    --bs-btn-active-bg: #FA6900;
+    --bs-btn-active-border-color: #FA6900;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #FA6900;
+    --bs-btn-disabled-bg: transparent;
+    --bs-btn-disabled-border-color: #FA6900;
+    --bs-gradient: none;
+    border-radius:200px;
+} */
+
+/* Links */
+/* a{
+  text-decoration: none;
+  color:#43595F;
+}
+a:hover{
+  text-decoration: none;
+  color:#FA6900;
+} */
+
+/* Typography - MATRICE */
+
+/* .matrice-black{
+  font-family: 'Matrice', sans-serif;
+  font-weight: 900;
+}
+.matrice-extra-bold{
+  font-family: 'Matrice', sans-serif;
+  font-weight: 800;
+}
+.matrice-bold{
+  font-family: 'Matrice', sans-serif;
+  font-weight: 700;
+}
+.matrice-semi-bold{
+  font-family: 'Matrice', sans-serif;
+  font-weight: 600;
+}
+.matrice-regular{
+  font-family: 'Matrice', sans-serif;
+  font-weight: 500;
+}
+.matrice-semi-bold{
+  font-family: 'Matrice', sans-serif;
+  font-weight: 400;
+}
+.matrice-light{
+  font-family: 'Matrice', sans-serif;
+  font-weight: 300;
+}
+.matrice-extra-light{
+  font-family: 'Matrice', sans-serif;
+  font-weight: 200;
+}
+.avenir{
+  font-family: 'Avenir', sans-serif;
+  font-weight: 400;
+} */
+/* Hero - HomePage*/
+/* .hero-title{
+  font-weight: 900;
+} */

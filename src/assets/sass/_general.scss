@@ -1,0 +1,75 @@
+body {
+	// El footer siempre pegado abajo
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	// FIN El footer siempre pegado abajo
+
+	@include media-breakpoint-up(md) {}
+
+	// Para eliminar del front el mensaje de que estamos en un sitio de desarrollo generado por WPML
+	.otgs-development-site-front-end {
+		display: none;
+	}
+}
+
+main {
+	overflow: clip; // funciona como un hidden pero puedes añadir sticky en los hijos
+}
+
+footer {
+	// El footer siempre pegado abajo
+	margin-top: auto;
+	// FIN El footer siempre pegado abajo
+}
+
+
+/* Services Card - Esto seguramente tenga que cambiarlo*/
+.services-img {
+	aspect-ratio: 1/1;
+	object-fit: cover;
+	width: 100%;
+	/* max-width: 150px; */
+}
+
+/* Typography - MATRICE */
+
+.weight-black {
+	font-family: 'Matrice', sans-serif;
+	font-weight: 900;
+}
+
+.weight-extra-bold {
+	font-family: 'Matrice', sans-serif;
+	font-weight: 800;
+}
+
+.weight-bold {
+	font-family: 'Matrice', sans-serif;
+	font-weight: 700;
+}
+
+.weight-semi-bold {
+	font-family: 'Matrice', sans-serif;
+	font-weight: 600;
+}
+
+.weight-regular {
+	font-family: 'Matrice', sans-serif;
+	font-weight: 500;
+}
+
+.weight-semi-light {
+	font-family: 'Matrice', sans-serif;
+	font-weight: 400;
+}
+
+.weight-light {
+	font-family: 'Matrice', sans-serif;
+	font-weight: 300;
+}
+
+.weight-extra-light {
+	font-family: 'Matrice', sans-serif;
+	font-weight: 200;
+}

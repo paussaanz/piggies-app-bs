@@ -1,0 +1,57 @@
+footer {
+	//.bg-image{
+	//  background-size: 10rem;
+	//  background-position: left bottom;
+	//
+	//}
+	padding-bottom: 8rem;
+	overflow: clip;
+	@include media-breakpoint-up(lg) {
+		background-size: 19rem;
+		padding-bottom: 0;
+		//padding-bottom: 19rem;
+	}
+	.isotipo {
+		position: absolute;
+		left: -2rem;
+		bottom: -9rem;
+		width: 12rem;
+		@include media-breakpoint-up(lg) {
+			left: -3rem;
+			bottom: -3rem;
+			width: 16rem;
+		}
+	}
+	.navbar-title {
+		display: block;
+		font-size: $cor-font-size-base-text * 0.875;
+		font-weight: $font-weight-semibold;
+		margin-bottom: $spacer * 0.5;
+	}
+	.navbar-nav {
+		opacity: 0.6;
+		@include media-breakpoint-down(lg) {
+			padding-bottom: $spacer * 1.25;
+		}
+	}
+	.navbar-legal {
+		@include media-breakpoint-up(lg) {
+			font-size: $cor-font-size-base-text * 0.75;
+			display: flex;
+			flex-flow: row wrap;
+			justify-content: center;
+		}
+		.nav-link {
+			@include media-breakpoint-up(lg) {
+				padding-right: $spacer * 1;
+				padding-left: $spacer * 1;
+			}
+		}
+	}
+	.nav-link {
+		@include media-breakpoint-down(lg) {
+			padding-top: $spacer * 0.25;
+			padding-bottom: $spacer * 0.25;
+		}
+	}
+}

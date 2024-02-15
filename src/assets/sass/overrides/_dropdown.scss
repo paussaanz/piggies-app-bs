@@ -1,0 +1,30 @@
+.dropdown-toggle {
+	&:after {
+		//@include icon-style();
+
+		//background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M6.32857 9.2249L10.1164 5.1624C10.1516 5.12466 10.1795 5.07985 10.1985 5.03053C10.2176 4.98122 10.2274 4.92836 10.2274 4.87498C10.2274 4.8216 10.2176 4.76875 10.1985 4.71943C10.1795 4.67011 10.1516 4.6253 10.1164 4.58756C10.0812 4.54982 10.0394 4.51987 9.99342 4.49945C9.94744 4.47902 9.89815 4.46851 9.84838 4.46851C9.79861 4.46851 9.74933 4.47902 9.70335 4.49945C9.65737 4.51987 9.61559 4.54982 9.5804 4.58756L6.06059 8.36315L2.54078 4.58756C2.4697 4.51133 2.3733 4.46851 2.27279 4.46851C2.17227 4.46851 2.07588 4.51133 2.0048 4.58756C1.93373 4.66379 1.8938 4.76718 1.8938 4.87498C1.8938 4.98279 1.93373 5.08617 2.0048 5.1624L5.7926 9.2249C5.82778 9.26268 5.86955 9.29264 5.91554 9.31308C5.96152 9.33353 6.01081 9.34405 6.06059 9.34405C6.11036 9.34405 6.15965 9.33353 6.20564 9.31308C6.25162 9.29264 6.29339 9.26268 6.32857 9.2249Z" fill="#00382E" stroke="#00382E" stroke-width="0.402333"/></svg>')
+	}
+}
+.dropdown-menu {
+	text-align: center;
+	padding-bottom: 0;
+	//top: $spacer * .5;
+
+	.btn-drop & {
+		top: $cor-dropdown-padding-x !important;
+	}
+}
+
+.dropdown-item {
+	border-radius: $cor-dropdown-border-radius;
+	margin-bottom: $cor-dropdown-padding-y;
+	font-weight: $font-weight-bold;
+}
+.bootstrap-select {
+	> select.mobile-device:focus + .dropdown-toggle,
+	.dropdown-toggle:focus {
+		outline: none !important;
+		outline: none 0 -webkit-focus-ring-color !important;
+		outline-offset: 0;
+	}
+}
