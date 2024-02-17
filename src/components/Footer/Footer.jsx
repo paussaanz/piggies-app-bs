@@ -6,7 +6,7 @@ const Footer = () => {
             <h1 className="text-uppercase weight-black col-9 display-2 primary-color pb-2">WE ALWAYS SEEK
                 NEW ADVENTURES.
                 Let’s talk</h1>
-                <img className="img-fluid col-3 offset-md-9 py-5" src="./../src/assets/img/piggies-icon.png"/>
+                <img className="img-fluid col-3 offset-md-9 py-5" src="./../src/assets/dist/img/piggies-icon.png"/>
             <div className="row py-5">
                 <div className="col-4">
                     <h5 className="text-uppercase text-primary weight-regular fs-md-5"> Contact Info</h5>

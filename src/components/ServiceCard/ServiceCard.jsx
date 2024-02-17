@@ -15,7 +15,7 @@ const ServiceCard = ({service, number}) => {
             <div className="col-12 mb-3 mb-sm-0">
                 <div className="row g-5 align-items-center p-4 border-bottom">
                     <div className="col-3">
-                        <img className=" services-img rounded" src="./../src/assets/img/hero-image.jpg" alt="Card image cap" />
+                        <img className=" services-img rounded" src="./../src/assets/dist/img/hero-image.jpg" alt="Card image cap" />
                     </div>
                     <div className="col-9">
                         <div className="row">

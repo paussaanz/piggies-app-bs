@@ -6,7 +6,7 @@ const Navbar = () => {
         <nav className="navbar navbar-expand-lg p-4">
             <div className="container-fluid">
                 <Link to="/">
-                <img class="nav-logo" src="./../src/assets/img/piggies-logo.png" alt="Brand logo"/>
+                    <img class="nav-logo" src="./../src/assets/dist/img/piggies-logo.png" alt="Brand logo" />
                 </Link>
                 <div className="collapse navbar-collapse justify-content-end " id="navbarNav">
                     <ul className="navbar-nav align-items-center">
@@ -25,10 +25,11 @@ const Navbar = () => {
                                 About
                             </Link>
                         </li>
-                        <button type="button" className="nav-item btn btn-outline-primary text-uppercase matrice-extra-bold">
-                            Contact
-                        </button>
-
+                        <Link to="/contact">
+                            <button type="button" className="nav-item btn btn-outline-primary text-uppercase matrice-extra-bold">
+                                Contact
+                            </button>
+                        </Link>
                     </ul>
                 </div>
             </div>

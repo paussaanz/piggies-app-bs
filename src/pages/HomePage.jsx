@@ -7,8 +7,8 @@ const homePage = () => {
     return (
         <div>
             <section className="hero py-5">
-                <img  src="./../src/assets/img/piggies-logo.png" alt="Card image cap" width="100%" />
-                <img className="pt-1" src="./../src/assets/img/hero-image.jpg" alt="Card image cap" height="540px" width="100%" />
+                <img  src="./../src/assets/dist/img/piggies-logo.png" alt="Card image cap" width="100%" />
+                <img className="pt-1" src="./../src/assets/dist/img/hero-image.jpg" alt="Card image cap" height="540px" width="100%" />
             </section>
             <section className="container services py-5">
                 <h2 className="col-11 h2 text-black weight-black">SUPER TALENTED AT UNLEASHING BRANDS, PIGGIES: WHERE YOUR VISION GETS WINGS!</h2>
@@ -29,7 +29,7 @@ const homePage = () => {
                     <Link to="/services" class="text-decoration-none">
                         <div className="row">
                             <h4 className="col h5 text-black weight-semi-light">OUR SERVICES</h4>
-                            <button className="col-auto"> -></button>
+                           <img src="./../src/assets/dist/img/arrow.svg" className="col-auto btn btn-outline-primary"/> 
                         </div>
                     </Link>
                 </div>

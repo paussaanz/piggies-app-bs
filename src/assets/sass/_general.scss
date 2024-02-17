@@ -32,6 +32,13 @@ footer {
 	/* max-width: 150px; */
 }
 
+.projects-img {
+	aspect-ratio:4/5;
+	object-fit: cover;
+	width:100%;
+	border-radius: 20px;
+}
+
 /* Typography - MATRICE */
 
 .weight-black {

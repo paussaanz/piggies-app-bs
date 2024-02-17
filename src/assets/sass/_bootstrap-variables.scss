@@ -28,7 +28,7 @@ $cor-red: #ff4f46;
 // Colores para los iconos reemplazamos # por %23
 $cor-color-icons-svg: str-replace(#{$cor-primary}, "#", "%23");
 $cor-color-icons-svg-white: str-replace(#{$cor-light-beige}, "#", "%23");
-$cor-color-icons-svg-black: str-replace(#{$cor-secondary}, "#", "%23");
+$cor-color-icons-svg-black: str-replace(#{$cor-primary}, "#", "%23");
 
 // Define la paleta de colores básica
 $cor-black: #43595F !default; // piggies
@@ -170,16 +170,16 @@ $input-color-placeholder: $cor-secondary;
 
 // Configuración checkbox
 
-$cor-form-check-input-width: 1.125rem !default;
+$cor-form-check-input-width: 1.7rem !default;
 //$cor-form-check-input-position:               1rem !default;
 //$cor-form-check-min-height:                   $font-size-base * $line-height-base !default;
 $cor-form-check-padding-start: $cor-form-check-input-width + 0.5rem !default;
-$cor-form-check-input-bg: $cor-white !default;
-$cor-form-check-input-border: 2px solid $cor-secondary !default;
+$cor-form-check-input-bg: $cor-cream !default;
+$cor-form-check-input-border: 2px solid $cor-black !default;
 $cor-form-check-input-border-radius: 50% !default;
 $cor-form-check-input-focus-border: 1px solid $cor-secondary !default;
-$cor-form-check-input-checked-bg-color: $cor-white !default;
-$cor-form-check-input-checked-border-color: $cor-secondary !default;
+$cor-form-check-input-checked-bg-color: $cor-cream !default;
+$cor-form-check-input-checked-border-color: $cor-primary !default;
 $cor-form-check-input-checked-bg-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='3' fill='#{$cor-color-icons-svg-black}'/></svg>") !default;
 $cor-form-check-radio-checked-bg-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='2' fill='#{$cor-color-icons-svg-black}'/></svg>") !default;
 $cor-form-check-label-color: $cor-secondary !default;
