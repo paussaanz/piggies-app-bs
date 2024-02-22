@@ -1,5 +1,5 @@
-import Form from "../components/Form/Form";
-import Footer from "../components/Footer/Footer";
+import Form from "../components/Form";
+import Footer from "../components/Footer";
 
 const ContactPage = () => {
     return (

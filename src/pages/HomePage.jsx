@@ -1,13 +1,14 @@
 import { Link } from "react-router-dom";
-import ServiceCard from "../components/ServiceCard/ServiceCard";
-import Carrusel from "../components/Carrusel/Carrusel";
-import Footer from "../components/Footer/Footer";
+import ServiceCard from "../components/ServiceCard";
+import Carrusel from "../components/Carrusel";
+import Footer from "../components/Footer";
+import Button from "../components/Button";
 
 const homePage = () => {
     return (
         <div>
             <section className="hero py-5">
-                <img  src="./../src/assets/dist/img/piggies-logo.png" alt="Card image cap" width="100%" />
+                <img src="./../src/assets/dist/img/piggies-logo.png" alt="Card image cap" width="100%" />
                 <img className="pt-1" src="./../src/assets/dist/img/hero-image.jpg" alt="Card image cap" height="540px" width="100%" />
             </section>
             <section className="container services py-5">
@@ -26,10 +27,14 @@ const homePage = () => {
                     </div>
                 </div>
                 <div className="col-12 border-bottom pt-5">
-                    <Link to="/services" class="text-decoration-none">
+                    <Link to="/services" className="text-decoration-none">
                         <div className="row">
                             <h4 className="col h5 text-black weight-semi-light">OUR SERVICES</h4>
-                           <img src="./../src/assets/dist/img/arrow.svg" className="col-auto btn btn-outline-primary"/> 
+                            <Link to="/services" className="col-auto">
+                                <Button>
+                                    <img src="./../src/assets/dist/img/arrow.svg"/>
+                                </Button>
+                            </Link>
                         </div>
                     </Link>
                 </div>
@@ -53,7 +58,7 @@ const homePage = () => {
                     </div>
                 </div>
             </section>
-            <section class="container pt-5">
+            <section className="container pt-5">
                 <Footer />
             </section>
         </div>

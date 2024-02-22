@@ -1,9 +1,9 @@
-import ProjectCard from "../components/ProjectCard/ProjectCard";
-import Footer from "../components/Footer/Footer";
+import ProjectCard from "../components/ProjectCard";
+import Footer from "../components/Footer";
 
 const ProjectsPage = () => {
     return (
-        <div class="container">
+        <div className="container">
             <div className="row py-5">
 
                 <div className="col-4 py-2">

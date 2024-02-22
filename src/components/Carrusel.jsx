@@ -1,9 +1,6 @@
-import './Carrusel.css';
-
-
 const Carrusel = () => {
     return (
-        <div id="carouselExampleIndicators" class="carousel slide rounded-5">
+        <div id="carouselExampleIndicators" className="carousel slide rounded-5">
             <div className="carousel-indicators">
                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>

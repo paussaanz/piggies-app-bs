@@ -19,7 +19,7 @@ const ServiceCard = ({service, number}) => {
                     </div>
                     <div className="col-9">
                         <div className="row">
-                        <p class="col-auto text-black weight-black mt-2">{number}</p>
+                        <p className="col-auto text-black weight-black mt-2">{number}</p>
                         <h3 className="col card-title h5 text-black weight-black">{service}</h3>
                     </div>
                     </div>

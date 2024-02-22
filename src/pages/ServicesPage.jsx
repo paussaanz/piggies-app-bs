@@ -1,9 +1,9 @@
-import ServicePageCard from "../components/ServicePageCard/ServicePageCard";
-import Footer from "../components/Footer/Footer";
+import ServicePageCard from "../components/ServicePageCard";
+import Footer from "../components/Footer";
 
 const ServicesPage = () => {
     return (
-        <div class="container pt-5">
+        <div className="container pt-5">
             <div className="pb-5">
                 <h1 className="text-uppercase display-2 weight-black"> Gauging our excellence <br></br> by your triumphs.</h1>
                 <div className="row align-items-center">

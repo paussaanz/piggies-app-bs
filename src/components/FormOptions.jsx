@@ -1,4 +1,4 @@
-const FormOptions = ({ number, title }) => {
+const FormOptions = ({ number, title, value, onChange, name, type, error}) => {
     return (
         <div>
             <div className="row py-5 m-0 border-bottom">
@@ -7,7 +7,10 @@ const FormOptions = ({ number, title }) => {
                         <p className="text-black h5 col-auto weight-semi-bold">{number}</p>
                         <h2 className="col-auto h5 weight-black text-uppercase "> {title} </h2>
                         <div className="d-flex col justify-content-end">
-                            <input class="form-check-input" type="checkbox" value="" aria-label="Checkbox for following text input" />
+                        <label className="visually-hidden" htmlFor={name}></label>
+                            <input className="form-check-input" name={name} id={name} type={type} onChange={onChange} value={value} aria-label="Checkbox for following text input" />
+                            {error && <div className="mt-2 text-primary">{error}</div>}
+
                         </div>
                     </div>
 

@@ -1,4 +1,4 @@
-const ServicePageCard = ({ number, title, img, p1, p2 }) => {
+const ServicePageCard = ({ number, title, img, p1, p2, children }) => {
     return (
         <div>
             <div className="col border-top py-5">
