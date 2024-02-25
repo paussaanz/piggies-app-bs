@@ -76,7 +76,7 @@ const Login = () => {
                     </FormControl>
                 </div>
                 <div className="text-center">
-                    <Button
+                    <Button outline="primary"
                         type="submit"
                     >
                         {isSubmitting ? "Submitting..." : "Log In"}

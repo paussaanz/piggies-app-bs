@@ -13,8 +13,8 @@ const Navbar = ({ currentUser }) => {
                         <img className="nav-logo" src="./../src/assets/dist/img/piggies-logo.png" alt="Brand logo" />
                     </Link>
                     <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
-                        <ul className="navbar-nav align-items-center">
-                            <li className="nav-item text-uppercase">
+                        <ul className="navbar-nav align-items-center w-100 justify-content-between px-5">
+                            <li className="nav-item text-uppercase weight-semi-bold">
                                 Dashboard
                             </li>
                             <li className="nav-item img-fluid ">
@@ -58,7 +58,7 @@ const Navbar = ({ currentUser }) => {
                             </Link>
                         </li>
                         <Link to="/contact">
-                            <Button>
+                            <Button outline="primary">
                                 Contact
                             </Button>
                         </Link>

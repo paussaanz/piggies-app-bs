@@ -1,7 +1,12 @@
+import { useContext } from "react";
 import DashboardCard from "../components/DashboardCard";
 import DashboardMenu from "../components/DashboardMenu";
+import AuthContext from "../contexts/AuthContext";
+import Tabbar from "../components/Tabbar";
 
 const DashboardPage = () => {
+    const { user } = useContext(AuthContext)
+
     return (
         <div className="container-fluid">
             <div className="row">
@@ -9,7 +14,7 @@ const DashboardPage = () => {
                     <DashboardMenu />
                 </div>
                 <div className="col-10 pt-5">
-                    <h2 className="h4 weight-bold">Welcome, User</h2>
+                    <h2 className="h4 weight-bold">Welcome, {user.username}</h2>
                     <h4 className="fs-6 weight-regular pt-4">New requests</h4>
                     <div className="row justify-content-between pe-5">
                         <div className="col-4 py-2">
@@ -17,10 +22,12 @@ const DashboardPage = () => {
                         </div>
                         <div className="col-4 py-2">
                             <DashboardCard title="Request 2" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." />
-                        </div><div className="col-4 py-2">
+                        </div>
+                        <div className="col-4 py-2">
                             <DashboardCard title="Request 3" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." />
                         </div>
                     </div>
+                    <Tabbar/>
                 </div>
             </div>
 

@@ -31,7 +31,7 @@ const homePage = () => {
                         <div className="row">
                             <h4 className="col h5 text-black weight-semi-light">OUR SERVICES</h4>
                             <Link to="/services" className="col-auto">
-                                <Button>
+                                <Button outline="primary">
                                     <img src="./../src/assets/dist/img/arrow.svg"/>
                                 </Button>
                             </Link>

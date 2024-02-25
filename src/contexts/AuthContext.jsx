@@ -14,9 +14,9 @@ export const AuthContextProvider = ({ children }) => {
   const [isAuthFetched, setIsAuthFetched] = useState(false);
 
   const fetchCurrentUser = useCallback(() => {
-
     getCurrentUser()
       .then(user => {
+        console.log(user)
         setUser(user)
         setIsAuthFetched(true)
       })
@@ -58,7 +58,7 @@ export const AuthContextProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider value={contextValue}>
-      {children}
+      {isAuthFetched && children}
     </AuthContext.Provider>
   )
 }

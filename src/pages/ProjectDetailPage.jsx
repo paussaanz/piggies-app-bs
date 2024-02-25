@@ -10,7 +10,7 @@ const ProjectDetailPage = () => {
             </section>
             <section className="container pt-5">
                 <div className="row">
-                    <Button>
+                    <Button outline="primary">
                         <img src="./../src/assets/dist/img/arrow.svg" />
                     </Button>
                 </div>

@@ -109,6 +109,7 @@ const SignUp = () => {
           </FormControl>
           <div className="text-center">
             <Button
+            outline="primary"
               type="submit"
               disabled={isSubmitting}
             >

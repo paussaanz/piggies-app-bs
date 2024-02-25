@@ -1,6 +1,7 @@
 import FormInput from "./FormInput";
 import FormOptions from "./FormOptions";
 import FormTextArea from "./FormTextArea";
+import Modal from "./Modal";
 import { useFormik } from "formik";
 import { formSubmit } from '../services/FormService';
 import Button from "./Button";
@@ -10,7 +11,7 @@ import { useState } from "react";
 
 
 const Form = () => {
-    const [message, setMessage] = useState(false);
+    const [modal, setModal] = useState(false);
 
     const initialValues = {
         name: '',
@@ -26,7 +27,11 @@ const Form = () => {
         phone: Yup.string("Invalid phone").required("Required"),
         subject: Yup.string("Invalid subject").required("Required"),
         message: Yup.string("Invalid message").required("Required"),
-        service: Yup.mixed().oneOf(['Communication', 'Planning', 'Marketing', 'Social Media', 'Branding'])
+        service: Yup.array()
+            .of(
+                Yup.string()
+                    .oneOf(['Communication', 'Planning', 'Marketing', 'Social Media', 'Branding'])
+            ).required("Required")
     });
     const {
         values,
@@ -44,69 +49,68 @@ const Form = () => {
         validateOnChange: false,
         validationSchema: formSchema,
         //No entiendo nada :)
-        onSubmit: (values) => {
-        //     const data = new FormData();
-        //     Object.keys(values).forEach(keyValue => {
-        //         data.append(keyValue, values[keyValue]);
-        //    });
+        onSubmit: (values, {resetForm}) => {
             formSubmit(values)
                 .then(() => {
                     resetForm();
-                    setMessage(true);
+                    setModal(true);
                 })
                 .catch(err => console.error(err));
         },
     });
 
+    console.log(values)
+
     return (
         <div>
             <form className="row" onSubmit={handleSubmit}>
                 <div className="col-6 px-3">
-                    <FormOptions 
-                    number="01" 
-                    title="Communication" 
-                    value={values.service}
-                    onChange={handleChange}
-                    name="service"
-                    id="service"
-                    type="checkbox"
-                    error={touched.service && errors.service} />
-                    <FormOptions 
-                    number="02" 
-                    title="Planning" 
-                    value={values.service}
-                    onChange={handleChange}
-                    name="service"
-                    id="service"
-                    type="checkbox"
-                    error={touched.service && errors.service} />
-                    <FormOptions 
-                    number="03" 
-                    title="Marketing" 
-                    value={values.service}
-                    onChange={handleChange}
-                    name="service"
-                    id="service"
-                    type="checkbox"
-                    error={touched.service && errors.service} />
-                    <FormOptions 
-                    number="04" 
-                    title="Social Media" 
-                    value={values.service}
-                    onChange={handleChange}
-                    name="service"
-                    id="service"
-                    type="checkbox"
-                    error={touched.service && errors.service} />
-                    <FormOptions 
-                    number="05" 
-                    title="Design" 
-                    value={values.service}
-                    onChange={handleChange}
-                    name="service"
-                    id="service"
-                    type="checkbox"
-                    error={touched.service && errors.service} />
+                    {touched.service && errors.service && "Elige un servicio pringada"}
+                    <FormOptions
+                        checked={values.service.includes('Communication')}
+                        number="01"
+                        title="Communication"
+                        value='Communication'
+                        onChange={handleChange}
+                        name="service"
+                        id="service"
+                        type="checkbox" />
+                    <FormOptions
+                        checked={values.service.includes('Planning')}
+                        number="02"
+                        title="Planning"
+                        value='Planning'
+                        onChange={handleChange}
+                        name="service"
+                        id="service"
+                        type="checkbox" />
+                    <FormOptions
+                        checked={values.service.includes('Marketing')}
+                        number="03"
+                        title="Marketing"
+                        value="Marketing"
+                        onChange={handleChange}
+                        name="service"
+                        id="service"
+                        type="checkbox" />
+                    <FormOptions
+                        checked={values.service.includes('Social Media')}
+                        number="04"
+                        title="Social Media"
+                        value="Social Media"
+                        onChange={handleChange}
+                        name="service"
+                        id="service"
+                        type="checkbox" />
+                    <FormOptions
+                        checked={values.service.includes('Design')}
+                        number="05"
+                        title="Design"
+                        value="Design"
+                        onChange={handleChange}
+                        name="service"
+                        id="service"
+                        type="checkbox" />
                 </div>
                 <div className="col-6 py-5 px-3">
                     <div className="row">
@@ -137,7 +141,7 @@ const Form = () => {
                     </div>
                     <div className="row">
                         <div className="col-6 py-3">
-                        <FormInput
+                            <FormInput
                                 id="phone"
                                 name="phone"
                                 type="text"
@@ -149,7 +153,7 @@ const Form = () => {
                             />
                         </div>
                         <div className="col-6 py-3">
-                        <FormInput
+                            <FormInput
                                 id="subject"
                                 name="subject"
                                 type="text"
@@ -162,24 +166,26 @@ const Form = () => {
                         </div>
                     </div>
                     <div className="row py-3">
-                    <FormTextArea
-                                id="message"
-                                name="message"
-                                type="text"
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                                value={values.message}
-                                error={touched.message && errors.message}
-                                placeholder="MESSAGE"
-                            />
+                        <FormTextArea
+                            id="message"
+                            name="message"
+                            type="text"
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            value={values.message}
+                            error={touched.message && errors.message}
+                            placeholder="MESSAGE"
+                        />
                     </div>
                 </div>
                 <div className="text-center py-5">
-                    <Button type="submit">
+                    <Button type="submit" outline="primary">
                         {isSubmitting ? "Submitting..." : "Send Message"}
                     </Button>
                 </div>
             </form>
+            {modal && <Modal onClose={() => setModal(false)} />}
+
             <div className="row py-5 justify-content-between">
                 <div className="col-4">
                     <h5 className="text-uppercase text-primary weight-regular fs-md-5"> Contact Info</h5>
@@ -196,6 +202,7 @@ const Form = () => {
                     <h5 className="text-uppercase text-primary weight-regular fs-md-5"> FOLLOW US</h5>
                 </div>
             </div>
+
         </div>
 
     );
