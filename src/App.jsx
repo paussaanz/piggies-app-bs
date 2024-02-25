@@ -11,6 +11,7 @@ import ProjectDetailPage from "./pages/ProjectDetailPage";
 import DashboardPage from "./pages/DashboardPage";
 import SignUp from "./pages/SignUp";
 import LoginPage from "./pages/LoginPage";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   const webNavbar = () => {
@@ -35,7 +36,7 @@ function App() {
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/register" element={<SignUp />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/dashboard" element={<DashboardPage />} />
+        <Route path="/dashboard" element={<ProtectedRoute><DashboardPage /> </ProtectedRoute>} />
       </Routes>
     </div>
   )

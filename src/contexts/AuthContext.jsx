@@ -58,7 +58,7 @@ export const AuthContextProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider value={contextValue}>
-      {isAuthFetched && children}
+      {children}
     </AuthContext.Provider>
   )
 }
