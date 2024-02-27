@@ -7,7 +7,7 @@ const ProjectsPage = () => {
             <div className="row py-5">
 
                 <div className="col-4 py-2">
-                    <ProjectCard />
+                    <ProjectCard img=""/>
                 </div>
                 <div className="col-4 py-2">
                     <ProjectCard />

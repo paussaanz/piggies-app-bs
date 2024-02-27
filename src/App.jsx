@@ -1,4 +1,5 @@
 import { Route, Routes, useLocation } from "react-router-dom";
+import io from 'socket.io-client'
 import './styles/fonts.css';
 import './App.css'
 import Navbar from "./components/Navbar";
@@ -12,7 +13,9 @@ import DashboardPage from "./pages/DashboardPage";
 import SignUp from "./pages/SignUp";
 import LoginPage from "./pages/LoginPage";
 import ProtectedRoute from "./components/ProtectedRoute";
+import MessagesPage from "./pages/MessagesPage";
 
+const socket = io.connect("http://localhost:3000")
 function App() {
   const webNavbar = () => {
     const location = useLocation();
@@ -37,6 +40,7 @@ function App() {
         <Route path="/register" element={<SignUp />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/dashboard" element={<ProtectedRoute><DashboardPage /> </ProtectedRoute>} />
+        <Route path="/messages" element={<ProtectedRoute><MessagesPage /> </ProtectedRoute>} />
       </Routes>
     </div>
   )

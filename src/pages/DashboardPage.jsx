@@ -6,7 +6,6 @@ import Tabbar from "../components/Tabbar";
 
 const DashboardPage = () => {
     const { user } = useContext(AuthContext)
-    console.log("--------------------", user);
 
     return (
         <div className="container-fluid">

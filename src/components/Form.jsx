@@ -19,7 +19,7 @@ const Form = () => {
         phone: '',
         subject: '',
         message: '',
-        service: '',
+        service: [],
     }
     const formSchema = Yup.object({
         name: Yup.string("Name err").required("Required"),
@@ -28,10 +28,9 @@ const Form = () => {
         subject: Yup.string("Invalid subject").required("Required"),
         message: Yup.string("Invalid message").required("Required"),
         service: Yup.array()
-            .of(
-                Yup.string()
-                    .oneOf(['Communication', 'Planning', 'Marketing', 'Social Media', 'Branding'])
-            ).required("Required")
+            .of(Yup.string().required("Service ID is required"))
+            .min(1, "At least one service is required")
+            .required("Required"),
     });
     const {
         values,
@@ -49,7 +48,7 @@ const Form = () => {
         validateOnChange: false,
         validationSchema: formSchema,
         //No entiendo nada :)
-        onSubmit: (values, {resetForm}) => {
+        onSubmit: (values, { resetForm }) => {
             formSubmit(values)
                 .then(() => {
                     resetForm();
