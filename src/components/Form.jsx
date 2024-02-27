@@ -3,15 +3,17 @@ import FormOptions from "./FormOptions";
 import FormTextArea from "./FormTextArea";
 import Modal from "./Modal";
 import { useFormik } from "formik";
-import { formSubmit } from '../services/FormService';
+import { formSubmit, getServices } from '../services/FormService';
 import Button from "./Button";
 import * as Yup from "yup";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-
+const SERVICE_NAMES = ['communication', 'planning', 'marketing', 'social media', 'design'];
 
 const Form = () => {
     const [modal, setModal] = useState(false);
+    const [services, setServices] = useState([]);
+
 
     const initialValues = {
         name: '',
@@ -27,10 +29,8 @@ const Form = () => {
         phone: Yup.string("Invalid phone").required("Required"),
         subject: Yup.string("Invalid subject").required("Required"),
         message: Yup.string("Invalid message").required("Required"),
-        service: Yup.array()
-            .of(Yup.string().required("Service ID is required"))
-            .min(1, "At least one service is required")
-            .required("Required"),
+        service: Yup.array().min(1, "Required").required("Required"),
+
     });
     const {
         values,
@@ -58,6 +58,14 @@ const Form = () => {
         },
     });
 
+    useEffect(() => {
+        getServices()
+            .then(response => {
+                setServices(response)
+            })
+            .catch(err => console.error(err));
+    }, []);
+
     console.log(values)
 
     return (
@@ -65,51 +73,19 @@ const Form = () => {
             <form className="row" onSubmit={handleSubmit}>
                 <div className="col-6 px-3">
                     {touched.service && errors.service && "Elige un servicio pringada"}
-                    <FormOptions
-                        checked={values.service.includes('Communication')}
-                        number="01"
-                        title="Communication"
-                        value='Communication'
-                        onChange={handleChange}
-                        name="service"
-                        id="service"
-                        type="checkbox" />
-                    <FormOptions
-                        checked={values.service.includes('Planning')}
-                        number="02"
-                        title="Planning"
-                        value='Planning'
-                        onChange={handleChange}
-                        name="service"
-                        id="service"
-                        type="checkbox" />
-                    <FormOptions
-                        checked={values.service.includes('Marketing')}
-                        number="03"
-                        title="Marketing"
-                        value="Marketing"
-                        onChange={handleChange}
-                        name="service"
-                        id="service"
-                        type="checkbox" />
-                    <FormOptions
-                        checked={values.service.includes('Social Media')}
-                        number="04"
-                        title="Social Media"
-                        value="Social Media"
-                        onChange={handleChange}
-                        name="service"
-                        id="service"
-                        type="checkbox" />
-                    <FormOptions
-                        checked={values.service.includes('Design')}
-                        number="05"
-                        title="Design"
-                        value="Design"
-                        onChange={handleChange}
-                        name="service"
-                        id="service"
-                        type="checkbox" />
+                    {
+                        services.map((service, index) => (
+                            <FormOptions
+                                checked={values.service.includes(service._id)}
+                                number={`0${index + 1}`}
+                                title={service.name}
+                                value={service._id}
+                                onChange={handleChange}
+                                name="service"
+                                id="service"
+                                type="checkbox" />
+                        ))
+                    }
                 </div>
                 <div className="col-6 py-5 px-3">
                     <div className="row">

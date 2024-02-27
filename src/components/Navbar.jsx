@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 
 const Navbar = ({ currentUser }) => {
     const location = useLocation();
-    const hiddenPaths = ['/dashboard'];
+    const hiddenPaths = ['/dashboard', '/messages'];
 
     if (hiddenPaths.includes(location.pathname)) {
         return (
@@ -15,7 +15,7 @@ const Navbar = ({ currentUser }) => {
                     <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
                         <ul className="navbar-nav align-items-center w-100 justify-content-between px-5">
                             <li className="nav-item text-uppercase weight-semi-bold">
-                                Dashboard
+                                {location.pathname}
                             </li>
                             <li className="nav-item img-fluid ">
                                 <img src="./../src/assets/dist/img/bell.png" alt="Brand logo" height="25px" width="100%" />

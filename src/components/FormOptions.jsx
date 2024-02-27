@@ -1,4 +1,4 @@
-const FormOptions = ({ number, title, value, onChange, name, type, error, checked}) => {
+const FormOptions = ({ number, title, value, onChange, name, type, error, checked }) => {
     return (
         <div>
             <div className="row py-5 m-0 border-bottom">
