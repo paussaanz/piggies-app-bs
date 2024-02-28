@@ -1,11 +1,13 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import DashboardCard from "../components/DashboardCard";
 import DashboardMenu from "../components/DashboardMenu";
 import AuthContext from "../contexts/AuthContext";
 import Tabbar from "../components/Tabbar";
 
+
 const DashboardPage = () => {
     const { user } = useContext(AuthContext)
+
 
     return (
         <div className="container-fluid">
@@ -27,7 +29,7 @@ const DashboardPage = () => {
                             <DashboardCard title="Request 3" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." />
                         </div>
                     </div>
-                    <Tabbar/>
+                    <Tabbar />
                 </div>
             </div>
 

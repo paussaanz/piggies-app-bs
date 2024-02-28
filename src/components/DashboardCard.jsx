@@ -1,6 +1,24 @@
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { getTasksByForm, getTasksByService, getAllTasks } from "../services/TaskService";
 
 const DashboardCard = ({title, description}) => {
+    const [tasks, setTasks] = useState([]);
+
+    useEffect(() => {
+        // Petición para traerme todos los tasks
+        getTasksByForm(formId)
+            .then(tasksFromApi => {
+                setTasks((prevTasks) => {
+                    return [...prevTasks, ...tasksFromApi]
+                })
+
+            })
+            .catch(err => {
+                console.error("Error al obtener las tareas:", err);
+            })
+    }, [getTasksByForm])
+
     return (
             <div className="card mb-3 rounded-4 bg-secondary " >
                 <div className="card-body">

@@ -15,5 +15,5 @@ export const formSubmit = ({
 };
 
 export const getServices = () => {
-  return http.get("/services");
+  return authenticatedHttp.get("/services");
 };

@@ -1,12 +1,19 @@
+import TaskSelector from "./TaskSelector";
+
 const TaskBar = ({ checked, name, error, type, onChange, value }) => {
     return (
         <div className="container-fluid pe-5">
             <div className="row bg-beige p-4 rounded-3 ">
-                <div className="d-flex col">
+                <div className="d-flex col-1">
                     <label className="visually-hidden" htmlFor={name}></label>
                     <input checked={checked} className="form-check-input bg-beige" name={name} id={name} type={type} onChange={onChange} value={value} aria-label="Checkbox for following text input" />
                     {error && <div className="mt-2 text-primary">{error}</div>}
                 </div>
+                <div className="col-3">
+                <TaskSelector />
+
+                </div>
+
             </div>
         </div>
     );
