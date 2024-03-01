@@ -11,7 +11,19 @@ export const formSubmit = ({
   message,
   service,
 }) => {
-  return unAuthenticatedHttp.post("/form", { name, email, phone, subject, message, service });
+  return unAuthenticatedHttp.post("/forms", { name, email, phone, subject, message, service });
+};
+
+export const getAllForms = () => {
+  return authenticatedHttp.get("/forms");
+};
+
+export const getUnacceptedForms = () => {
+  return authenticatedHttp.get("/forms/unaccepted");
+};
+
+export const acceptForm = (formId) => {
+  return authenticatedHttp.post(`/forms/${formId}/accept`);
 };
 
 export const getServices = () => {

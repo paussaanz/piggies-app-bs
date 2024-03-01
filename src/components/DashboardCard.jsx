@@ -1,33 +1,63 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { getTasksByForm, getTasksByService, getAllTasks } from "../services/TaskService";
+import { getUnacceptedForms, acceptForm } from "../services/FormService";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from 'swiper/modules';
+import Button from './Button'
 
-const DashboardCard = ({title, description}) => {
-    const [tasks, setTasks] = useState([]);
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/pagination';
+
+
+const DashboardCard = () => {
+    const [forms, setForms] = useState([]);
 
     useEffect(() => {
-        // Petición para traerme todos los tasks
-        getTasksByForm(formId)
-            .then(tasksFromApi => {
-                setTasks((prevTasks) => {
-                    return [...prevTasks, ...tasksFromApi]
-                })
+        getUnacceptedForms().then(unacceptedForms => {
+            setForms(unacceptedForms);
+        });
+    }, []);
 
-            })
-            .catch(err => {
-                console.error("Error al obtener las tareas:", err);
-            })
-    }, [getTasksByForm])
+    //Esto me gustaría sacarlo de aquí
+    const handleAccept = (formId) => {
+        acceptForm(formId).then(() => {
+            setForms(forms.filter(form => form._id !== formId));
+        });
+    };
 
     return (
-            <div className="card mb-3 rounded-4 bg-secondary " >
-                <div className="card-body">
-                    <h5 className="h4 weight-regular">{title}</h5>
-                    <p className="card-text">{description}</p>
-                    <p className="d-inline-block bg-cream px-4 py-1 rounded-5 text-black">19 feb 2024</p>
-                </div>
-            </div>
+        <>
+            <Swiper
+                spaceBetween={50}
+                slidesPerView={3}
+                pagination={{
+                    clickable: true,
+                }}
+                modules={[Pagination]}
+                className="dashboard-swiper pb-5"
+                onSwiper={(swiper) => console.log(swiper)}
+            >
+                {forms.map((form, index) => (
+                    <SwiperSlide className="h-100">
+                        <div key={index} className="card mb-3 rounded-4 bg-secondary h-100">
+                            <div className="card-body h-100">
+                                <h5 className="h4 weight-regular">{form.name}</h5>
+                                <p className="card-text">{form.message}</p>
+                                <p className="card-text">{form.email}</p>
+                                <p className="d-inline-block bg-cream px-4 py-1 rounded-5 text-black">{form.phone}</p>
+                            </div>
+                            <Button onClick={() => handleAccept(form._id)}>Accept</Button>
+                        </div>
+                    </SwiperSlide>
+
+                ))}
+            </Swiper>
+        </>
     );
 };
 
 export default DashboardCard;
+
+
+

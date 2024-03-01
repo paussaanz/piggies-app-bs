@@ -8,10 +8,7 @@ const TaskSelector = () => {
             // Petición para traerme todos los tasks
             getAllTasks()
                 .then(tasksFromApi => {
-                    setTasks((prevTasks) => {
-                        return [...prevTasks, ...tasksFromApi]
-                    })
-
+                    setTasks(tasksFromApi)
                 })
                 .catch(err => {
                     console.error("Error al obtener las tareas:", err);

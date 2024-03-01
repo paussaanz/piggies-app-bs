@@ -8,12 +8,9 @@ import Button from "./Button";
 import * as Yup from "yup";
 import { useEffect, useState } from "react";
 
-const SERVICE_NAMES = ['communication', 'planning', 'marketing', 'social media', 'design'];
-
 const Form = () => {
     const [modal, setModal] = useState(false);
     const [services, setServices] = useState([]);
-
 
     const initialValues = {
         name: '',
@@ -159,7 +156,7 @@ const Form = () => {
                     </Button>
                 </div>
             </form>
-            {modal && <Modal onClose={() => setModal(false)} />}
+            {modal && <Modal onClose={() => setModal(false)}>Your message was sent succesfully</Modal>}
 
             <div className="row py-5 justify-content-between">
                 <div className="col-4">

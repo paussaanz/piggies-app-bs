@@ -16,6 +16,9 @@
 @import "utils";
 
 // Plugins
+@import "node_modules/swiper/swiper";
+@import "node_modules/swiper/modules/pagination";
+@import "node_modules/swiper/modules/navigation";
 
 // Utilidades y estilos generales
 @import "general";

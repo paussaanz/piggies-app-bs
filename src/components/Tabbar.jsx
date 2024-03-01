@@ -33,7 +33,7 @@ const Tabbar = () => {
         <div className="d-flex g-3 py-5">
           {
             tabs.map(tab => (
-                <Button extraClassName={"me-3"} active={tab.key === activeTab} onClick={() => setActiveTab(tab.key)}>
+                <Button key={tab.key} extraClassName={"me-3"} active={tab.key === activeTab} onClick={() => setActiveTab(tab.key)}>
                      {tab.title}
                 </Button>
             ))
@@ -41,7 +41,7 @@ const Tabbar = () => {
         </div>
 
       </div>
-      <div className="">
+      <div>
         {tabs[activeTab].body}
       </div>
     </div>
