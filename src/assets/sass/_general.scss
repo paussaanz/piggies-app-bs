@@ -88,3 +88,57 @@ footer {
 	font-family: 'Matrice', sans-serif;
 	font-weight: 200;
 }
+
+/*Card hover*/
+.image-hover-wrapper {
+	position: relative;
+	display: inline-block; 
+	
+	.projects-img {
+	  width: 100%;
+	  border-radius: 0.5rem; 
+	  transition: opacity 0.5s ease;
+	}
+  
+	.hover-text {
+	  position: absolute;
+	  top: 0;
+	  left: 0;
+	  right: 0;
+	  bottom: 0;
+	  display: flex;
+	  flex-direction: column;
+	  justify-content: center;
+	  align-items: center;
+	  opacity: 0; 
+	  transition: opacity 0.5s ease;
+	  background-color: rgba(0, 0, 0, 0.5);
+	  color: white;
+	  visibility: hidden; 
+	  border-radius: 0.5rem; 
+	}
+  
+	&:hover {
+	  .projects-img {
+		opacity: 0.7; 
+	  }
+	  .hover-text {
+		opacity: 1;
+		visibility: visible;
+	  }
+	}
+  }
+  
+  /*Navbar*/
+.navbar-visible {
+	visibility: visible;
+	opacity: 1;
+	transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+  }
+  
+  .navbar-hidden {
+	visibility: hidden;
+	opacity: 0;
+	transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+  }
+  

@@ -22,6 +22,10 @@ export const getUnacceptedForms = () => {
   return authenticatedHttp.get("/forms/unaccepted");
 };
 
+export const getAcceptedForms = () => {
+  return authenticatedHttp.get("/forms/accepted");
+};
+
 export const acceptForm = (formId) => {
   return authenticatedHttp.post(`/forms/${formId}/accept`);
 };

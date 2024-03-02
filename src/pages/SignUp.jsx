@@ -1,10 +1,10 @@
 import { useFormik } from "formik";
 import { useNavigate } from 'react-router-dom';
 import { register } from '../services/AuthService';
-import FormControl from "../components/FormControl";
+import FormControl from "../components/Form/FormControl";
 import Button from "../components/Button";
 import * as Yup from "yup";
-import FormInput from "../components/FormInput";
+import FormInput from "../components/Form/FormInput";
 
 const initialValues = {
   email: '',

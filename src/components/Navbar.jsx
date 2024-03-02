@@ -1,9 +1,27 @@
+import { useEffect, useState } from "react";
 import Button from "./Button";
 import { Link, useLocation } from "react-router-dom";
 
 const Navbar = ({ currentUser }) => {
     const location = useLocation();
     const hiddenPaths = ['/dashboard', '/messages'];
+    const [navbarClass, setNavbarClass] = useState('navbar-visible');
+    let lastScrollY = window.scrollY;
+
+    useEffect(() => {
+        const controlNavbar = () => {
+            if (window.scrollY > lastScrollY && window.scrollY > 100) { 
+                setNavbarClass('navbar-hidden');
+            } else { 
+                setNavbarClass('navbar-visible');
+            }
+            lastScrollY = window.scrollY;
+        };
+
+        window.addEventListener('scroll', controlNavbar);
+
+        return () => window.removeEventListener('scroll', controlNavbar);
+    }, []);
 
     if (hiddenPaths.includes(location.pathname)) {
         return (
@@ -35,7 +53,7 @@ const Navbar = ({ currentUser }) => {
     }
 
     return (
-        <nav className="navbar navbar-expand-lg p-4">
+        <nav className={`navbar navbar-expand-lg p-4 sticky-top ${navbarClass} bg-cream`}>
             <div className="container-fluid">
                 <Link to="/">
                     <img className="nav-logo" src="./../src/assets/dist/img/piggies-logo.png" alt="Brand logo" />

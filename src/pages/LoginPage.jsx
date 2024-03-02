@@ -1,11 +1,11 @@
-import FormInput from "../components/FormInput";
+import FormInput from "../components/Form/FormInput";
 import { useFormik } from 'formik';
 import { string, object } from 'yup';
 import Button from "../components/Button";
 import { useContext } from "react";
 import AuthContext from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
-import FormControl from "../components/FormControl";
+import FormControl from "../components/Form/FormControl";
 
 const userSchema = object({
     username: string().required('Required field'),

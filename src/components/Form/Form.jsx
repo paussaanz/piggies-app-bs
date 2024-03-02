@@ -1,10 +1,10 @@
 import FormInput from "./FormInput";
 import FormOptions from "./FormOptions";
 import FormTextArea from "./FormTextArea";
-import Modal from "./Modal";
+import Modal from "../Modal";
 import { useFormik } from "formik";
-import { formSubmit, getServices } from '../services/FormService';
-import Button from "./Button";
+import { formSubmit, getServices } from '../../services/FormService';
+import Button from "../Button";
 import * as Yup from "yup";
 import { useEffect, useState } from "react";
 

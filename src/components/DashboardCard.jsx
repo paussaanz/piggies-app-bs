@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getUnacceptedForms, acceptForm } from "../services/FormService";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -17,13 +16,15 @@ const DashboardCard = () => {
         getUnacceptedForms().then(unacceptedForms => {
             setForms(unacceptedForms);
         });
-    }, []);
+    }, [forms]);
 
     //Esto me gustaría sacarlo de aquí
     const handleAccept = (formId) => {
-        acceptForm(formId).then(() => {
-            setForms(forms.filter(form => form._id !== formId));
-        });
+        acceptForm(formId)
+            .then(() => {
+                setForms(forms.filter(form => form._id !== formId));
+                window.location.reload()
+            });
     };
 
     return (

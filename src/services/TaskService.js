@@ -15,3 +15,17 @@ export const getTasksByService = (serviceId) => {
 export const getAllTasks = () => {
     return authenticatedHttp.get(`/tasks`);
 };
+
+
+export const getTasksByAcceptedForm = (formId) => {
+    return authenticatedHttp.get(`/forms/${formId}/tasks`);
+};
+
+
+export const getDoneTasks = () => {
+    return authenticatedHttp.get(`/tasks/done`);
+};
+
+export const getPendingTasks = () => {
+    return authenticatedHttp.get(`/tasks/pending`);
+};
