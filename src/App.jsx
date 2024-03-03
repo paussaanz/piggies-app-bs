@@ -2,7 +2,7 @@ import { Route, Routes, useLocation } from "react-router-dom";
 import io from 'socket.io-client'
 import './styles/fonts.css';
 import './App.css'
-import Navbar from "./components/Navbar";
+import Navbar from "./components/Navbar/Navbar";
 import HomePage from "./pages/HomePage";
 import ServicesPage from "./pages/ServicesPage";
 import ProjectsPage from "./pages/ProjectsPage";

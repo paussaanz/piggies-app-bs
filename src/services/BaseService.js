@@ -6,7 +6,7 @@ const INVALID_STATUS_CODES = [401];
 export const createHttp = (useAccessToken = false) => {
   // Si le pongo true, manda el token si le pone false no hay cabecera Authorization
   const http = axios.create({
-    baseURL: import.meta.env.VITE_API_URL,
+    baseURL: import.meta.env.VITE_API_URL
   });
 
   if (useAccessToken) {

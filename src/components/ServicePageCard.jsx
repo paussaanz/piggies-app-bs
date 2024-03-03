@@ -1,4 +1,5 @@
-const ServicePageCard = ({ number, title, img, p1, p2, children }) => {
+const ServicePageCard = ({ number, title, img, p1, p2, categories, children }) => {
+
     return (
         <div>
             <div className="col border-top py-5">
@@ -9,7 +10,9 @@ const ServicePageCard = ({ number, title, img, p1, p2, children }) => {
                             <h2 className="col h2 weight-black text-uppercase "> {title} </h2>
                         </div>
                     </div>
-                    <img className="col-2" src="./../src/assets/dist/img/card_img.png" />
+                    <div className="col-2">
+                        <img className="img-thumbnail border-0" src={img} />
+                    </div>
                 </div>
                 <div className="row">
                     <p className="col-4 text-black fs-md-5">
@@ -19,26 +22,22 @@ const ServicePageCard = ({ number, title, img, p1, p2, children }) => {
                         {p2}
                     </p>
                 </div>
-                <div className="row pb-5">
-                    <ul className="col-4 offset-md-8 h5 list-unstyled weight-black pt-4">
-                        <li>
-                            Public Relations
-                        </li>
-                        <li>
-                            Press
-                        </li>
-                        <li>
-                            Corporative Comm
-                        </li>
-                        <li>
-                            Corporative Podcasting
-                        </li>
-                    </ul>
-                </div>
-            </div>
+                {categories && categories.length > 0 && (
+                    <div className="row pb-5">
 
+                        <ul className="col-4 offset-md-8 h5 list-unstyled weight-black pt-4">
+                            {categories.map((category, index) => (
+                                <li key={category}>{category}</li> // Renderiza cada categoría como un <li>
+                            ))}
+                        </ul>
+                    </div>
+                )}
+
+            </div>
         </div>
     );
 };
+
+
 
 export default ServicePageCard;

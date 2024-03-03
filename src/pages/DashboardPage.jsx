@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import DashboardCard from "../components/DashboardCard";
-import DashboardMenu from "../components/DashboardMenu";
+import DashboardMenu from "../components/Navbar/DashboardMenu";
 import AuthContext from "../contexts/AuthContext";
 import Tabbar from "../components/Tabbar";
 

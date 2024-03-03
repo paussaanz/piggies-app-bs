@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import io from 'socket.io-client'
 import Chat from '../components/Chat';
-import DashboardMenu from '../components/DashboardMenu';
+import DashboardMenu from '../components/Navbar/DashboardMenu';
 
 const socket = io.connect("http://localhost:3000")
 

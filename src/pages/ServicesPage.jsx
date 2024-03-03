@@ -1,7 +1,18 @@
 import ServicePageCard from "../components/ServicePageCard";
 import Footer from "../components/Footer";
+import { useEffect, useState } from "react";
+import { getServices } from "../services/FormService";
 
 const ServicesPage = () => {
+
+    const [services, setServices] = useState([]);
+
+    useEffect(() => {
+        getServices().then(services => {
+            setServices(services);
+        });
+    }, []);
+
     return (
         <div className="container pt-5">
             <div className="pb-5">
@@ -11,16 +22,25 @@ const ServicesPage = () => {
                         <img src="./../src/assets/dist/img/piggies-icon.png" width="100%" />
                     </div>
                     <div className="col-6 offset-md-1 fs-md-5">
-                        Based in Madrid, Piggies has a global impact through its designs and collaborations. Comprised of a vibrant team of designers, artists, and writers, we are committed to collaborating with innovative organizations. Our focus is on crafting tailor-made digital solutions, captivating visual content, and unforgettable brand experiences for clients worldwide
+                        Based in Madrid, Piggies has a global impact through its designs and collaborations. 
+                        Comprised of a vibrant team of designers, artists, and writers, we are committed to collaborating with innovative organizations. 
+                        Our focus is on crafting tailor-made digital solutions, captivating visual content, and unforgettable brand experiences for clients worldwide
                     </div>
                 </div>
             </div>
             <div className="py-5 ">
-                <ServicePageCard number="01" title="Communication" p1="Based in Madrid, Piggies has a global impact through its designs and collaborations. Comprised of a vibrant team of designers, artists, and writers, we are committed to collaborating with innovative organizations. Our focus is on crafting tailor-made digital solutions, captivating visual content, and unforgettable brand experiences for clients " p2="Based in Madrid, Piggies has a global impact through its designs and collaborations. Comprised of a vibrant team of designers, artists, and writers, we are committed to collaborating with innovative organizations. Our focus is on crafting tailor-made digital solutions, captivating visual content, and unforgettable brand experiences for clients " />
-                <ServicePageCard number="02" title="Planning" p1="Based in Madrid, Piggies has a global impact through its designs and collaborations. Comprised of a vibrant team of designers, artists, and writers, we are committed to collaborating with innovative organizations. Our focus is on crafting tailor-made digital solutions, captivating visual content, and unforgettable brand experiences for clients " p2="Based in Madrid, Piggies has a global impact through its designs and collaborations. Comprised of a vibrant team of designers, artists, and writers, we are committed to collaborating with innovative organizations. Our focus is on crafting tailor-made digital solutions, captivating visual content, and unforgettable brand experiences for clients " />
-                <ServicePageCard number="03" title="Marketing" p1="Based in Madrid, Piggies has a global impact through its designs and collaborations. Comprised of a vibrant team of designers, artists, and writers, we are committed to collaborating with innovative organizations. Our focus is on crafting tailor-made digital solutions, captivating visual content, and unforgettable brand experiences for clients " p2="Based in Madrid, Piggies has a global impact through its designs and collaborations. Comprised of a vibrant team of designers, artists, and writers, we are committed to collaborating with innovative organizations. Our focus is on crafting tailor-made digital solutions, captivating visual content, and unforgettable brand experiences for clients " />
-                <ServicePageCard number="04" title="Social Media" p1="Based in Madrid, Piggies has a global impact through its designs and collaborations. Comprised of a vibrant team of designers, artists, and writers, we are committed to collaborating with innovative organizations. Our focus is on crafting tailor-made digital solutions, captivating visual content, and unforgettable brand experiences for clients " p2="Based in Madrid, Piggies has a global impact through its designs and collaborations. Comprised of a vibrant team of designers, artists, and writers, we are committed to collaborating with innovative organizations. Our focus is on crafting tailor-made digital solutions, captivating visual content, and unforgettable brand experiences for clients " />
-                <ServicePageCard number="05" title="Branding" p1="Based in Madrid, Piggies has a global impact through its designs and collaborations. Comprised of a vibrant team of designers, artists, and writers, we are committed to collaborating with innovative organizations. Our focus is on crafting tailor-made digital solutions, captivating visual content, and unforgettable brand experiences for clients " p2="Based in Madrid, Piggies has a global impact through its designs and collaborations. Comprised of a vibrant team of designers, artists, and writers, we are committed to collaborating with innovative organizations. Our focus is on crafting tailor-made digital solutions, captivating visual content, and unforgettable brand experiences for clients " />
+                {services.map((service, index) => (
+                    <ServicePageCard
+                        key={index}
+                        number={service.number}
+                        title={service.name}
+                        img={service.imgUrl}
+                        p1={service.description}
+                        p2={service.description}
+                        categories={service.categories}
+                    />
+                ))}
+
             </div>
             <Footer />
         </div>

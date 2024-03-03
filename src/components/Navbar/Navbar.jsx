@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import Button from "./Button";
+import Button from "../Button";
 import { Link, useLocation } from "react-router-dom";
+import UserNavbar from "./UserNavbar";
 
-const Navbar = ({ currentUser }) => {
+const Navbar = () => {
     const location = useLocation();
     const hiddenPaths = ['/dashboard', '/messages'];
     const [navbarClass, setNavbarClass] = useState('navbar-visible');
@@ -25,30 +26,7 @@ const Navbar = ({ currentUser }) => {
 
     if (hiddenPaths.includes(location.pathname)) {
         return (
-            <nav className="navbar navbar-expand-lg py-5 border-bottom">
-                <div className="container-fluid">
-                    <Link to="/">
-                        <img className="nav-logo" src="./../src/assets/dist/img/piggies-logo.png" alt="Brand logo" />
-                    </Link>
-                    <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
-                        <ul className="navbar-nav align-items-center w-100 justify-content-between px-5">
-                            <li className="nav-item text-uppercase weight-semi-bold">
-                                {location.pathname}
-                            </li>
-                            <li className="nav-item img-fluid ">
-                                <img src="./../src/assets/dist/img/bell.png" alt="Brand logo" height="25px" width="100%" />
-                            </li>
-                            {currentUser ? (
-                                <li className="nav-item">
-                                    <img src={currentUser.imageUrl} alt="User profile" style={{ borderRadius: '50%' }} />
-                                </li>
-                            ) : (
-                                null
-                            )}
-                        </ul>
-                    </div>
-                </div>
-            </nav>
+            <UserNavbar/>
         );
     }
 
@@ -56,7 +34,7 @@ const Navbar = ({ currentUser }) => {
         <nav className={`navbar navbar-expand-lg p-4 sticky-top ${navbarClass} bg-cream`}>
             <div className="container-fluid">
                 <Link to="/">
-                    <img className="nav-logo" src="./../src/assets/dist/img/piggies-logo.png" alt="Brand logo" />
+                    <img className="nav-logo" src="https://res.cloudinary.com/dmbtvuj1x/image/upload/v1709386605/Piggies/piggies-logo_fovqzf.png" alt="Brand logo" />
                 </Link>
                 <div className="collapse navbar-collapse justify-content-end " id="navbarNav">
                     <ul className="navbar-nav align-items-center">

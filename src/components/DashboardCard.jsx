@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getUnacceptedForms, acceptForm } from "../services/FormService";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from 'swiper/modules';
+import AlertDialog from "./AlertDialog";
 import Button from './Button'
 
 // Import Swiper styles
@@ -16,9 +17,9 @@ const DashboardCard = () => {
         getUnacceptedForms().then(unacceptedForms => {
             setForms(unacceptedForms);
         });
-    }, [forms]);
-
-    //Esto me gustaría sacarlo de aquí
+    }, []);
+    //COMM: Por qué si pongo forms como dependencia en el array no para de hacer peticiones constantemente?
+    // COMM: Esto me gustaría sacarlo de aquí
     const handleAccept = (formId) => {
         acceptForm(formId)
             .then(() => {
@@ -48,7 +49,15 @@ const DashboardCard = () => {
                                 <p className="card-text">{form.email}</p>
                                 <p className="d-inline-block bg-cream px-4 py-1 rounded-5 text-black">{form.phone}</p>
                             </div>
-                            <Button onClick={() => handleAccept(form._id)}>Accept</Button>
+                            <AlertDialog title="Are you sure you want to accept?"
+                                trigger={<Button>Accept</Button>}
+                                bg_color="cream"
+                                accept={<Button color="primary" onClick={() => handleAccept(form._id)}>Accept request</Button>}
+                                cancel={<Button>Cancel</Button>}
+                                padding="p-4"
+                            >
+                                If you accept this request, the client will be sent an email.
+                            </AlertDialog>
                         </div>
                     </SwiperSlide>
 

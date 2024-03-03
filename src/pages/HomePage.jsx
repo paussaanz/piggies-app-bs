@@ -3,12 +3,22 @@ import ServiceCard from "../components/ServiceCard";
 import Carrusel from "../components/Carrusel";
 import Footer from "../components/Footer";
 import Button from "../components/Button";
+import { useEffect, useState } from "react";
+import { getServices } from "../services/FormService";
 
 const homePage = () => {
+    const [services, setServices] = useState([]);
+
+    useEffect(() => {
+        getServices().then(services => {
+            setServices(services);
+        });
+    }, []);
+
     return (
         <div>
             <section className="hero py-5">
-                <img src="./../src/assets/dist/img/piggies-logo.png" alt="Card image cap" width="100%" />
+                <img src="https://res.cloudinary.com/dmbtvuj1x/image/upload/v1709386605/Piggies/piggies-logo_fovqzf.png" alt="Card image cap" width="100%" />
                 <img className="pt-1" src="./../src/assets/dist/img/hero-image.jpg" alt="Card image cap" height="540px" width="100%" />
             </section>
             <section className="container services py-5">
@@ -19,11 +29,9 @@ const homePage = () => {
                         <p className="text-black pt-2 fs-md-5">At Piggies, we’re not just about creating pretty designs or hopping on the latest trends. Oh no, we’re about crafting a legacy, your legacy, with a pinch of our Piggies’ magic! From mastering the art of media planning to securing those prime advertising spots, our team of creative wizards and strategy maestros are here to take your brand from ‘just another name’ to ‘the name’ on everyone’s lips.</p>
                     </div>
                     <div className="col-6 pt-4">
-                        <ServiceCard service="COMMUNICATION" number="01" />
-                        <ServiceCard service="PLANNING" number="02" />
-                        <ServiceCard service="MARKETING" number="03" />
-                        <ServiceCard service="SOCIAL MEDIA" number="04" />
-                        <ServiceCard service="BRANDING" number="05" />
+                        {services.map ((service) => (
+                            <ServiceCard service={service.name} number={service.number} imgUrl={service.imgUrl} />
+                        ))}
                     </div>
                 </div>
                 <div className="col-12 border-bottom pt-5">

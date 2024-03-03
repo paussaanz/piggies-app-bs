@@ -7,10 +7,13 @@ import { formSubmit, getServices } from '../../services/FormService';
 import Button from "../Button";
 import * as Yup from "yup";
 import { useEffect, useState } from "react";
+// import AlertDialogDemo from "../AlertDialog";
 
 const Form = () => {
-    const [modal, setModal] = useState(false);
     const [services, setServices] = useState([]);
+    // const [showDialog, setShowDialog] = useState(false);
+    const [modal, setModal] = useState(false);
+
 
     const initialValues = {
         name: '',
@@ -49,7 +52,8 @@ const Form = () => {
             formSubmit(values)
                 .then(() => {
                     resetForm();
-                    setModal(true);
+                    // setShowDialog(true);
+                    setModal(true)
                 })
                 .catch(err => console.error(err));
         },
@@ -154,8 +158,21 @@ const Form = () => {
                     <Button type="submit" outline="primary">
                         {isSubmitting ? "Submitting..." : "Send Message"}
                     </Button>
+                    {/* {showDialog && (
+                        <AlertDialogDemo bg_color="primary"
+                            trigger={<Button type="submit" outline="primary">
+                                {isSubmitting ? "Submitting..." : "Send Message"}
+                            </Button>}
+                            cancel={
+                                <Button onClick={() => setShowDialog(false)} outline="cream">Cerrar</Button>
+                            }
+                        >
+                            <p className="text-uppercase h3 text-cream weight-extra-bold p-5 text-center">Your message was sent succesfully</p>
+                        </AlertDialogDemo>
+                    )} */}
                 </div>
             </form>
+
             {modal && <Modal onClose={() => setModal(false)}>Your message was sent succesfully</Modal>}
 
             <div className="row py-5 justify-content-between">
