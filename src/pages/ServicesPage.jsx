@@ -19,7 +19,7 @@ const ServicesPage = () => {
                 <h1 className="text-uppercase display-2 weight-black"> Gauging our excellence <br></br> by your triumphs.</h1>
                 <div className="row align-items-center">
                     <div className="col-4 offset-md-1 pt-3">
-                        <img src="./../src/assets/dist/img/piggies-icon.png" width="100%" />
+                        <img src="https://res.cloudinary.com/dmbtvuj1x/image/upload/v1709386709/Piggies/piggies-icon_sxwwew.png" width="100%" />
                     </div>
                     <div className="col-6 offset-md-1 fs-md-5">
                         Based in Madrid, Piggies has a global impact through its designs and collaborations. 

@@ -1,50 +1,52 @@
+import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import { IconContext } from "react-icons";
-import { LuLayoutDashboard } from "react-icons/lu";
+import { LuLayoutDashboard, LuSettings } from "react-icons/lu";
 import { AiOutlineMessage } from "react-icons/ai";
 import { FaRegSquareCheck } from "react-icons/fa6";
-import { FiCalendar } from "react-icons/fi";
-import { LuSettings } from "react-icons/lu";
-import { FiLogOut } from "react-icons/fi";
+import { FiCalendar, FiLogOut } from "react-icons/fi";
 import { logout } from "../../stores/AccessTokenStore";
-import { useState } from "react";
 
 const DashboardMenu = () => {
-    const [activeTab, setActiveTab] = useState(0); // Cambiado de 0 a null para manejar la no selección inicial
+    const [activeTab, setActiveTab] = useState(null); // Cambiado de 0 a null para manejar la no selección inicial
 
     const menuItems = [
         { to: "/dashboard", icon: <LuLayoutDashboard />, text: "Dashboard" },
         { to: "/messages", icon: <AiOutlineMessage />, text: "Messages" },
-        { to: "/projects-management", icon: <FaRegSquareCheck />, text: "Projects" },
+        { to: "/projects", icon: <FaRegSquareCheck />, text: "Projects" },
         { to: "/schedule", icon: <FiCalendar />, text: "Schedule" },
         { to: "/settings", icon: <LuSettings />, text: "Settings" },
     ];
 
-
     return (
         <div className="border-end">
             <div className="col-2 d-flex d-inline-block dashboard-menu border-end">
+                {/* Logo */}
                 <Link to="/">
                     <img className="nav-logo" src="https://res.cloudinary.com/dmbtvuj1x/image/upload/v1709386605/Piggies/piggies-logo_fovqzf.png" alt="Brand logo" />
                 </Link>
-                <ul className="list-unstyled ">
-                    {menuItems.map((item, index) => (
-                        <Link to={item.to} className=" text-decoration-none">
+
+                {/* Menu Items */}
+                <ul className="list-unstyled">
+                    <IconContext.Provider value={{ className: "text-black", size: "1rem" }}>
+                        {menuItems.map((item, index) => (
                             <li
-                                key={item.text}
-                                className="nav-item py-2 d-flex align-items-center btn-link text-black text-decoration-none"
-                                onClick={() => setActiveTab(index)}
+                                key={index}
+                                className={`nav-item py-2 ${activeTab === index ? 'text-orange' : ''}`} // Aplica la clase text-orange si el item está activo
+                                onClick={() => setActiveTab(index)} // Actualiza el estado al hacer clic
                             >
-                                <div className="me-2" style={{ verticalAlign: 'text-bottom', color: activeTab === index ? 'var(--bs-primary)' : 'inherit' }}>
-                                    <IconContext.Provider value={{ className: `${activeTab === index ? 'text-primary' : 'text-black'}` }}>
+                                <Link to={item.to} className="d-flex align-items-center btn-link text-black text-decoration-none">
+                                    <div className="me-2" style={{ verticalAlign: 'text-bottom' }}>
                                         {item.icon}
-                                    </IconContext.Provider>
-                                </div>
-                                <span style={{ color: activeTab === index ? 'var(--bs-primary)' : 'inherit' }}>{item.text}</span>
+                                    </div>
+                                    <span>{item.text}</span>
+                                </Link>
                             </li>
-                        </Link>
-                    ))}
+                        ))}
+                    </IconContext.Provider>
                 </ul>
+
+                {/* Logout */}
                 <ul className="list-unstyled">
                     <li className="nav-item">
                         <button onClick={logout} className="d-flex align-items-center btn-link text-black text-decoration-none">
@@ -56,7 +58,7 @@ const DashboardMenu = () => {
                     </li>
                 </ul>
             </div>
-        </div >
+        </div>
     );
 };
 

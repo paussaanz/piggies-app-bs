@@ -2,14 +2,19 @@ import { IconContext } from "react-icons";
 import { AiFillInstagram } from "react-icons/ai";
 import { FaSquareBehance } from "react-icons/fa6";
 import { FaTwitter } from "react-icons/fa";
+import { PiArrowUpRightBold } from "react-icons/pi";
 
 
 const Footer = () => {
     return (
         <div>
             <h1 className="text-uppercase weight-black col-9 display-2 primary-color pb-2">WE ALWAYS SEEK
-                NEW ADVENTURES.
-                Let’s talk</h1>
+                NEW ADVENTURES.<br/>
+                <span class="underline-animate pe-4">Let's Talk</span>
+                <IconContext.Provider value={{ className: "text-black gap-2", size: "4.5rem"}}>
+                <PiArrowUpRightBold/>
+                </IconContext.Provider>
+                </h1>
             <img className="img-fluid col-3 offset-md-9 py-5" src="https://res.cloudinary.com/dmbtvuj1x/image/upload/v1709386709/Piggies/piggies-icon_sxwwew.png" />
             <div className="row py-5">
                 <div className="col-4">

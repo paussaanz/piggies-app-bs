@@ -1,32 +1,43 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Button from "../Button";
 import { Link, useLocation } from "react-router-dom";
 import UserNavbar from "./UserNavbar";
+import DashboardMenu from "./DashboardMenu";
+import AuthContext from "../../contexts/AuthContext";
 
 const Navbar = () => {
+    const { user } = useContext(AuthContext)
     const location = useLocation();
-    const hiddenPaths = ['/dashboard', '/messages'];
+    const hiddenPaths = ['/dashboard', '/messages', '/settings', '/schedule', '/projects-management'];
     const [navbarClass, setNavbarClass] = useState('navbar-visible');
-    let lastScrollY = window.scrollY;
+    const [lastScrollY, setLastScrollY] = useState(window.scrollY);
 
     useEffect(() => {
         const controlNavbar = () => {
-            if (window.scrollY > lastScrollY && window.scrollY > 100) { 
+            if (window.scrollY > lastScrollY && window.scrollY > 100) {
                 setNavbarClass('navbar-hidden');
-            } else { 
+            } else {
                 setNavbarClass('navbar-visible');
             }
-            lastScrollY = window.scrollY;
+            setLastScrollY(window.scrollY);
         };
 
         window.addEventListener('scroll', controlNavbar);
 
         return () => window.removeEventListener('scroll', controlNavbar);
-    }, []);
+    }, [lastScrollY]);
+
 
     if (hiddenPaths.includes(location.pathname)) {
         return (
-            <UserNavbar/>
+            <div className="row">
+                <div className="col-2">
+                    <DashboardMenu />
+                </div>
+                <div className="col-10">
+                    <UserNavbar currentUser={user}/>
+                </div>
+            </div>
         );
     }
 

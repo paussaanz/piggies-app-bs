@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getUnacceptedForms, acceptForm } from "../services/FormService";
+import {  acceptForm, getAllForms } from "../services/FormService";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from 'swiper/modules';
 import AlertDialog from "./AlertDialog";
@@ -10,21 +10,25 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 
 
-const DashboardCard = () => {
+const DashboardCard = ({ onSubmitCb }) => {
     const [forms, setForms] = useState([]);
+    const [formToAccept, setFormToAccept] = useState(null)
+    const [showModal, setShowModal] = useState(false)
 
     useEffect(() => {
-        getUnacceptedForms().then(unacceptedForms => {
+        getAllForms().then(unacceptedForms => {
             setForms(unacceptedForms);
         });
     }, []);
     //COMM: Por qué si pongo forms como dependencia en el array no para de hacer peticiones constantemente?
     // COMM: Esto me gustaría sacarlo de aquí
-    const handleAccept = (formId) => {
-        acceptForm(formId)
+    const handleAccept = () => {
+        acceptForm(formToAccept)
             .then(() => {
-                setForms(forms.filter(form => form._id !== formId));
-                window.location.reload()
+                setForms(forms.filter(form => form._id !== formToAccept));
+                onSubmitCb()
+                setShowModal(false)
+                setFormToAccept(null)
             });
     };
 
@@ -39,6 +43,10 @@ const DashboardCard = () => {
                 modules={[Pagination]}
                 className="dashboard-swiper pb-5"
                 onSwiper={(swiper) => console.log(swiper)}
+                style={{
+                    "--swiper-pagination-color": "#FA6900",
+                    "--swiper-pagination-bullet-inactive-color": "#696969",
+                  }}
             >
                 {forms.map((form, index) => (
                     <SwiperSlide className="h-100">
@@ -49,20 +57,19 @@ const DashboardCard = () => {
                                 <p className="card-text">{form.email}</p>
                                 <p className="d-inline-block bg-cream px-4 py-1 rounded-5 text-black">{form.phone}</p>
                             </div>
-                            <AlertDialog title="Are you sure you want to accept?"
-                                trigger={<Button>Accept</Button>}
-                                bg_color="cream"
-                                accept={<Button color="primary" onClick={() => handleAccept(form._id)}>Accept request</Button>}
-                                cancel={<Button>Cancel</Button>}
-                                padding="p-4"
-                            >
-                                If you accept this request, the client will be sent an email.
-                            </AlertDialog>
+                            <Button onClick={() => {
+                                setShowModal(true)
+                                setFormToAccept(form.id)
+                                }}>Accept</Button>
                         </div>
                     </SwiperSlide>
 
                 ))}
             </Swiper>
+          {showModal && <AlertDialog onAccept={handleAccept} onClose={() => {
+            setShowModal(false)
+            setFormToAccept(null)
+            }}/>}
         </>
     );
 };

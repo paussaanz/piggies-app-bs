@@ -6,6 +6,27 @@ import Button from "../components/Button";
 import { useEffect, useState } from "react";
 import { getServices } from "../services/FormService";
 
+const images = [
+    {
+        src: "https://res.cloudinary.com/dmbtvuj1x/image/upload/v1708978972/Piggies/Psd_1.2_t3pqd8.jpg",
+        alt: "Future",
+    },
+    {
+        src: "https://res.cloudinary.com/dmbtvuj1x/image/upload/v1708978973/Piggies/63530936d13ee9e14d3f14bf_Rectangle_1836_anerma.webp",
+        alt: "Palau",
+    },
+    {
+        src: "https://res.cloudinary.com/dmbtvuj1x/image/upload/v1708978884/Piggies/DashQ-Hero_pjeff3.png",
+        alt: "Dash Q",
+    },
+    {
+        src: "https://res.cloudinary.com/dmbtvuj1x/image/upload/v1708978893/Piggies/1_qedfvj.jpg",
+        alt: "Venture Capital",
+    },
+];
+
+
+
 const homePage = () => {
     const [services, setServices] = useState([]);
 
@@ -29,7 +50,7 @@ const homePage = () => {
                         <p className="text-black pt-2 fs-md-5">At Piggies, we’re not just about creating pretty designs or hopping on the latest trends. Oh no, we’re about crafting a legacy, your legacy, with a pinch of our Piggies’ magic! From mastering the art of media planning to securing those prime advertising spots, our team of creative wizards and strategy maestros are here to take your brand from ‘just another name’ to ‘the name’ on everyone’s lips.</p>
                     </div>
                     <div className="col-6 pt-4">
-                        {services.map ((service) => (
+                        {services.map((service) => (
                             <ServiceCard service={service.name} number={service.number} imgUrl={service.imgUrl} />
                         ))}
                     </div>
@@ -40,7 +61,7 @@ const homePage = () => {
                             <h4 className="col h5 text-black weight-semi-light">OUR SERVICES</h4>
                             <Link to="/services" className="col-auto">
                                 <Button outline="primary">
-                                    <img src="./../src/assets/dist/img/arrow.svg"/>
+                                    <img src="./../src/assets/dist/img/arrow.svg" />
                                 </Button>
                             </Link>
                         </div>
@@ -49,20 +70,26 @@ const homePage = () => {
             </section>
             <section className="container projects pb-5">
                 <h4 className="col text-black h5 weight-semi-light">PROJECTS</h4>
-                <Carrusel />
+                <Link to="/projects" className="text-decoration-none">
+                    <Carrusel images={images} />
+                </Link>
             </section>
             < section className="bg-black p-5">
                 <div className="container about">
                     <div className="text-cream">
                         <div className="row d-inline-flex justify-content-between pt-5">
                             <h4 className="col-auto h5 weight-semi-light mt-2">WHO ARE WE</h4>
-                            <h3 className="h3 weight-semi-bold text-end col-9">
+                            <h3 className="h3 weight-semi-bold text-end col-9 text-uppercase">
                                 PIGGIES IS A COMMUNICATION FIRM ESTABLISHED ON THE FOUNDATION OF TEAMWORK. WE ARE DRAWN TO METICULOUSLY CRAFTED DESIGN AND MOVEMENT.
                             </h3>
                         </div>
-                        <p className="pt-4 col-7 offset-md-5 fs-md-5">
-                            At Piggies, we don't just communicate; we connect. We understand the power of a story well told, and our designs speak volumes, engaging audiences with their elegance and simplicity. Whether it's branding, digital marketing, or multimedia production, our work is always ahead of the curve, blending cutting-edge technology with compelling narratives. Our approach is holistic; we delve deep into understanding our clients' visions, their brand essence, and their audience. This depth of understanding translates into communication strategies that resonate, inspire, and endure.
-                        </p>
+                        <div className="row d-inline-flex justify-content-between pt-5 align-items-center">
+                            <img className="col-auto ms-5" style={{ width: '300px', height: '300px', objectFit: 'contain' }} src="https://res.cloudinary.com/dmbtvuj1x/image/upload/v1709479695/Piggies/Recurso_1logo-mio_vdltks.png" />
+                            <p className="pt-4 col-7 fs-md-5">
+                                At Piggies, we don't just communicate; we connect. We understand the power of a story well told, and our designs speak volumes, engaging audiences with their elegance and simplicity. Whether it's branding, digital marketing, or multimedia production, our work is always ahead of the curve, blending cutting-edge technology with compelling narratives. Our approach is holistic; we delve deep into understanding our clients' visions, their brand essence, and their audience. This depth of understanding translates into communication strategies that resonate, inspire, and endure.
+                            </p>
+                        </div>
+
                     </div>
                 </div>
             </section>

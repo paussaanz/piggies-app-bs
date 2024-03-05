@@ -1,31 +1,24 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import clsx from 'clsx';
-import AllTasks from './AllTasks';
-import PendingTasks from './PendingTasks';
-import DoneTasks from './DoneTasks';
 import Button from './Button'
+import TaskBar from './TaskBar';
 
-const Tabbar = () => {
+const Tabbar = ({ tasks, activeTab, setActiveTab}) => {
 
   const tabs = [
     {
       key: 0,
       title: 'All Tasks',
-      body: <AllTasks />,
     },
     {
       key: 1,
       title: 'Pending',
-      body: <PendingTasks />,
     },
     {
       key: 2,
       title: 'Done',
-      body: <DoneTasks />
     },
   ]
-
-  const [activeTab, setActiveTab] = useState(0);
 
   return (
     <div>
@@ -33,7 +26,7 @@ const Tabbar = () => {
         <div className="d-flex g-3 py-5">
           {
             tabs.map(tab => (
-                <Button key={tab.key} extraClassName={"me-3"} active={tab.key === activeTab} onClick={() => setActiveTab(tab.key)}>
+                <Button key={tab.key} extraClassName={"me-3"} active={tab.title === activeTab} onClick={() => setActiveTab(tab.title)}>
                      {tab.title}
                 </Button>
             ))
@@ -41,8 +34,8 @@ const Tabbar = () => {
         </div>
 
       </div>
-      <div>
-        {tabs[activeTab].body}
+      <div className="pb-4">
+        <TaskBar tasks={tasks} type="checkbox"/> 
       </div>
     </div>
   )

@@ -1,32 +1,39 @@
-const Carrusel = () => {
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination } from 'swiper/modules';
+
+import 'swiper/css';
+import 'swiper/css/pagination';
+
+
+const Carrusel = ({ images }) => {
     return (
-        <div id="carouselExampleIndicators" className="carousel slide rounded-5">
-            <div className="carousel-indicators">
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-            </div>
-            <div className="carousel-inner">
-                <div className="carousel-item active">
-                    <img src="./../src/assets/dist/img/project1.jpg" className="d-block w-100" alt="..."/>
-                </div>
-                <div className="carousel-item">
-                    <img src="./../src/assets/dist/img/project2.jpeg" className="d-block w-100" alt="..."/>
-                </div>
-                <div className="carousel-item">
-                    <img src="./../src/assets/dist/img/project3.png" className="d-block w-100" alt="..."/>
-                </div>
-            </div>
-            <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span className="visually-hidden">Previous</span>
-            </button>
-            <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                <span className="carousel-control-next-icon" aria-hidden="true"></span>
-                <span className="visually-hidden">Next</span>
-            </button>
-        </div>
+        <>
+            <Swiper
+                slidesPerView={1.2}
+                centeredSlides={true}
+                spaceBetween={30}
+                pagination={{
+                    clickable: true,
+                }}
+                loop={true}
+                modules={[Pagination]}
+                className="mySwiper pb-5"
+                style={{
+                    "--swiper-pagination-color": "#FA6900",
+                    "--swiper-pagination-bullet-inactive-color": "#696969",
+                  }}
+            >
+                {images.map((image, index) => (
+                    <SwiperSlide key={index} className="h-100">
+                        <div style={{ height: '680px', overflow: 'hidden' }}>
+                            <img src={image.src} className="d-block w-100 h-100 rounded-4" alt={image.alt} style={{ objectFit: 'cover' }} />
+                        </div>
+                    </SwiperSlide>
+                ))}
+            </Swiper>
+        </>
     );
 };
+
 
 export default Carrusel;

@@ -14,6 +14,9 @@ import SignUp from "./pages/SignUp";
 import LoginPage from "./pages/LoginPage";
 import ProtectedRoute from "./components/ProtectedRoute";
 import MessagesPage from "./pages/MessagesPage";
+import ProjectsManagementPage from "./pages/ProjectsManagementPage";
+import SchedulePage from "./pages/SchedulePage";
+import SettingsPage from "./pages/SettingsPage";
 
 const socket = io.connect("http://localhost:3000")
 function App() {
@@ -41,6 +44,9 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/dashboard" element={<ProtectedRoute><DashboardPage /> </ProtectedRoute>} />
         <Route path="/messages" element={<ProtectedRoute><MessagesPage /> </ProtectedRoute>} />
+        <Route path="/projects-management" element={<ProtectedRoute><ProjectsManagementPage /> </ProtectedRoute>} />
+        <Route path="/schedule" element={<ProtectedRoute><SchedulePage /> </ProtectedRoute>} />
+        <Route path="/settings" element={<ProtectedRoute><SettingsPage /> </ProtectedRoute>} />
       </Routes>
     </div>
   )

@@ -1,34 +1,52 @@
 import { Link } from "react-router-dom";
 import { IconContext } from "react-icons";
 import { FaBell } from "react-icons/fa";
+import { useEffect, useState } from "react";
 
 
 const UserNavbar = ({ currentUser }) => {
+    const [navbarClass, setNavbarClass] = useState('navbar-visible');
+    const [lastScrollY, setLastScrollY] = useState(window.scrollY);
+
+    useEffect(() => {
+        const controlNavbar = () => {
+            if (window.scrollY > lastScrollY && window.scrollY > 100) {
+                setNavbarClass('navbar-hidden');
+            } else {
+                setNavbarClass('navbar-visible');
+            }
+            setLastScrollY(window.scrollY);
+        };
+
+        window.addEventListener('scroll', controlNavbar);
+
+        return () => window.removeEventListener('scroll', controlNavbar);
+    }, [lastScrollY]);
+
     return (
-        <nav className="navbar navbar-expand-lg py-5 border-bottom">
+        <nav className={`navbar navbar-expand-lg py-4 border-bottom sticky-top bg-cream ${navbarClass}`}>
             <div className="container-fluid">
-                <Link to="/">
-                    <img className="nav-logo" src="https://res.cloudinary.com/dmbtvuj1x/image/upload/v1709386605/Piggies/piggies-logo_fovqzf.png" alt="Brand logo" />
-                </Link>
                 <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
-                    <ul className="navbar-nav align-items-center w-100 justify-content-between px-5">
+                    <div className="navbar-nav align-items-center w-100 justify-content-between px-5">
                         <li className="nav-item text-uppercase weight-semi-bold">
                             {location.pathname}
                         </li>
-                        <IconContext.Provider value={{ className: "text-black", size: "1.5rem" }}>
-                            <li className="nav-item img-fluid ">
-                                <FaBell />
-                            </li>
-                        </IconContext.Provider>
+                        <div className="d-flex align-items-center gap-4">
+                            <IconContext.Provider value={{ className: "text-black", size: "1.5rem" }}>
+                                <li className="nav-item img-fluid ">
+                                    <FaBell />
+                                </li>
+                            </IconContext.Provider>
 
-                        {currentUser ? (
-                            <li className="nav-item">
-                                <img src={currentUser.imageUrl} alt="User profile" style={{ borderRadius: '50%' }} />
-                            </li>
-                        ) : (
-                            null
-                        )}
-                    </ul>
+                            {currentUser ? (
+                                <li className="nav-item">
+                                    <img src={currentUser.imageUrl} alt="User profile" style={{ borderRadius: '50%',  width: '35px', height: '35px', objectFit: 'cover' }} />
+                                </li>
+                            ) : (
+                                null
+                            )}
+                        </div>
+                    </div>
                 </div>
             </div>
         </nav>

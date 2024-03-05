@@ -14,16 +14,8 @@ export const formSubmit = ({
   return unAuthenticatedHttp.post("/forms", { name, email, phone, subject, message, service });
 };
 
-export const getAllForms = () => {
-  return authenticatedHttp.get("/forms");
-};
-
-export const getUnacceptedForms = () => {
-  return authenticatedHttp.get("/forms/unaccepted");
-};
-
-export const getAcceptedForms = () => {
-  return authenticatedHttp.get("/forms/accepted");
+export const getAllForms = (accepted) => {
+  return accepted ? authenticatedHttp.get(`/forms?accepted=true`) :  authenticatedHttp.get("/forms");
 };
 
 export const acceptForm = (formId) => {
