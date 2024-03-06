@@ -1,7 +1,7 @@
 import FormInput from "./FormInput";
 import FormOptions from "./FormOptions";
 import FormTextArea from "./FormTextArea";
-import Modal from "../Modal";
+import AlertDialog from "../AlertDialog";
 import { useFormik } from "formik";
 import { formSubmit, getServices } from '../../services/FormService';
 import Button from "../Button";
@@ -11,8 +11,7 @@ import { useEffect, useState } from "react";
 
 const Form = () => {
     const [services, setServices] = useState([]);
-    // const [showDialog, setShowDialog] = useState(false);
-    const [modal, setModal] = useState(false);
+    const [showModal, setShowModal] = useState(false);
 
 
     const initialValues = {
@@ -53,7 +52,7 @@ const Form = () => {
                 .then(() => {
                     resetForm();
                     // setShowDialog(true);
-                    setModal(true)
+                    setShowModal(true)
                 })
                 .catch(err => console.error(err));
         },
@@ -158,22 +157,22 @@ const Form = () => {
                     <Button type="submit" outline="primary">
                         {isSubmitting ? "Submitting..." : "Send Message"}
                     </Button>
-                    {/* {showDialog && (
-                        <AlertDialogDemo bg_color="primary"
-                            trigger={<Button type="submit" outline="primary">
-                                {isSubmitting ? "Submitting..." : "Send Message"}
-                            </Button>}
-                            cancel={
-                                <Button onClick={() => setShowDialog(false)} outline="cream">Cerrar</Button>
-                            }
-                        >
-                            <p className="text-uppercase h3 text-cream weight-extra-bold p-5 text-center">Your message was sent succesfully</p>
-                        </AlertDialogDemo>
-                    )} */}
                 </div>
             </form>
 
-            {modal && <Modal onClose={() => setModal(false)}>Your message was sent succesfully</Modal>}
+            {showModal && <AlertDialog
+                bg_color="primary"
+                text_color="cream"
+                body_weight="extra-bold"
+                title="Your message was sent succesfully"
+                cancelButton={{
+                    text: "CLOSE",
+                    onClick: () => setShowModal(false),
+                    type: "submit",
+                    outline: "cream"
+                }}
+                >
+            </AlertDialog>}
 
             <div className="row py-5 justify-content-between">
                 <div className="col-4">

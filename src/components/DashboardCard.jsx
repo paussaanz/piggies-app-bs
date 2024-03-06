@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import {  acceptForm, getAllForms } from "../services/FormService";
+import { acceptForm, getAllForms } from "../services/FormService";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from 'swiper/modules';
 import AlertDialog from "./AlertDialog";
@@ -21,7 +21,6 @@ const DashboardCard = ({ onSubmitCb }) => {
         });
     }, []);
     //COMM: Por qué si pongo forms como dependencia en el array no para de hacer peticiones constantemente?
-    // COMM: Esto me gustaría sacarlo de aquí
     const handleAccept = () => {
         acceptForm(formToAccept)
             .then(() => {
@@ -42,11 +41,10 @@ const DashboardCard = ({ onSubmitCb }) => {
                 }}
                 modules={[Pagination]}
                 className="dashboard-swiper pb-5"
-                onSwiper={(swiper) => console.log(swiper)}
                 style={{
                     "--swiper-pagination-color": "#FA6900",
                     "--swiper-pagination-bullet-inactive-color": "#696969",
-                  }}
+                }}
             >
                 {forms.map((form, index) => (
                     <SwiperSlide className="h-100">
@@ -60,16 +58,30 @@ const DashboardCard = ({ onSubmitCb }) => {
                             <Button onClick={() => {
                                 setShowModal(true)
                                 setFormToAccept(form.id)
-                                }}>Accept</Button>
+                            }}>Accept</Button>
                         </div>
                     </SwiperSlide>
 
                 ))}
             </Swiper>
-          {showModal && <AlertDialog onAccept={handleAccept} onClose={() => {
-            setShowModal(false)
-            setFormToAccept(null)
-            }}/>}
+            {showModal && <AlertDialog
+                bg_color="cream"
+                text_color="black"
+                body_weight="semi-bold"
+                title="Are you sure you want to accept?"
+                body="If you accept this request, the client will be sent an email. "
+                cancelButton={{
+                    text: "CLOSE",
+                    onClick: () => {setShowModal(false)
+                    setFormToAccept(null)},
+                    type: "submit" 
+                }}
+                acceptButton={{
+                    text: "ACCEPT",
+                    onClick: () => {handleAccept()},
+                    type: "submit"
+                }}
+                />}
         </>
     );
 };

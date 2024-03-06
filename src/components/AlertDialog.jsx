@@ -1,28 +1,50 @@
 import React from 'react';
 import Button from './Button';
 
-const AlertDialog = ({ title, trigger, children, accept, cancel, bg_color, padding, onClose,onAccept }) => {
-const justifyContent = accept && cancel ? "flex-end" : "center"
-return(
-    <div>
+const AlertDialog = ({
+    title,
+    body,
+    text_color,
+    bg_color,
+    cancelButton,
+    acceptButton,
+    body_weight
+}) => {
+
+    const justifyContent = cancelButton && acceptButton ? "flex-end" : "center"
+    return (
+        <div>
             <div className="AlertDialogOverlay" />
-            <div className={`AlertDialogContent bg-cream`} >
-                <div className={`h5 weight-semi-bold text-center ${padding}`}>LAKSNDLKANDLKASKDS</div>
+            <div className={`AlertDialogContent bg-${bg_color}`} >
+                <div className={`h4 weight-${body_weight} text-center text-${text_color} pt-4 px-3 text-uppercase`}>{title}</div>
                 <div className=" text-center fs-6 pt-2 pb-4">
-                    aslkfhaskhfklajfklasjlkfs
+                    {body}
                 </div>
 
-                <div style={{ display: 'flex', gap: 25, justifyContent }}>
-                    <Button  onClick={onClose}>
-                       CANCEL
-                    </Button>
-                    <Button active onClick={onAccept} >
-                      ACCEPT
-                    </Button>
+                <div style={{ display: 'flex', gap: '25px', justifyContent: justifyContent }}>
+                    <div style={{ display: 'flex', gap: '25px', justifyContent: justifyContent }}>
+                        {cancelButton && (
+                            <Button
+                                onClick={cancelButton.onClick}
+                                type={cancelButton.type}
+                            >
+                                {cancelButton.text}
+                            </Button>
+                        )}
+                        {acceptButton && (
+                            <Button
+                                active
+                                onClick={acceptButton.onClick}
+                                type={acceptButton.type}
+                            >
+                                {acceptButton.text}
+                            </Button>
+                        )}
+                    </div>
                 </div>
 
             </div>
-    </div>
+        </div>
     )
 };
 

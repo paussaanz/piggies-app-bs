@@ -1,8 +1,13 @@
 .form-check-input {
 	position: relative;
-	//left: $cor-form-check-input-position;
+	&.form-check-input-tick{
+		&:checked[type=checkbox] {//#{$cor-color-icons-svg}
+			--bs-form-check-bg-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#{$cor-color-icons-svg}" class="bi bi-check-circle-fill" viewBox="0 0 16 16"> <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/> </svg>');
+			border-color:transparent;
+		}
+	}
 }
-
+.form-check-input
 .form-check-label {
 	margin-top: $spacer * 0.1;
 }
@@ -63,7 +68,8 @@ form {
 		color: $cor-black;
 		font-family: $cor-font-family-sans-serif;
 		font-weight: 600;
-		padding:1.7rem 1.4rem;
+		padding: 1.7rem 1.4rem;
+
 		&::placeholder {
 			color: $cor-black;
 			opacity: .8;
@@ -77,6 +83,7 @@ form {
 			box-shadow: none;
 
 			border-color: $cor-secondary;
+
 			&::placeholder {
 				color: transparent;
 			}
@@ -87,38 +94,40 @@ form {
 		}
 	}
 
-	 .form-check-label{
-	   color: $white;
-	
-	 }
-	 .form-select{
-	   border: none;
-	   border-bottom: solid 1px rgba(255, 255, 255, 0.30);
-	   border-radius: 0;
-	   background-color: transparent;
-	   color: $white;
-	   padding-right: 0;
-	   padding-left: 0;
-	   @include media-breakpoint-up(md) {
-	     font-size: $cor-font-size-base;
-	   }
-	 }
+	.form-check-label {
+		color: $white;
+
 	}
-	
-	//.form-check{
-	//  min-height: auto;
-	//}
-	//.form-check-input{
-	//  background-color: transparent;
-	//  border: solid 1px rgba($white, .3);
-	//}
-	//
-	//// quitar el color blanco del fondo cuando se autocompleta el texto
-	//input:-webkit-autofill,
-	//input:-webkit-autofill:hover,
-	//input:-webkit-autofill:focus,
-	//input:-webkit-autofill:active{
-	//  -webkit-text-fill-color:transparent !important;
-	//  -webkit-background-clip: text;
-	//}
-	//
+
+	.form-select {
+		border: none;
+		border-bottom: solid 1px rgba(255, 255, 255, 0.30);
+		border-radius: 0;
+		background-color: transparent;
+		color: $white;
+		padding-right: 0;
+		padding-left: 0;
+
+		@include media-breakpoint-up(md) {
+			font-size: $cor-font-size-base;
+		}
+	}
+}
+
+//.form-check{
+//  min-height: auto;
+//}
+//.form-check-input{
+//  background-color: transparent;
+//  border: solid 1px rgba($white, .3);
+//}
+//
+//// quitar el color blanco del fondo cuando se autocompleta el texto
+//input:-webkit-autofill,
+//input:-webkit-autofill:hover,
+//input:-webkit-autofill:focus,
+//input:-webkit-autofill:active{
+//  -webkit-text-fill-color:transparent !important;
+//  -webkit-background-clip: text;
+//}
+//
