@@ -17,6 +17,7 @@ import ProjectsManagementPage from "./pages/ProjectsManagementPage";
 import SchedulePage from "./pages/SchedulePage";
 import SettingsPage from "./pages/SettingsPage";
 import Footer from "./components/Footer";
+import UserProfilePage from "./pages/UserProfilePage";
 
 const socket = io.connect("http://localhost:3000")
 function App() {
@@ -40,6 +41,7 @@ function App() {
           <Route path="/messages" element={<ProtectedRoute><MessagesPage /> </ProtectedRoute>} />
           <Route path="/projects-management" element={<ProtectedRoute><ProjectsManagementPage /> </ProtectedRoute>} />
           <Route path="/schedule" element={<ProtectedRoute><SchedulePage /> </ProtectedRoute>} />
+          <Route path="/profile" element={<ProtectedRoute><UserProfilePage /> </ProtectedRoute>} />
           <Route path="/settings" element={<ProtectedRoute><SettingsPage /> </ProtectedRoute>} />
         </Routes>
       </main>

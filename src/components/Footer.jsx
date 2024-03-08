@@ -6,7 +6,7 @@ import { PiArrowUpRightBold } from "react-icons/pi";
 
 
 const Footer = () => {
-    const hiddenPaths = ['/dashboard', '/messages', '/settings', '/schedule', '/projects-management'];
+    const hiddenPaths = ['/dashboard', '/messages', '/settings', '/schedule', '/projects-management', '/profile'];
 
     if (hiddenPaths.includes(location.pathname)) {
         return (
