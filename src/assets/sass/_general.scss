@@ -42,10 +42,13 @@ footer {
 }
 
 .projects-img {
-	aspect-ratio: 4/5;
+	aspect-ratio: 1;
 	object-fit: cover;
 	width: 100%;
 	border-radius: 20px;
+	@include media-breakpoint-up(md) {
+		aspect-ratio: 4/5;
+	}
 }
 
 /* Typography - MATRICE */
@@ -425,6 +428,30 @@ button {
 	opacity: 0 !important;
   }
 
+  #file-signup-input {
+	position: relative;
+	align-items: center;
+	justify-content: center;
+  }
+
+  #file-signup-input:after {
+	content: "Upload your image";
+	align-items: center;
+	justify-content: center;
+	display: flex;
+    width: 251px;
+    height: 78px;
+    position: absolute;
+    background-color:  $cor-black;
+	color: $cor-cream;
+	font-family: 'Matrice', sans-serif;
+	font-weight: 600;
+    top: 33px;
+    border-top-left-radius: 19px;
+	border-bottom-left-radius: 19px;
+	pointer-events: none;
+    left: 0px;
+  }
 
 
   

@@ -16,13 +16,11 @@ const AlertDialog = ({
         <div>
             <div className="AlertDialogOverlay" />
             <div className={`AlertDialogContent bg-${bg_color}`} >
-                <div className={`h4 weight-${body_weight} text-center text-${text_color} pt-4 px-3 text-uppercase`}>{title}</div>
-                <div className=" text-center fs-6 pt-2 pb-4">
+                <div className={`h4 weight-${body_weight} text-center text-${text_color} pt-4 px-3 text-uppercase pb-4`}>{title}</div>
+                <div className=" text-center fs-6 pt-2 pb-4" style={{ maxHeight: '380px', overflowY: 'auto' }}>
                     {body}
                 </div>
-
-                <div style={{ display: 'flex', gap: '25px', justifyContent: justifyContent }}>
-                    <div style={{ display: 'flex', gap: '25px', justifyContent: justifyContent }}>
+                    <div className="pt-4"style={{ display: 'flex', gap: '25px', justifyContent: justifyContent }}>
                         {cancelButton && (
                             <Button
                                 onClick={cancelButton.onClick}
@@ -41,7 +39,6 @@ const AlertDialog = ({
                             </Button>
                         )}
                     </div>
-                </div>
 
             </div>
         </div>

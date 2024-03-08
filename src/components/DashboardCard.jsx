@@ -16,9 +16,10 @@ const DashboardCard = ({ onSubmitCb }) => {
     const [showModal, setShowModal] = useState(false)
 
     useEffect(() => {
-        getAllForms().then(unacceptedForms => {
-            setForms(unacceptedForms);
-        });
+        getAllForms()
+            .then(dbForms => {
+                setForms(dbForms);
+            });
     }, []);
     //COMM: Por qué si pongo forms como dependencia en el array no para de hacer peticiones constantemente?
     const handleAccept = () => {
@@ -72,16 +73,18 @@ const DashboardCard = ({ onSubmitCb }) => {
                 body="If you accept this request, the client will be sent an email. "
                 cancelButton={{
                     text: "CLOSE",
-                    onClick: () => {setShowModal(false)
-                    setFormToAccept(null)},
-                    type: "submit" 
+                    onClick: () => {
+                        setShowModal(false)
+                        setFormToAccept(null)
+                    },
+                    type: "submit"
                 }}
                 acceptButton={{
                     text: "ACCEPT",
-                    onClick: () => {handleAccept()},
+                    onClick: () => { handleAccept() },
                     type: "submit"
                 }}
-                />}
+            />}
         </>
     );
 };

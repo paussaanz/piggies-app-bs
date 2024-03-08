@@ -9,7 +9,8 @@ import FormInput from "../components/Form/FormInput";
 const initialValues = {
   email: '',
   username: '',
-  password: ''
+  password: '',
+  imageUrl: ''
 }
 
 const userSchema = Yup.object({
@@ -18,6 +19,7 @@ const userSchema = Yup.object({
   password: Yup.string("Password err")
     .min(8, "Length invalid")
     .required("Required"),
+  imageUrl: Yup.mixed().required('Required field')
 });
 
 const SignUp = () => {
@@ -30,8 +32,7 @@ const SignUp = () => {
     handleBlur,
     isSubmitting,
     handleSubmit,
-    setSubmitting,
-    setFieldError,
+    setFieldValue
   } = useFormik({
     initialValues: initialValues,
     validateOnBlur: true,
@@ -106,10 +107,30 @@ const SignUp = () => {
               placeholder="Enter a password"
               type="password"
             />
+            
+          </FormControl>
+          <FormControl
+            id="file-signup-input"
+            text="imageUrl"
+            error={touched.imageUrl && errors.imageUrl}
+            htmlFor="imageUrl"
+          >
+          <FormInput
+            name="imageUrl"
+            type="file"
+            label="Add your photo"
+            // value={values.avatar}
+            error={touched.imageUrl && errors.imageUrl}
+            onChange={(event) => {
+              setFieldValue("imageUrl", event.currentTarget.files[0]);
+            }}
+            onBlur={handleBlur}
+          />
+            
           </FormControl>
           <div className="text-center">
             <Button
-            outline="primary"
+              outline="primary"
               type="submit"
               disabled={isSubmitting}
             >

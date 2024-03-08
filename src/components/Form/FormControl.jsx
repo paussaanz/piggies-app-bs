@@ -1,6 +1,6 @@
-const FormControl = ({ children, text, htmlFor, error }) => {
+const FormControl = ({ children, text, htmlFor, error, id}) => {
     return (
-      <div className="FormControl mb-3">
+      <div className="FormControl mb-3" id={id}>
         <label htmlFor={htmlFor} className="form-label">
           {text}
         </label>

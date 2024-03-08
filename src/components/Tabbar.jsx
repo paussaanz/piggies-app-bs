@@ -1,9 +1,7 @@
-import { useEffect, useState } from 'react';
-import clsx from 'clsx';
 import Button from './Button'
 import TaskBar from './TaskBar';
 
-const Tabbar = ({ tasks, activeTab, setActiveTab}) => {
+const Tabbar = ({ getTasks, tasks, activeTab, setActiveTab, users}) => {
 
   const tabs = [
     {
@@ -35,7 +33,7 @@ const Tabbar = ({ tasks, activeTab, setActiveTab}) => {
 
       </div>
       <div className="pb-4">
-        <TaskBar tasks={tasks} type="checkbox"/> 
+        <TaskBar getTasks={getTasks} tasks={tasks} users={users} type="checkbox"/> 
       </div>
     </div>
   )

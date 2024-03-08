@@ -5,6 +5,8 @@ import Footer from "../components/Footer";
 import Button from "../components/Button";
 import { useEffect, useState } from "react";
 import { getServices } from "../services/FormService";
+import { IconContext } from "react-icons";
+import { GoArrowRight } from "react-icons/go";
 
 const images = [
     {
@@ -31,9 +33,10 @@ const homePage = () => {
     const [services, setServices] = useState([]);
 
     useEffect(() => {
-        getServices().then(services => {
-            setServices(services);
-        });
+        getServices()
+            .then(services => {
+                setServices(services);
+            });
     }, []);
 
     return (
@@ -55,14 +58,16 @@ const homePage = () => {
                         ))}
                     </div>
                 </div>
-                <div className="col-12 border-bottom pt-5">
+                <div className="col-12 pt-5">
                     <Link to="/services" className="text-decoration-none">
-                        <div className="row">
+                        <div className="row border-bottom pb-3 align-items-center">
                             <h4 className="col h5 text-black weight-semi-light">OUR SERVICES</h4>
                             <Link to="/services" className="col-auto">
-                                <Button outline="primary">
-                                    <img src="./../src/assets/dist/img/arrow.svg" />
+                            <IconContext.Provider value={{ size: "2rem"}}>
+                                <Button outline="primary" padding="p-3">
+                                <GoArrowRight/>
                                 </Button>
+                                </IconContext.Provider>
                             </Link>
                         </div>
                     </Link>
