@@ -7,7 +7,7 @@ import { PiArrowUpRightBold } from "react-icons/pi";
 
 const Footer = () => {
     return (
-        <div>
+        <div className="container">
             <h1 className="text-uppercase weight-black col-9 display-2 primary-color pb-2">WE ALWAYS SEEK
                 NEW ADVENTURES.<br/>
                 <span class="underline-animate pe-4">Let's Talk</span>

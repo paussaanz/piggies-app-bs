@@ -42,7 +42,7 @@ const Navbar = () => {
     }
 
     return (
-        <nav className={`navbar navbar-expand-lg p-4 sticky-top ${navbarClass} bg-cream`}>
+        <nav className={`navbar navbar-expand-lg p-4 ${navbarClass} bg-cream`}>
             <div className="container-fluid">
                 <Link to="/">
                     <img className="nav-logo" src="https://res.cloudinary.com/dmbtvuj1x/image/upload/v1709386605/Piggies/piggies-logo_fovqzf.png" alt="Brand logo" />
