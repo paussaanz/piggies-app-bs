@@ -20,15 +20,6 @@ import Footer from "./components/Footer";
 
 const socket = io.connect("http://localhost:3000")
 function App() {
-  const webNavbar = () => {
-    const location = useLocation();
-    const hiddenPaths = ['/dashboard'];
-
-    if (hiddenPaths.includes(location.pathname)) {
-      return null;
-    }
-    return <Navbar />;
-  };
 
   return (
     <>

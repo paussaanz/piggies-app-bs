@@ -7,8 +7,6 @@ const ProjectsPage = () => {
                 <div className="row row-gap-3 py-5">
                     <ProjectCard />
                 </div>
-
-            <Footer />
         </div>
     );
 };

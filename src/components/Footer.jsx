@@ -6,6 +6,14 @@ import { PiArrowUpRightBold } from "react-icons/pi";
 
 
 const Footer = () => {
+    const hiddenPaths = ['/dashboard', '/messages', '/settings', '/schedule', '/projects-management'];
+
+    if (hiddenPaths.includes(location.pathname)) {
+        return (
+           null
+        );
+    }
+
     return (
         <div className="container">
             <h1 className="text-uppercase weight-black col-9 display-2 primary-color pb-2">WE ALWAYS SEEK

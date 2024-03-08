@@ -98,9 +98,6 @@ const homePage = () => {
                     </div>
                 </div>
             </section>
-            <section className="container pt-5">
-                <Footer />
-            </section>
         </div>
     );
 };

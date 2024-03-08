@@ -107,7 +107,6 @@ const ProjectDetailPage = () => {
                     </div>
                 </div>
             </section>
-            <Footer />
         </div>
     );
 };

@@ -42,7 +42,6 @@ const ServicesPage = () => {
                 ))}
 
             </div>
-            <Footer />
         </div>
     );
 };
