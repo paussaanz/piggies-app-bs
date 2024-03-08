@@ -1,8 +1,6 @@
 const ServiceCard = ({service, number, imgUrl}) => {
     return (
-        <div className="row">
-            <div className="col-12 mb-3 mb-sm-0">
-                <div className="row g-5 align-items-center p-4 border-bottom">
+        <div className="row g-5 align-items-center p-4 border-bottom mb-3 mb-sm-0">
                     <div className="col-3">
                         <img className=" services-img rounded" src={imgUrl} alt="Card image cap" />
                     </div>
@@ -13,8 +11,6 @@ const ServiceCard = ({service, number, imgUrl}) => {
                     </div>
                     </div>
                 </div>
-            </div>
-        </div>
     );
 };
 

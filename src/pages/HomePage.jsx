@@ -40,19 +40,21 @@ const homePage = () => {
     }, []);
 
     return (
-        <div>
-            <section className="hero py-5">
+        <>
+            <section className="hero py-4 py-md-5">
                 <img src="https://res.cloudinary.com/dmbtvuj1x/image/upload/v1709386605/Piggies/piggies-logo_fovqzf.png" alt="Card image cap" width="100%" />
                 <img className="pt-1" src="./../src/assets/dist/img/hero-image.jpg" alt="Card image cap" height="540px" width="100%" />
             </section>
-            <section className="container services py-5">
-                <h2 className="col-11 h2 text-black weight-black">SUPER TALENTED AT UNLEASHING BRANDS, PIGGIES: WHERE YOUR VISION GETS WINGS!</h2>
+            <section className="container services py-4 py-md-5">
                 <div className="row">
-                    <div className="col-6 pt-5 pe-5">
+                    <div className="col-12">
+                        <h2 className="fs-4 fs-md-2 text-black weight-black">SUPER TALENTED AT UNLEASHING BRANDS, PIGGIES: WHERE YOUR VISION GETS WINGS!</h2>
+                    </div>
+                    <div className="col-12 col-md-6 pt-5 pe-5">
                         <p className="text-black fs-md-5">Welcome to Piggies, the vibrant heart of creativity where your brand’s story is our masterpiece! Here, we believe in the power of 'extraordinary' – where every pixel, every line, and every word is a part of a larger, more spectacular picture. Picture this: a world where your brand doesn’t just exist but thrives and captivates.</p>
                         <p className="text-black pt-2 fs-md-5">At Piggies, we’re not just about creating pretty designs or hopping on the latest trends. Oh no, we’re about crafting a legacy, your legacy, with a pinch of our Piggies’ magic! From mastering the art of media planning to securing those prime advertising spots, our team of creative wizards and strategy maestros are here to take your brand from ‘just another name’ to ‘the name’ on everyone’s lips.</p>
                     </div>
-                    <div className="col-6 pt-4">
+                    <div className="col-12 col-md-6 pt-4">
                         {services.map((service) => (
                             <ServiceCard service={service.name} number={service.number} imgUrl={service.imgUrl} />
                         ))}
@@ -63,10 +65,10 @@ const homePage = () => {
                         <div className="row border-bottom pb-3 align-items-center">
                             <h4 className="col h5 text-black weight-semi-light">OUR SERVICES</h4>
                             <Link to="/services" className="col-auto">
-                            <IconContext.Provider value={{ size: "2rem"}}>
-                                <Button outline="primary" padding="p-3">
-                                <GoArrowRight/>
-                                </Button>
+                                <IconContext.Provider value={{ size: "2rem" }}>
+                                    <Button outline="primary" padding="p-3">
+                                        <GoArrowRight />
+                                    </Button>
                                 </IconContext.Provider>
                             </Link>
                         </div>
@@ -98,7 +100,7 @@ const homePage = () => {
                     </div>
                 </div>
             </section>
-        </div>
+        </>
     );
 };
 
