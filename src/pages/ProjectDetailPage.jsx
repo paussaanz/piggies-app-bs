@@ -1,6 +1,8 @@
 import Button from "../components/Button";
 import Carrusel from "../components/Carrusel";
 import Footer from "../components/Footer";
+import { IconContext } from "react-icons";
+import { GoArrowLeft } from "react-icons/go";
 
 const ProjectDetailPage = () => {
     const images = [
@@ -24,13 +26,15 @@ const ProjectDetailPage = () => {
     return (
         <div>
             <section className="hero">
-                <img className="pt-1" src="https://res.cloudinary.com/dmbtvuj1x/image/upload/v1709485587/Piggies/future-header_dtuder.png" alt="Card image cap" height="800px" width="100%" style={{ objectFit: 'cover' }}/>
+                <img className="pt-1" src="https://res.cloudinary.com/dmbtvuj1x/image/upload/v1709485587/Piggies/future-header_dtuder.png" alt="Card image cap" height="800px" width="100%" style={{ objectFit: 'cover' }} />
             </section>
             <section className="container pt-5">
                 <div className="row">
-                    <Button outline="primary">
-                        <img src="./../src/assets/dist/img/arrow.svg" />
-                    </Button>
+                    <IconContext.Provider value={{ size: "1.6rem" }}>
+                        <Button outline="primary" padding="p-3">
+                            <GoArrowLeft />
+                        </Button>
+                    </IconContext.Provider>
                 </div>
                 <div className="text-center py-4">
                     <h1 className="h3">Future</h1>
@@ -38,7 +42,7 @@ const ProjectDetailPage = () => {
                 </div>
             </section>
             <section>
-                <img className="pt-1" src="https://res.cloudinary.com/dmbtvuj1x/image/upload/v1709486095/Piggies/banner_iuoab5.png" alt="Card image cap" height="160px" width="100%" style={{ objectFit: 'contain' }}/>
+                <img className="pt-1" src="https://res.cloudinary.com/dmbtvuj1x/image/upload/v1709486095/Piggies/banner_iuoab5.png" alt="Card image cap" height="160px" width="100%" style={{ objectFit: 'contain' }} />
             </section>
             {/* Breadcrumbs? */}
             <section className="container">
@@ -48,7 +52,7 @@ const ProjectDetailPage = () => {
                         <p className="col-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
                         <p className="col-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
                     </div>
-                    <img className="pt-1" src="https://res.cloudinary.com/dmbtvuj1x/image/upload/v1709486413/Piggies/image2_wauek8.png" alt="Card image cap" height="450px" width="100%" style={{ objectFit: 'cover' }}/>
+                    <img className="pt-1" src="https://res.cloudinary.com/dmbtvuj1x/image/upload/v1709486413/Piggies/image2_wauek8.png" alt="Card image cap" height="450px" width="100%" style={{ objectFit: 'cover' }} />
                     <div className="row pt-4">
                         <p className="col-6 h5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
                         <p className="col-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
@@ -59,7 +63,7 @@ const ProjectDetailPage = () => {
                 <div className="pt-5">
                     <h3 className="h6">/Strategy</h3>
                     <div className="row py-2">
-                        <img className="col-6 pt-1" src="https://res.cloudinary.com/dmbtvuj1x/image/upload/v1709486271/Piggies/foto1_dqwrlt.png" alt="Card image cap" height="400px" width="100%" style={{ objectFit: 'cover' }}/>
+                        <img className="col-6 pt-1" src="https://res.cloudinary.com/dmbtvuj1x/image/upload/v1709486271/Piggies/foto1_dqwrlt.png" alt="Card image cap" height="400px" width="100%" style={{ objectFit: 'cover' }} />
                         <p className="col-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
                     </div>
                     <div className="row pt-4">
