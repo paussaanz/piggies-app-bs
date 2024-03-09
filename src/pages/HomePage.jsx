@@ -65,11 +65,9 @@ const homePage = () => {
                         <div className="row border-bottom pb-3 align-items-center">
                             <h4 className="col h5 text-black weight-semi-light">OUR SERVICES</h4>
                             <Link to="/services" className="col-auto">
-                                <IconContext.Provider value={{ size: "2rem" }}>
-                                    <Button outline="primary" padding="p-3">
-                                        <GoArrowRight />
+                                    <Button outline="primary" padding="p-3 icon-arrow-right">
+                                       
                                     </Button>
-                                </IconContext.Provider>
                             </Link>
                         </div>
                     </Link>

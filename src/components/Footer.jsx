@@ -3,10 +3,12 @@ import { AiFillInstagram } from "react-icons/ai";
 import { FaSquareBehance } from "react-icons/fa6";
 import { FaTwitter } from "react-icons/fa";
 import { PiArrowUpRightBold } from "react-icons/pi";
+import { useLocation } from "react-router-dom";
 
 
 const Footer = () => {
-    const hiddenPaths = ['/dashboard', '/messages', '/settings', '/schedule', '/projects-management', '/profile'];
+    const hiddenPaths = ['/contact', '/dashboard', '/messages', '/profile', '/schedule', '/projects-management', '/profile', '/login', '/register'];
+    const location = useLocation();
 
     if (hiddenPaths.includes(location.pathname)) {
         return (

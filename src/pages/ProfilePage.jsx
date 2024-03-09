@@ -1,6 +1,6 @@
 import FormInput from "../components/Form/FormInput";
 
-const SettingsPage = () => {
+const ProfilePage = () => {
     return (
         <div className="container-fluid">
             <div className="row justify-content-center">
@@ -20,4 +20,4 @@ const SettingsPage = () => {
     );
 };
 
-export default SettingsPage;
+export default ProfilePage;

@@ -8,7 +8,7 @@ import AuthContext from "../../contexts/AuthContext";
 const Navbar = () => {
     const { user } = useContext(AuthContext)
     const location = useLocation();
-    const hiddenPaths = ['/dashboard', '/messages', '/settings', '/schedule', '/projects-management'];
+    const hiddenPaths = ['/dashboard', '/messages', '/profile', '/schedule', '/projects-management'];
     const [navbarClass, setNavbarClass] = useState('navbar-visible');
     const [lastScrollY, setLastScrollY] = useState(window.scrollY);
 

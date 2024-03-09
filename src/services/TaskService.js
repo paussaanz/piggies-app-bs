@@ -11,7 +11,7 @@ const unAuthenticatedHttp = createHttp();
     return authenticatedHttp.post(`/addUserToTask/${userId}/${taskId}`);
   }
 
-  export const editTask = (taskId) => {
-    return authenticatedHttp.post(`/editTask/${taskId}`);
+  export const editTaskService = (taskId, body) => {
+    return authenticatedHttp.put(`/tasks/${taskId}`, body);
   }
   

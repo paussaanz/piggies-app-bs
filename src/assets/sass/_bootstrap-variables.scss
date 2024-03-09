@@ -27,6 +27,7 @@ $cor-red: #ff4f46;
 
 // Colores para los iconos reemplazamos # por %23
 $cor-color-icons-svg: str-replace(#{$cor-primary}, "#", "%23");
+$cor-color-icons-svg-cream: str-replace(#{$cor-cream}, "#", "%23");
 $cor-color-icons-svg-white: str-replace(#{$cor-light-beige}, "#", "%23");
 $cor-color-icons-svg-black: str-replace(#{$cor-primary}, "#", "%23");
 

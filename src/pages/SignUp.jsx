@@ -111,7 +111,7 @@ const SignUp = () => {
           </FormControl>
           <FormControl
             id="file-signup-input"
-            text="imageUrl"
+            text="Profile Image"
             error={touched.imageUrl && errors.imageUrl}
             htmlFor="imageUrl"
           >

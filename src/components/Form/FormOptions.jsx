@@ -9,7 +9,11 @@ const FormOptions = ({ number, user, title, value, onChange, name, type, error, 
                         ) : (
                             <p className="text-black h5 col-auto weight-semi-bol m-0">{number}</p>
                         )}
-                        <h2 className="col-auto h5 weight-black text-uppercase ms-5 mb-0"> {title} </h2>
+                          {user && user.username ? (
+                        <h2 className="col-auto h5 weight-black text-uppercase ms-5 mb-0"> {user.username} </h2>
+                        ) : (
+                            <h2 className="col-auto h5 weight-black text-uppercase ms-5 mb-0"> {title} </h2>
+                            )}
                         <div className="d-flex col justify-content-end">
                             <label className="visually-hidden" htmlFor={name}></label>
                             <input checked={checked} className={`form-check-input ${extraClassName}`} name={name} id={name} type={type} onChange={onChange} value={value} aria-label="Checkbox for following text input" />

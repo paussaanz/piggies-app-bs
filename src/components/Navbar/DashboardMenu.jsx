@@ -4,8 +4,8 @@ import { LuLayoutDashboard } from "react-icons/lu";
 import { AiOutlineMessage } from "react-icons/ai";
 import { FaRegSquareCheck } from "react-icons/fa6";
 import { FiCalendar } from "react-icons/fi";
-import { LuSettings } from "react-icons/lu";
 import { FiLogOut } from "react-icons/fi";
+import { BsPersonCircle } from "react-icons/bs";
 import { logout } from "../../stores/AccessTokenStore";
 import { useState } from "react";
 
@@ -17,7 +17,7 @@ const DashboardMenu = () => {
         { to: "/messages", icon: <AiOutlineMessage />, text: "Messages" },
         { to: "/projects-management", icon: <FaRegSquareCheck />, text: "Projects" },
         { to: "/schedule", icon: <FiCalendar />, text: "Schedule" },
-        { to: "/settings", icon: <LuSettings />, text: "Settings" },
+        { to: "/profile", icon: <BsPersonCircle />, text: "Profile" },
     ];
 
 

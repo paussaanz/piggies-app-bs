@@ -1,10 +1,12 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import AlertDialog from "./AlertDialog";
-import { updateTaskStatus, addUserToTask } from "../services/TaskService";
+import { updateTaskStatus, addUserToTask, editTaskService } from "../services/TaskService";
 import { FiEdit2 } from "react-icons/fi";
 import { FaPlus } from "react-icons/fa6";
 import Button from "./Button";
 import FormOptions from "./Form/FormOptions";
+import FormInput from "./Form/FormInput";
+import FormControl from "./Form/FormControl";
 
 
 const TaskBar = ({ getTasks, name, error, type, tasks, users }) => {
@@ -13,9 +15,19 @@ const TaskBar = ({ getTasks, name, error, type, tasks, users }) => {
     const [showEdit, setShowEdit] = useState(false);
     const [selectedTask, setSelectedTask] = useState(null)
     const [selectedUsers, setSelectedUsers] = useState([])
+    const [editingTask, setEditingTask] = useState(null)
+
+    const handleEditingTask = (e) => {
+        setEditingTask((prevTask) => ({
+            ...prevTask,
+            [e.target.name]: e.target.value,
+        }))
+
+        console.log(editingTask)
+    }
 
     const updateTask = () => {
-        updateTaskStatus(selectedTask)
+        updateTaskStatus(selectedTask._id)
             .then((task) => {
                 getTasks()
                 setShowModal(false);
@@ -24,7 +36,7 @@ const TaskBar = ({ getTasks, name, error, type, tasks, users }) => {
     }
 
     const editTask = () => {
-        editTask(selectedTask)
+        editTaskService(editingTask._id, editingTask)
             .then((task) => {
                 getTasks()
                 setShowEdit(false);
@@ -35,7 +47,7 @@ const TaskBar = ({ getTasks, name, error, type, tasks, users }) => {
     const addTask = () => {
         if (selectedTask && selectedUsers.length > 0) {
             selectedUsers.forEach(userId => {
-                addUserToTask(userId, selectedTask)
+                addUserToTask(userId, selectedTask._id)
                     .then(() => {
                         console.log(`Tarea asignada exitosamente al usuario ${userId.username}.`);
                     })
@@ -52,9 +64,7 @@ const TaskBar = ({ getTasks, name, error, type, tasks, users }) => {
     return (
         <>
             {tasks.map(task =>
-
             (
-
                 <div className="container-fluid pe-5 pb-2">
                     <div className="row bg-beige p-4 rounded-3 align-items-center">
                         <form className="d-flex col-1">
@@ -70,7 +80,7 @@ const TaskBar = ({ getTasks, name, error, type, tasks, users }) => {
                                 onClick={(e) => {
                                     e.preventDefault()
                                     setShowModal(true);
-                                    setSelectedTask(task._id)
+                                    setSelectedTask(task)
                                 }}
                             />
                             {error && <div className="mt-2 text-primary">{error}</div>}
@@ -81,16 +91,18 @@ const TaskBar = ({ getTasks, name, error, type, tasks, users }) => {
                         <div className="col-8">
                             <div className="row justify-content-end">
                                 <div className="col-auto">
-                                    {task.userId.map((user) => (
-                                        <img className="col-8 p-0 " key={user._id} src={user.imageUrl || "https://res.cloudinary.com/dmbtvuj1x/image/upload/v1709832458/Piggies/yztqzp5dbbm2uecnnl5h.png"} alt={`User ${user.username}`} style={{ width: '34px', height: '34px', borderRadius:"50px", objectFit:"cover"}}/>
-                                    ))}
+                                    {task.userId.map((user) => {
+                                        return (
+                                            <img className="col-8 p-0 " key={user._id} src={user.imageUrl} alt={`User ${user.username}`} style={{ width: '34px', height: '34px', borderRadius: "50px", objectFit: "cover" }} />
+                                        )
+                                    })}
                                 </div>
                                 <div className="col-auto">
                                     <Button
                                         color="cream"
                                         padding="p-2"
                                         onClick={() => {
-                                            setSelectedTask(task._id)
+                                            setSelectedTask(task)
                                             setShowUsers(true)
                                         }}
                                     >
@@ -102,7 +114,8 @@ const TaskBar = ({ getTasks, name, error, type, tasks, users }) => {
                                         outline="primary"
                                         padding="p-2"
                                         onClick={() => {
-                                            setSelectedTask(task._id)
+                                            setEditingTask(task)
+                                            setSelectedTask(task)
                                             setShowEdit(true)
                                         }}>
                                         <FiEdit2 />
@@ -146,7 +159,6 @@ const TaskBar = ({ getTasks, name, error, type, tasks, users }) => {
                         <FormOptions
                             checked={user.status}
                             user={user}
-                            title={user.username}
                             value={user._id}
                             extraClassName="form-check-input form-check-input-tick"
                             name="user"
@@ -178,6 +190,7 @@ const TaskBar = ({ getTasks, name, error, type, tasks, users }) => {
                         setShowUsers(false);
                         setSelectedTask(null);
                         setSelectedUsers([]);
+                        getTasks()
                     },
                     type: "submit"
                 }}
@@ -187,20 +200,88 @@ const TaskBar = ({ getTasks, name, error, type, tasks, users }) => {
                 bg_color="cream"
                 body_weight="semi-bold"
                 title="Edit the task"
-                body="inputs"
+                body={
+                    <form action="/tasks" method="POST" enctype="multipart/form-data" key={editingTask._id}>
+                        <FormControl
+                            text="Task name"
+                            htmlFor="name"
+                        ></FormControl>
+                        <FormInput
+                            id="taskName"
+                            name="name"
+                            type="text"
+                            onChange={handleEditingTask}
+                            value={editingTask.name}
+                        />
+                        <FormControl
+                            text="Task status"
+                            htmlFor="status"
+                        ></FormControl>
+                        <FormOptions
+                            id="taskStatus"
+                            name="status"
+                            type="checkbox"
+                            onChange={handleEditingTask}
+                            value={editingTask.status}
+                        />
+                        <FormControl
+                            text="Task users"
+                            htmlFor="userId"
+                        ></FormControl>
+
+                        {editingTask.userId.map((user) => {
+                            return (
+                                <FormOptions
+                                    id="taskStatus"
+                                    name="status"
+                                    type="checkbox"
+                                    user={user}
+                                    onChange={handleEditingTask}
+                                    value={editingTask.userId}
+                                />
+
+                            )
+                        })}
+                        <FormControl
+                            text="All users"
+                            htmlFor="userId"
+                        ></FormControl>
+                        {users.map((user) => (
+                            <form key={user._id}>
+                                <FormOptions
+                                    checked={user.status}
+                                    user={user}
+                                    value={user._id}
+                                    extraClassName="form-check-input form-check-input-tick"
+                                    name="user"
+                                    id="user"
+                                    type="checkbox"
+                                    onChange={(e) => {
+                                        if (e.target.checked) {
+                                            setSelectedUsers(currentUsers => [...currentUsers, e.target.value]);
+                                        } else {
+                                            setSelectedUsers(currentUsers => currentUsers.filter(id => id !== e.target.value));
+                                        }
+                                    }} />
+                            </form>
+                        ))}
+
+
+                    </form>
+                }
                 cancelButton={{
                     text: "CLOSE",
                     onClick: () => {
-                        console.log(users)
                         setShowEdit(false)
                         setSelectedTask(null)
+                        setEditingTask(null)
                     },
                     type: "submit"
                 }}
                 acceptButton={{
                     text: "ACCEPT",
                     onClick: () => {
-                        () => editTask()
+                        editTask()
                         setShowEdit(false)
                         setSelectedTask(null);
                     },
@@ -213,3 +294,4 @@ const TaskBar = ({ getTasks, name, error, type, tasks, users }) => {
 };
 
 export default TaskBar;
+
