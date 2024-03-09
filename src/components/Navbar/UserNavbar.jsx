@@ -37,14 +37,15 @@ const UserNavbar = ({ currentUser }) => {
                                     <FaBell />
                                 </li>
                             </IconContext.Provider>
-
-                            {currentUser ? (
-                                <li className="nav-item">
-                                    <img src={currentUser.imageUrl} alt="User profile" style={{ borderRadius: '50%',  width: '35px', height: '35px', objectFit: 'cover' }} />
-                                </li>
-                            ) : (
-                                null
-                            )}
+                            <Link to="/profile">
+                                {currentUser ? (
+                                    <li className="nav-item">
+                                        <img src={currentUser.imageUrl} alt="User profile" style={{ borderRadius: '50%', width: '35px', height: '35px', objectFit: 'cover' }} />
+                                    </li>
+                                ) : (
+                                    null
+                                )}
+                            </Link>
                         </div>
                     </div>
                 </div>

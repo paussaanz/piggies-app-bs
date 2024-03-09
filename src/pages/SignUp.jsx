@@ -88,7 +88,7 @@ const SignUp = () => {
               onBlur={handleBlur}
               value={values.email}
               error={touched.email && errors.email}
-              placeholder="Enter a email"
+              placeholder="Enter an email"
             />
           </FormControl>
 

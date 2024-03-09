@@ -24,7 +24,7 @@ const DashboardMenu = () => {
     return (
         <div className="border-end">
             <div className="col-2 d-flex d-inline-block dashboard-menu border-end">
-                <Link to="/">
+                <Link to="/dashboard">
                     <img className="nav-logo" src="https://res.cloudinary.com/dmbtvuj1x/image/upload/v1709386605/Piggies/piggies-logo_fovqzf.png" alt="Brand logo" />
                 </Link>
                 <ul className="list-unstyled ">
