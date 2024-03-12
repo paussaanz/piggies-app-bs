@@ -65,9 +65,7 @@ const homePage = () => {
                         <div className="row border-bottom pb-3 align-items-center">
                             <h4 className="col h5 text-black weight-semi-light">OUR SERVICES</h4>
                             <Link to="/services" className="col-auto">
-                                    <Button outline="primary" padding="p-3 icon-arrow-right">
-                                       
-                                    </Button>
+                                    <Button outline="primary" extraClassName="p-3 icon-arrow-right"/>
                             </Link>
                         </div>
                     </Link>

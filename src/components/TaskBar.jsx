@@ -18,12 +18,13 @@ const TaskBar = ({ getTasks, name, error, type, tasks, users }) => {
     const [editingTask, setEditingTask] = useState(null)
 
     const handleEditingTask = (e) => {
+        const isCheckBox = e.target.name === 'status'
+        const value = e.target.value;
+
         setEditingTask((prevTask) => ({
             ...prevTask,
-            [e.target.name]: e.target.value,
+            [e.target.name]: isCheckBox ? value === "true" ? false : true : value,
         }))
-
-        console.log(editingTask)
     }
 
     const updateTask = () => {
@@ -44,21 +45,20 @@ const TaskBar = ({ getTasks, name, error, type, tasks, users }) => {
             })
     }
 
-    const addTask = () => {
-        if (selectedTask && selectedUsers.length > 0) {
-            selectedUsers.forEach(userId => {
-                addUserToTask(userId, selectedTask._id)
-                    .then(() => {
-                        console.log(`Tarea asignada exitosamente al usuario ${userId.username}.`);
-                    })
-                    .catch(error => {
-                        console.error("Error al asignar la tarea:", error);
-                    });
-            });
+    const addUsersTask = () => {
+        if (selectedTask) {
+            addUserToTask(selectedTask._id, selectedUsers)
+                .then(() => {
+                    setShowUsers(false);
+                    setSelectedTask(null);
+                    setSelectedUsers([]);
+                    getTasks()
+                })
+                .catch(error => {
+                    console.error("Error al asignar la tarea:", error);
+                });
         }
-        setShowUsers(false);
-        setSelectedTask(null);
-        setSelectedUsers([]);
+
     }
 
     return (
@@ -89,26 +89,28 @@ const TaskBar = ({ getTasks, name, error, type, tasks, users }) => {
                             {task.name}
                         </div>
                         <div className="col-8">
-                            <div className="row justify-content-end">
+                            <div className="row justify-content-end align-items-center ">
                                 <div className="col-auto">
-                                    {task.userId.map((user) => {
+                                    {users && task.userId.map((user) => {
                                         return (
-                                            <img className="col-8 p-0 " key={user._id} src={user.imageUrl} alt={`User ${user.username}`} style={{ width: '34px', height: '34px', borderRadius: "50px", objectFit: "cover" }} />
+                                            <img className="col-8 p-0 rounded-circle object-fit-cover " key={user._id} src={user.imageUrl} alt={`User ${user.username}`} style={{ width: '50px', height: '50px'}} />
                                         )
                                     })}
                                 </div>
-                                <div className="col-auto">
+                               {users &&  <div className="col-auto">
                                     <Button
                                         color="cream"
                                         padding="p-2"
                                         onClick={() => {
                                             setSelectedTask(task)
+                                            setSelectedUsers(task?.userId.map((user) => user._id))
                                             setShowUsers(true)
                                         }}
                                     >
                                         <FaPlus />
                                     </Button>
                                 </div>
+                                }
                                 <div className="col-auto">
                                     <Button
                                         outline="primary"
@@ -157,7 +159,7 @@ const TaskBar = ({ getTasks, name, error, type, tasks, users }) => {
                 body={users.map((user) => (
                     <form key={user._id}>
                         <FormOptions
-                            checked={user.status}
+                            checked={selectedUsers.includes(user._id)}
                             user={user}
                             value={user._id}
                             extraClassName="form-check-input form-check-input-tick"
@@ -176,7 +178,6 @@ const TaskBar = ({ getTasks, name, error, type, tasks, users }) => {
                 cancelButton={{
                     text: "CLOSE",
                     onClick: () => {
-                        console.log(users)
                         setShowUsers(false)
                         setSelectedTask(null)
                         setSelectedUsers([])
@@ -186,11 +187,7 @@ const TaskBar = ({ getTasks, name, error, type, tasks, users }) => {
                 acceptButton={{
                     text: "ACCEPT",
                     onClick: () => {
-                        addTask()
-                        setShowUsers(false);
-                        setSelectedTask(null);
-                        setSelectedUsers([]);
-                        getTasks()
+                        addUsersTask()
                     },
                     type: "submit"
                 }}
@@ -217,56 +214,15 @@ const TaskBar = ({ getTasks, name, error, type, tasks, users }) => {
                             text="Task status"
                             htmlFor="status"
                         ></FormControl>
+                        {editingTask.status}
                         <FormOptions
+                            checked={editingTask.status}
                             id="taskStatus"
                             name="status"
                             type="checkbox"
                             onChange={handleEditingTask}
                             value={editingTask.status}
                         />
-                        <FormControl
-                            text="Task users"
-                            htmlFor="userId"
-                        ></FormControl>
-
-                        {editingTask.userId.map((user) => {
-                            return (
-                                <FormOptions
-                                    id="taskStatus"
-                                    name="status"
-                                    type="checkbox"
-                                    user={user}
-                                    onChange={handleEditingTask}
-                                    value={editingTask.userId}
-                                />
-
-                            )
-                        })}
-                        <FormControl
-                            text="All users"
-                            htmlFor="userId"
-                        ></FormControl>
-                        {users.map((user) => (
-                            <form key={user._id}>
-                                <FormOptions
-                                    checked={user.status}
-                                    user={user}
-                                    value={user._id}
-                                    extraClassName="form-check-input form-check-input-tick"
-                                    name="user"
-                                    id="user"
-                                    type="checkbox"
-                                    onChange={(e) => {
-                                        if (e.target.checked) {
-                                            setSelectedUsers(currentUsers => [...currentUsers, e.target.value]);
-                                        } else {
-                                            setSelectedUsers(currentUsers => currentUsers.filter(id => id !== e.target.value));
-                                        }
-                                    }} />
-                            </form>
-                        ))}
-
-
                     </form>
                 }
                 cancelButton={{

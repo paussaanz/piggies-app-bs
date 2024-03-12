@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { IconContext } from "react-icons";
 import { LuLayoutDashboard } from "react-icons/lu";
 import { AiOutlineMessage } from "react-icons/ai";
@@ -29,20 +29,24 @@ const DashboardMenu = () => {
                 </Link>
                 <ul className="list-unstyled ">
                     {menuItems.map((item, index) => (
-                        <Link to={item.to} className=" text-decoration-none">
+                        <NavLink to={item.to}  className={({ isActive } )=>    {
+                            // console.log('isActive', isActive)
+                        
+                            return "nav-link" + (isActive ? " selected" : "")}
+                          }>
                             <li
                                 key={item.text}
                                 className="nav-item py-2 d-flex align-items-center btn-link text-black text-decoration-none"
                                 onClick={() => setActiveTab(index)}
                             >
-                                <div className="me-2" style={{ verticalAlign: 'text-bottom', color: activeTab === index ? 'var(--bs-primary)' : 'inherit' }}>
-                                    <IconContext.Provider value={{ className: `${activeTab === index ? 'text-primary' : 'text-black'}` }}>
+                                <div className="me-2" style={{ verticalAlign: 'text-bottom'}}>
+                                    <IconContext.Provider value={{ className: `nav-item-icon` }}>
                                         {item.icon}
                                     </IconContext.Provider>
                                 </div>
-                                <span style={{ color: activeTab === index ? 'var(--bs-primary)' : 'inherit' }}>{item.text}</span>
+                                <span className="nav-item-text">{item.text}</span>
                             </li>
-                        </Link>
+                        </NavLink>
                     ))}
                 </ul>
                 <ul className="list-unstyled">

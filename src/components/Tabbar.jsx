@@ -1,7 +1,7 @@
 import Button from './Button'
 import TaskBar from './TaskBar';
 
-const Tabbar = ({ getTasks, tasks, activeTab, setActiveTab, users}) => {
+const Tabbar = ({ getTasks, tasks, activeTab, setActiveTab, users }) => {
 
   const tabs = [
     {

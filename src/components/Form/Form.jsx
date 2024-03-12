@@ -66,7 +66,7 @@ const Form = () => {
             .catch(err => console.error(err));
     }, []);
 
-    console.log(values)
+    // console.log(values)
 
     return (
         <div>

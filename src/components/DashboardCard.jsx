@@ -12,15 +12,19 @@ import 'swiper/css/pagination';
 
 const DashboardCard = ({ onSubmitCb }) => {
     const [forms, setForms] = useState([]);
+    const [filteredForms, setFilteredForms] = useState([])
     const [formToAccept, setFormToAccept] = useState(null)
     const [showModal, setShowModal] = useState(false)
 
     useEffect(() => {
         getAllForms()
             .then(dbForms => {
-                setForms(dbForms);
+                const unacceptedForms = dbForms.filter(form => form.accepted === false);
+                setForms(unacceptedForms);
+                setFilteredForms(unacceptedForms);
             });
     }, []);
+
     //COMM: Por qué si pongo forms como dependencia en el array no para de hacer peticiones constantemente?
     const handleAccept = () => {
         acceptForm(formToAccept)
@@ -31,6 +35,9 @@ const DashboardCard = ({ onSubmitCb }) => {
                 setFormToAccept(null)
             });
     };
+
+    console.log("FORMS", forms)
+    console.log("FILTERED FORMS", filteredForms)
 
     return (
         <>
@@ -49,7 +56,7 @@ const DashboardCard = ({ onSubmitCb }) => {
             >
                 {forms.map((form, index) => (
                     <SwiperSlide className="h-100">
-                        <div key={index} className="card mb-3 rounded-4 bg-secondary h-100">
+                        <div key={form._id} className="card mb-3 rounded-4 bg-secondary h-100">
                             <div className="card-body h-100">
                                 <h5 className="h4 weight-regular">{form.name}</h5>
                                 <p className="card-text">{form.message}</p>
@@ -58,7 +65,7 @@ const DashboardCard = ({ onSubmitCb }) => {
                             </div>
                             <Button onClick={() => {
                                 setShowModal(true)
-                                setFormToAccept(form.id)
+                                setFormToAccept(form._id)
                             }}>Accept</Button>
                         </div>
                     </SwiperSlide>

@@ -44,7 +44,7 @@ const SignUp = () => {
       Object.keys(values).forEach(keyValue => {
         data.append(keyValue, values[keyValue])
       })
-      console.log(data);
+      // console.log(data);
       register(data)
         .then(() => {
           navigate('/login')

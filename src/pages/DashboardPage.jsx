@@ -58,7 +58,7 @@ const DashboardPage = () => {
   return (
     <div className="container-fluid">
       <div className="row justify-content-center">
-        <div className="col-2 position-fied">
+        <div className="col-2">
         </div>
         <div className="col-10 pt-5 ps-5">
           <h2 className="h4 weight-bold">Welcome, {user.username}</h2>
