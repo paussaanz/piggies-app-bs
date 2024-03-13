@@ -17,7 +17,6 @@ import ProjectsManagementPage from "./pages/ProjectsManagementPage";
 import ProfilePage from "./pages/ProfilePage";
 import Footer from "./components/Footer";
 
-const socket = io.connect("http://localhost:3000")
 function App() {
 
   return (
