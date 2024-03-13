@@ -10,12 +10,19 @@ import AlertDialog from "./AlertDialog";
 import { useState } from "react";
 import { editTaskService } from "../services/TaskService";
 import FormOptions from "./Form/FormOptions";
+import EmailMessage from "./EmailMessage";
+import { contactClientService } from "../services/FormService";
 
 
-const ProjectManageCard = ({ form }) => {
+const ProjectManageCard = ({ form, getTasks }) => {
     const [showEdit, setShowEdit] = useState(false);
+    const [showEmailForm, setShowEmailForm] = useState(false);
+    const [showMarkAsCompleted, setShowMarkAsCompleted] = useState(false)
     const [editingTask, setEditingTask] = useState(null)
     const [selectedTask, setSelectedTask] = useState(null)
+    const [selectedForm, setSelectedForm] = useState(null);
+    const [message, setMessage] = useState('');
+
 
     const handleEditingTask = (e) => {
         const isCheckBox = e.target.name === 'status'
@@ -30,11 +37,15 @@ const ProjectManageCard = ({ form }) => {
     const editTask = () => {
         editTaskService(editingTask._id, editingTask)
             .then((task) => {
-                // getTasks()
+                getTasks()
                 setShowEdit(false);
                 setSelectedTask(null)
             })
     }
+
+    const handleMessageSent = (message) => {
+        console.log("El mensaje enviado desde EmailMessage:", message);
+    };
 
 
     return (
@@ -57,7 +68,7 @@ const ProjectManageCard = ({ form }) => {
                     <SwiperSlide className="h-100">
                         <div key={form._id} className="card mb-3 rounded-4 bg-secondary h-100">
                             <div className="card-title">
-                                <h5 className="h4 weight-regular text-center border-bottom border-black p-4">{form.name}</h5>
+                                <h5 className="h4 weight-regular text-center border-bottom border-black border-3 p-4">{form.name}</h5>
                             </div>
                             <div className="card-body py-1" style={{ overflowY: 'auto', maxHeight: '400px' }}>
                                 {form.tasks.map((task) => (
@@ -98,12 +109,28 @@ const ProjectManageCard = ({ form }) => {
                                 ))}
                             </div>
                             <div className="text-center py-3 ">
-                                <Button type="submit" outline="primary">
+                                <Button
+                                    type="submit"
+                                    outline="primary"
+                                    extraClassName="px-5 py-3"
+                                    onClick={() => {
+                                        setShowEmailForm(true)
+                                        setSelectedForm(form.id)
+                                    }}
+                                >
                                     Contact the client
                                 </Button>
                             </div>
                             <div className="text-center pb-4">
-                                <Button type="submit" color="primary">
+                                <Button
+                                    type="submit"
+                                    color="primary"
+                                    extraClassName="px-5 py-3"
+                                    onClick={() => {
+                                        setSelectedForm(form.id)
+                                        setShowMarkAsCompleted(true)
+                                    }}
+                                >
                                     Mark as finished
                                 </Button>
                             </div>
@@ -117,7 +144,7 @@ const ProjectManageCard = ({ form }) => {
                 body_weight="semi-bold"
                 title="Edit the task"
                 body={
-                    <form action="/tasks" method="POST" enctype="multipart/form-data" key={editingTask._id}>
+                    <form key={editingTask._id}>
                         <FormControl
                             text="Task name"
                             htmlFor="name"
@@ -162,7 +189,64 @@ const ProjectManageCard = ({ form }) => {
                     },
                     type: "submit"
                 }}
-            />}
+            />
+            }
+
+            {
+                showEmailForm && <AlertDialog
+                    bg_color="cream"
+                    body_weight="semi-bold"
+                    title="Contact the client"
+                    body={<EmailMessage message={message} setMessage={setMessage} onMessageSent={handleMessageSent} />}
+                    cancelButton={{
+                        text: "CLOSE",
+                        onClick: () => {
+                            setShowEmailForm(false)
+                        },
+                        type: "submit"
+                    }}
+                    acceptButton={{
+                        text: "ACCEPT",
+                        onClick: () => {
+                            if (!selectedForm || !message) {
+                                alert('Please select a form and write a message.');
+                                return;
+                            }
+
+                            contactClientService(selectedForm, { message })
+                                .then(() => {
+                                    setShowEmailForm(false);
+                                    setMessage('');
+                                })
+                                .catch((error) => {
+                                    console.error('Error sending message:', error);
+                                });
+                        },
+                        type: "submit"
+                    }}
+                />
+            }
+            {
+                showMarkAsCompleted && <AlertDialog
+                    bg_color="cream"
+                    body_weight="semi-bold"
+                    title="Mark project as finished"
+                    body={"Are you sure this project is 100% completed?"}
+                    cancelButton={{
+                        text: "CLOSE",
+                        onClick: () => {
+                            setShowMarkAsCompleted(false)
+                        },
+                        type: "submit"
+                    }}
+                    acceptButton={{
+                        text: "ACCEPT",
+                        onClick: () => {
+                        },
+                        type: "submit"
+                    }}
+                />
+            }
         </>
     );
 };
