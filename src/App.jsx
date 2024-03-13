@@ -14,7 +14,6 @@ import LoginPage from "./pages/LoginPage";
 import ProtectedRoute from "./components/ProtectedRoute";
 import MessagesPage from "./pages/MessagesPage";
 import ProjectsManagementPage from "./pages/ProjectsManagementPage";
-import SchedulePage from "./pages/SchedulePage";
 import ProfilePage from "./pages/ProfilePage";
 import Footer from "./components/Footer";
 
@@ -39,7 +38,6 @@ function App() {
           <Route path="/dashboard" element={<ProtectedRoute><DashboardPage /> </ProtectedRoute>} />
           <Route path="/messages" element={<ProtectedRoute><MessagesPage /> </ProtectedRoute>} />
           <Route path="/projects-management" element={<ProtectedRoute><ProjectsManagementPage /> </ProtectedRoute>} />
-          <Route path="/schedule" element={<ProtectedRoute><SchedulePage /> </ProtectedRoute>} />
           <Route path="/profile" element={<ProtectedRoute><ProfilePage /> </ProtectedRoute>} />
         </Routes>
       </main>
