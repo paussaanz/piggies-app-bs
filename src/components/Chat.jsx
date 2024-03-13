@@ -1,136 +1,163 @@
-import { useEffect, useState } from "react";
-import ScrollToBottom from "react-scroll-to-bottom";
+// import React, { useEffect, useState } from 'react';
+// import io from 'socket.io-client';
+// import { getAccessToken } from '../stores/AccessTokenStore';
 
-const Chat = ({ socket, username, room }) => {
-    const [currentMessage, setCurrentMessage] = useState("")
-    const [messageList, setMessageList] = useState([])
+// const Chat = ({ currentUser, selectedUser }) => {
+//     const [messages, setMessages] = useState([]);
+//     const [currentMessage, setCurrentMessage] = useState(""); 
+//     const [socket, setSocket] = useState(null);
 
-    const sendMessage = async () => {
-        if (currentMessage !== "") {
-            const messageData = {
-                room: room,
-                author: username,
-                message: currentMessage,
-                time: new Date(Date.now()).getHours()
-                    + ":" +
-                    new Date(Date.now()).getMinutes()
-            };
-            await socket.emit("send_message", messageData)
-            setMessageList((list) => [...list, messageData])
-            setCurrentMessage("")
+//     useEffect(() => {
+//         const newSocket = io.connect("http://localhost:3000", {
+//             auth: {
+//                 token: getAccessToken(), 
+//             },
+//         });
 
-        }
-    }
+//         setSocket(newSocket);
+
+//         const room = [currentUser, selectedUser].sort().join('-');
+
+//         newSocket.emit('join_chat', room);
+
+//         newSocket.on('receive_message', (message) => {
+//             setMessages((prevMessages) => {
+//                 return [...prevMessages, message];
+//             });
+//         });
+
+//         return () => {
+//             newSocket.disconnect();
+//         };
+//     }, [currentUser, selectedUser]);
+
+//     const sendMessage = () => {
+//         if (!socket || !currentMessage.trim()) return;
+
+//         const room = [currentUser, selectedUser].sort().join('-');
+//         const message = {
+//             room,
+//             content: currentMessage,
+//             from: currentUser,
+//             to: selectedUser,
+//         };
+
+//         socket.emit('send_message', message);
+//         setCurrentMessage(""); 
+//     };
+
+//     const handleMessageChange = (event) => {
+//         setCurrentMessage(event.target.value);
+//     };
+
+//     const handleKeyPress = (event) => {
+//         if (event.key === 'Enter' && !event.shiftKey) {
+//             event.preventDefault();
+//             sendMessage();
+//         }
+//     };
+
+//     return (
+//         <div>
+//             <h2>Chat with {selectedUser}</h2>
+//             <ul>
+//                 {messages.map((message, index) => (
+//                     <li key={index}>{message.from}: {message.content}</li>
+//                 ))}
+//             </ul>
+//             <textarea
+//                 value={currentMessage}
+//                 onChange={handleMessageChange}
+//                 onKeyPress={handleKeyPress}
+//                 placeholder="Write a message..."
+//             />
+//             <button onClick={sendMessage}>Send</button>
+//         </div>
+//     );
+// };
+
+// export default Chat;
+import React, { useEffect, useState } from 'react';
+import io from 'socket.io-client';
+import { getAccessToken } from '../stores/AccessTokenStore';
+import { getMessageHistory } from '../services/MessageService';
+
+const Chat = ({ currentUser, selectedUser }) => {
+    const [messages, setMessages] = useState([]);
+    const [currentMessage, setCurrentMessage] = useState("");
+    const [socket, setSocket] = useState(null);
+
+    const room = [currentUser, selectedUser].sort().join('-');
 
     useEffect(() => {
-        socket.on("receive_message", (data) => {
-            setMessageList((list) => [...list, data])
+
+        getMessageHistory(room)
+        .then(DBmessages => {
+          console.log(DBmessages); 
+          setMessages(DBmessages)
         })
-    }, [socket])
+        .catch(error => console.error('Error al cargar el historial de mensajes:', error));
+        const newSocket = io.connect("http://localhost:3000", {
+            auth: {
+                token: getAccessToken(),
+            },
+        });
+
+        setSocket(newSocket);
+
+        newSocket.emit('join_chat', room);
+
+        newSocket.on('receive_message', (message) => {
+            setMessages(prevMessages => {
+                // Asegura que prevMessages siempre se trate como un arreglo
+                const updatedMessages = Array.isArray(prevMessages) ? prevMessages : [];
+                return [...updatedMessages, message];
+            });
+        });
+
+        return () => newSocket.disconnect();
+    }, [room, currentUser, selectedUser]);
+
+    const sendMessage = () => {
+        if (!socket || !currentMessage.trim()) return;
+
+        const message = {
+            room,
+            content: currentMessage,
+            from: currentUser,
+            to: selectedUser,
+        };
+
+        socket.emit('send_message', message);
+        setCurrentMessage("");
+    };
+
+    const handleMessageChange = (event) => setCurrentMessage(event.target.value);
+
+    const handleKeyPress = (event) => {
+        if (event.key === 'Enter' && !event.shiftKey) {
+            event.preventDefault();
+            sendMessage();
+        }
+    };
 
     return (
         <div>
-            <div className="chat-header">
-                <p>Live chat</p>
-            </div>
-            <div className="chat-body">
-                <ScrollToBottom className="message-container">
-                    {messageList.map((messageContent) => {
-                        return <div className="message" id={username === messageContent.author ? "you" : "other"}> <div>
-                        </div>
-                            <div className="message-content">
-                                <p>{messageContent.message}</p>
-                            </div>
-                            <div className="message-meta">
-                                <p id="time">{messageContent.time} </p>
-                                <p id="author">{messageContent.author} </p>
-                            </div>
-
-                        </div>
-                    })}
-                </ScrollToBottom>
-            </div>
-            <div className="chat-footer">
-                <input
-                    type="text"
-                    value={currentMessage}
-                    placeholder="Write here"
-                    onChange={(e) => {
-                        setCurrentMessage(e.target.value)
-                    }}
-                    onKeyPress={(event) => { event.key === "Enter" && sendMessage() }} />
-                <button onClick={sendMessage}>&#9658;</button>
-            </div>
+            <h2>Chat with {selectedUser}</h2>
+            <ul>
+                {messages.map((message, index) => (
+                    <li key={index}>{message.from}: {message.content}</li>
+                ))}
+            </ul>
+            <textarea
+                value={currentMessage}
+                onChange={handleMessageChange}
+                onKeyPress={handleKeyPress}
+                placeholder="Write a message..."
+            />
+            <button onClick={sendMessage}>Send</button>
         </div>
     );
 };
 
 export default Chat;
-
-
-
-// const Chat = ({ socket, username, contact }) => {
-//     const [currentMessage, setCurrentMessage] = useState("");
-//     const [messageList, setMessageList] = useState([]);
-
-//     const sendMessage = async () => {
-//         if (currentMessage !== "") {
-//             const messageData = {
-//                 // Asume que el backend asigna la sala basada en los usuarios involucrados
-//                 author: username,
-//                 contact: contact, // Agrega el contacto al mensaje
-//                 message: currentMessage,
-//                 time: new Date(Date.now()).getHours() + ":" + new Date(Date.now()).getMinutes(),
-//             };
-//             await socket.emit("send_message", messageData);
-//             setMessageList((list) => [...list, messageData]);
-//             setCurrentMessage("");
-//         }
-//     };
-
-//     useEffect(() => {
-//         socket.on("receive_message", (data) => {
-//             // Solo agrega el mensaje si es relevante para el chat actual
-//             if (data.author === contact || data.contact === username) {
-//                 setMessageList((list) => [...list, data]);
-//             }
-//         });
-//     }, [socket, contact, username]);
-
-//     return (
-//         <div>
-//             <div className="chat-header">
-//                 <p>Live chat</p>
-//             </div>
-//             <div className="chat-body">
-//                 <ScrollToBottom className="message-container">
-//                     {messageList.map((messageContent) => {
-//                         return <div className="message" id={username === messageContent.author ? "you" : "other"}> <div>
-//                         </div>
-//                             <div className="message-content">
-//                                 <p>{messageContent.message}</p>
-//                             </div>
-//                             <div className="message-meta">
-//                                 <p id="time">{messageContent.time} </p>
-//                                 <p id="author">{messageContent.author} </p>
-//                             </div>
-
-//                         </div>
-//                     })}
-//                 </ScrollToBottom>
-//             </div>
-//             <div className="chat-footer">
-//                 <input
-//                     type="text"
-//                     value={currentMessage}
-//                     placeholder="Write here"
-//                     onChange={(e) => {
-//                         setCurrentMessage(e.target.value)
-//                     }}
-//                     onKeyPress={(event) => { event.key === "Enter" && sendMessage() }} />
-//                 <button onClick={sendMessage}>&#9658;</button>
-//             </div>
-//         </div>
-//     )
-// };
-// export default Chat;
