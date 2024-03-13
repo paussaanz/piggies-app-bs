@@ -17,28 +17,30 @@ const AlertDialog = ({
             <div className="AlertDialogOverlay" />
             <div className={`AlertDialogContent bg-${bg_color}`} >
                 <div className={`h4 weight-${body_weight} text-center text-${text_color} pt-4 px-3 text-uppercase pb-4`}>{title}</div>
-                <div className=" text-center fs-6 pt-2 pb-4" style={{ maxHeight: '380px', overflowY: 'auto' }}>
+                {body && <div className=" text-center fs-6 pt-2 pb-4" style={{ maxHeight: '380px', overflowY: 'auto' }}>
                     {body}
+                </div>}
+                <div className="pt-4" style={{ display: 'flex', gap: '25px', justifyContent: justifyContent }}>
+                    {cancelButton && (
+                        <Button
+                            onClick={cancelButton.onClick}
+                            type={cancelButton.type}
+                            color={cancelButton.color}
+                            outline={cancelButton.outline}
+                        >
+                            {cancelButton.text}
+                        </Button>
+                    )}
+                    {acceptButton && (
+                        <Button
+                            active
+                            onClick={acceptButton.onClick}
+                            type={acceptButton.type}
+                        >
+                            {acceptButton.text}
+                        </Button>
+                    )}
                 </div>
-                    <div className="pt-4"style={{ display: 'flex', gap: '25px', justifyContent: justifyContent }}>
-                        {cancelButton && (
-                            <Button
-                                onClick={cancelButton.onClick}
-                                type={cancelButton.type}
-                            >
-                                {cancelButton.text}
-                            </Button>
-                        )}
-                        {acceptButton && (
-                            <Button
-                                active
-                                onClick={acceptButton.onClick}
-                                type={acceptButton.type}
-                            >
-                                {acceptButton.text}
-                            </Button>
-                        )}
-                    </div>
 
             </div>
         </div>
