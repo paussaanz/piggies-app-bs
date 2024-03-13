@@ -12,7 +12,7 @@ export const AuthContextProvider = ({ children }) => {
   const { pathname } = useLocation();
   const [user, setUser] = useState(null);
   const [isAuthFetched, setIsAuthFetched] = useState(false);
-  // console.log('user', user)
+
   const fetchCurrentUser = useCallback(() => {
     getCurrentUser()
       .then(user => {
@@ -53,7 +53,7 @@ export const AuthContextProvider = ({ children }) => {
     isAuthFetched,
     user,
     login,
-    fetchCurrentUser
+    fetchCurrentUser,
   }), [isAuthFetched, user, login]);
 
   return (
