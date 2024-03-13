@@ -18,6 +18,10 @@ export const getAllForms = (accepted) => {
   return accepted ? authenticatedHttp.get(`/forms?accepted=true`) :  authenticatedHttp.get("/forms");
 };
 
+export const contactClientService = (id, message) => {
+  return authenticatedHttp.post(`/forms/contact/${id}`, message);
+};
+
 export const acceptForm = (formId) => {
   return authenticatedHttp.post(`/forms/${formId}/accept`);
 };
