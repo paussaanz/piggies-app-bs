@@ -1,21 +1,12 @@
 .nav-link {
-	.nav-tabs & {
-		padding: 0.5rem 1.25em;
-		border-radius: 5rem !important;
-		margin: 0 0.25rem;
-		@include media-breakpoint-up(md) {
-			padding: 0.5rem 1.5rem;
+	&.selected {
+		.nav-item-icon {
+			color: rgba(var(--bs-primary-rgb), var(--bs-text-opacity));
+		}
+
+		.nav-item-text {
+			color: var(--bs-primary);
 		}
 	}
-	.faqs-accordion & {
-		border-width: 1px;
-		border-color: $cor-black !important;
-		font-weight: $font-weight-bold;
-		&:hover {
-		}
-		&.active {
-			background: $cor-black;
-			color: $cor-white;
-		}
-	}
+
 }
