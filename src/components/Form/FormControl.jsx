@@ -1,7 +1,7 @@
 const FormControl = ({ children, text, htmlFor, error, id}) => {
     return (
-      <div className="FormControl mb-3" id={id}>
-        <label htmlFor={htmlFor} className="form-label">
+      <div className="FormControl mt-4" id={id}>
+        <label htmlFor={htmlFor} className="form-label visually-hidden mb-0">
           {text}
         </label>
         {children}
@@ -9,5 +9,6 @@ const FormControl = ({ children, text, htmlFor, error, id}) => {
       </div>
     );
   };
+
   
   export default FormControl;

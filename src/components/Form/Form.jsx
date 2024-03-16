@@ -7,7 +7,6 @@ import { formSubmit, getServices } from '../../services/FormService';
 import Button from "../Button";
 import * as Yup from "yup";
 import { useEffect, useState } from "react";
-// import AlertDialogDemo from "../AlertDialog";
 
 const Form = () => {
     const [services, setServices] = useState([]);
@@ -145,6 +144,7 @@ const Form = () => {
                             id="message"
                             name="message"
                             type="text"
+                            rows="10"
                             onChange={handleChange}
                             onBlur={handleBlur}
                             value={values.message}
