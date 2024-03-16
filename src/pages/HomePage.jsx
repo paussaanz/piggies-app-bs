@@ -76,7 +76,6 @@ const homePage = () => {
                 <Link to="/projects" className="text-decoration-none">
                     <Carrusel images={images} />
                 </Link>
-                <ThemeToggler/>
             </section>
             < section className="bg-black p-5">
                 <div className="container about">
