@@ -3,20 +3,18 @@ import { IconContext } from "react-icons";
 import { LuLayoutDashboard } from "react-icons/lu";
 import { AiOutlineMessage } from "react-icons/ai";
 import { FaRegSquareCheck } from "react-icons/fa6";
-import { FiCalendar } from "react-icons/fi";
 import { FiLogOut } from "react-icons/fi";
 import { BsPersonCircle } from "react-icons/bs";
 import { logout } from "../../stores/AccessTokenStore";
 import { useState } from "react";
 
 const DashboardMenu = () => {
-    const [activeTab, setActiveTab] = useState(0); // Cambiado de 0 a null para manejar la no selección inicial
+    const [activeTab, setActiveTab] = useState(0);
 
     const menuItems = [
         { to: "/dashboard", icon: <LuLayoutDashboard />, text: "Dashboard" },
         { to: "/messages", icon: <AiOutlineMessage />, text: "Messages" },
         { to: "/projects-management", icon: <FaRegSquareCheck />, text: "Projects" },
-        { to: "/schedule", icon: <FiCalendar />, text: "Schedule" },
         { to: "/profile", icon: <BsPersonCircle />, text: "Profile" },
     ];
 
@@ -30,7 +28,6 @@ const DashboardMenu = () => {
                 <ul className="list-unstyled ">
                     {menuItems.map((item, index) => (
                         <NavLink to={item.to}  className={({ isActive } )=>    {
-                            // console.log('isActive', isActive)
                         
                             return "nav-link" + (isActive ? " selected" : "")}
                           }>
