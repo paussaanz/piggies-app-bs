@@ -390,12 +390,43 @@ ul {
   }
 
   .tooltip {
-	font-size: 0.875rem; // Tamaño de fuente personalizado
+	font-size: 0.875rem;
 	.tooltip-inner {
-	  background-color: #555; // Color de fondo personalizado
-	  color: #fff; // Color de texto personalizado
+	  background-color: #555; 
+	  color: #fff; 
 	}
 	.arrow::before {
-	  border-top-color: #555; // Color del flecha del tooltip
+	  border-top-color: #555;
 	}
   }
+
+.img-solapada {
+	position: relative;
+	top: -160px; // Ajusta este valor según la cantidad de solapamiento que necesites
+	z-index: 10; // Asegura que la imagen se muestre sobre otros elementos si es necesario
+  }
+  
+¡
+
+.member-container {
+	// display: flex;
+	// flex-direction: column; /* Organiza los elementos en una columna */
+	// align-items: center; /* Centra los elementos horizontalmente */
+	margin: 10px; /* Añade margen alrededor de la tarjeta si es necesario */
+  }
+  
+  .member-card {
+	width: 100%; /* Asegura consistencia en el ancho de la imagen */
+	height: 300px; /* Altura fija para la imagen de fondo */
+	background-size: cover; /* Asegura que la imagen cubra completamente el div */
+	background-position: center; /* Centra la imagen de fondo */
+	border-radius: 10px; /* Esquinas redondeadas para la parte superior */
+	margin-bottom: 10px; /* Espacio entre la imagen y el nombre */
+  }
+  
+  .member-name {
+	width: calc(100% - 20px); /* Ajusta el ancho según sea necesario, considerando el padding */
+	text-align: center; /* Centra el texto dentro del botón */
+	/* No olvides tus estilos personalizados para btn y btn-outline-primary si es necesario */
+  }
+  
