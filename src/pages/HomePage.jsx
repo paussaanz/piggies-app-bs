@@ -1,12 +1,9 @@
 import { Link } from "react-router-dom";
 import ServiceCard from "../components/ServiceCard";
 import Carrusel from "../components/Carrusel";
-import Footer from "../components/Footer";
 import Button from "../components/Button";
 import { useEffect, useState } from "react";
 import { getServices } from "../services/FormService";
-import { IconContext } from "react-icons";
-import { GoArrowRight } from "react-icons/go";
 
 const images = [
     {
@@ -29,6 +26,8 @@ const images = [
 
 
 
+
+
 const homePage = () => {
     const [services, setServices] = useState([]);
 
@@ -38,6 +37,7 @@ const homePage = () => {
                 setServices(services);
             });
     }, []);
+
 
     return (
         <>
@@ -65,7 +65,7 @@ const homePage = () => {
                         <div className="row border-bottom pb-3 align-items-center">
                             <h4 className="col h5 text-black weight-semi-light">OUR SERVICES</h4>
                             <Link to="/services" className="col-auto">
-                                    <Button outline="primary" extraClassName="p-3 icon-arrow-right"/>
+                                <Button outline="primary" extraClassName="p-3 icon-arrow-right" />
                             </Link>
                         </div>
                     </Link>
@@ -76,6 +76,7 @@ const homePage = () => {
                 <Link to="/projects" className="text-decoration-none">
                     <Carrusel images={images} />
                 </Link>
+                <ThemeToggler/>
             </section>
             < section className="bg-black p-5">
                 <div className="container about">
