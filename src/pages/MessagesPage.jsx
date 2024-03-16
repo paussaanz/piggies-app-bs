@@ -17,8 +17,6 @@ function MessagingPage() {
     setSelectedUser(user);
   };
 
-  console.log("USER", user)
-  console.log("SELECTED EN LA PAGE", selectedUser)
 
   return (
     <div className="container-fluid h-100">
