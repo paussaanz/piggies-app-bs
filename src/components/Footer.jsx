@@ -7,13 +7,13 @@ import { useLocation } from "react-router-dom";
 
 
 const Footer = () => {
-    const hiddenPaths = ['/contact', '/dashboard', '/messages', '/profile', '/schedule', '/projects-management', '/profile', '/login', '/register'];
+    const hiddenPaths = ['/contact', '/dashboard', '/messages', '/profile',  '/projects-management', '/profile', '/login', '/register'];
     const location = useLocation();
 
     if (hiddenPaths.includes(location.pathname)) {
         return (
            null
-        );
+        ); 
     }
 
     return (
