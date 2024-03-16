@@ -25,7 +25,7 @@ const ProjectsManagementPage = () => {
                 <div className="col-2">
                 </div>
                 <div className="col-10 pt-5 ps-5">
-                    <ProjectManageCard form={forms} />
+                    <ProjectManageCard forms={forms} getTasks={fetchForms} />
                 </div>
             </div>
         </div>
@@ -33,7 +33,3 @@ const ProjectsManagementPage = () => {
 };
 
 export default ProjectsManagementPage;
-
-// {form.tasks.map(task => (
-//     <li key={task._id}>{task.name} </li> 
-// ))}
