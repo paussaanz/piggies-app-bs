@@ -26,6 +26,10 @@ export const acceptForm = (formId) => {
   return authenticatedHttp.post(`/forms/${formId}/accept`);
 };
 
+export const completeForm = (formId) => {
+  return authenticatedHttp.post(`/forms/${formId}/complete`);
+};
+
 export const getServices = () => {
   return authenticatedHttp.get("/services");
 };
