@@ -317,116 +317,107 @@ button {
 }
 
 /*CHAT CONTAINER*/
-ul {
-    list-style: none;
-    padding: 0;
 
-    li {
-        margin-bottom: 10px;
-        padding: 10px;
-        border-radius: 20px;
-        width: fit-content;
-        max-width: 60%; // Limita el ancho máximo para evitar que un mensaje ocupe todo el ancho disponible.
-        
-        // Estilos para mensajes del usuario actual
-        &.current-user {
-            background-color: $cor-primary; // Un ejemplo de color para el usuario actual
-            color: white;
-            margin-left: auto; // Alinea el mensaje a la derecha
-            margin-right: 0;
-        }
-        
-        // Estilos para mensajes de otros usuarios
-        &.other-user {
-            background-color: #E0E0E0; // Un ejemplo de color para otros usuarios
-            color: black;
-            margin-right: auto; // Alinea el mensaje a la izquierda
-            margin-left: 0;
-        }
-    }
+.chat-container {
+
+	ul {
+		list-style: none;
+		padding: 0;
+
+		li {
+			margin-bottom: 10px;
+			padding: 10px;
+			border-radius: 20px;
+			width: fit-content;
+			max-width: 60%; // Limita el ancho máximo para evitar que un mensaje ocupe todo el ancho disponible.
+
+			// Estilos para mensajes del usuario actual
+			&.current-user {
+				background-color: $cor-primary; // Un ejemplo de color para el usuario actual
+				color: white;
+				margin-left: auto; // Alinea el mensaje a la derecha
+				margin-right: 0;
+			}
+
+			// Estilos para mensajes de otros usuarios
+			&.other-user {
+				background-color: #E0E0E0; // Un ejemplo de color para otros usuarios
+				color: black;
+				margin-right: auto; // Alinea el mensaje a la izquierda
+				margin-left: 0;
+			}
+		}
+	}
 }
 
 
 
-.chat-container {
-	display: flex;
-	flex-direction: column;
-	// height: 100vh; // Altura del contenedor
-	position: relative; // Posicionamiento relativo para los elementos internos posicionados absolutamente
-
-  
-	.textarea-fixed-bottom, button {
-	//   position: absolute;
-	  width: calc(100% - 20px); // Ajusta el ancho y resta cualquier padding/margin si es necesario
-	  bottom: 10px; // Espacio desde la parte inferior del contenedor
-	  left: 10px; // Asegura un poco de margen a la izquierda para no pegarse al borde
-	  z-index: 10; // Asegura que estén sobre otros elementos si es necesario
-	}
-  
-	.textarea-fixed-bottom {
-	  height: 50px;
-	}
-  
-  }
-  
-  .img-container {
+.img-container {
 	display: flex;
 	flex-direction: row-reverse;
 	align-items: center;
-  
-	.user-img {
-	  position: relative; // Necesario para que z-index funcione
-	  margin-left: -15px;
-	  border: 2px solid $cor-beige;
-	  border-radius: 50%;
-	  width: 50px;
-	  height: 50px;
-	  object-fit: cover;
-  
-	  &:nth-child(n) {
-		z-index: calc(100 - n); // Aquí 'n' es un placeholder, necesitas ajustar esto en tu JSX
-	  }
-	}
-  }
 
-  .tooltip {
+	.user-img {
+		position: relative; // Necesario para que z-index funcione
+		margin-left: -15px;
+		border: 2px solid $cor-beige;
+		border-radius: 50%;
+		width: 50px;
+		height: 50px;
+		object-fit: cover;
+
+		&:nth-child(n) {
+			z-index: calc(100 - n); // Aquí 'n' es un placeholder, necesitas ajustar esto en tu JSX
+		}
+	}
+}
+
+.tooltip {
 	font-size: 0.875rem;
+
 	.tooltip-inner {
-	  background-color: #555; 
-	  color: #fff; 
+		background-color: #555;
+		color: #fff;
 	}
+
 	.arrow::before {
-	  border-top-color: #555;
+		border-top-color: #555;
 	}
-  }
+}
 
 .img-solapada {
 	position: relative;
 	top: -160px; // Ajusta este valor según la cantidad de solapamiento que necesites
 	z-index: 10; // Asegura que la imagen se muestre sobre otros elementos si es necesario
-  }
-  
-¡
+}
 
-.member-container {
+¡ .member-container {
 	// display: flex;
 	// flex-direction: column; /* Organiza los elementos en una columna */
 	// align-items: center; /* Centra los elementos horizontalmente */
-	margin: 10px; /* Añade margen alrededor de la tarjeta si es necesario */
-  }
-  
-  .member-card {
-	width: 100%; /* Asegura consistencia en el ancho de la imagen */
-	height: 300px; /* Altura fija para la imagen de fondo */
-	background-size: cover; /* Asegura que la imagen cubra completamente el div */
-	background-position: center; /* Centra la imagen de fondo */
-	border-radius: 10px; /* Esquinas redondeadas para la parte superior */
-	margin-bottom: 10px; /* Espacio entre la imagen y el nombre */
-  }
-  
-  .member-name {
-	width: calc(100% - 20px); /* Ajusta el ancho según sea necesario, considerando el padding */
-	text-align: center; /* Centra el texto dentro del botón */
+	margin: 10px;
+	/* Añade margen alrededor de la tarjeta si es necesario */
+}
+
+.member-card {
+	width: 100%;
+	/* Asegura consistencia en el ancho de la imagen */
+	height: 300px;
+	/* Altura fija para la imagen de fondo */
+	background-size: cover;
+	/* Asegura que la imagen cubra completamente el div */
+	background-position: center;
+	/* Centra la imagen de fondo */
+	border-radius: 10px;
+	/* Esquinas redondeadas para la parte superior */
+	margin-bottom: 10px;
+	/* Espacio entre la imagen y el nombre */
+}
+
+.member-name {
+	width: calc(100% - 20px);
+	/* Ajusta el ancho según sea necesario, considerando el padding */
+	text-align: center;
+	/* Centra el texto dentro del botón */
 	/* No olvides tus estilos personalizados para btn y btn-outline-primary si es necesario */
-  }
-  
+}

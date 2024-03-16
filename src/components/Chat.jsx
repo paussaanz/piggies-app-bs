@@ -11,13 +11,15 @@ const Chat = ({ currentUser, selectedUser }) => {
     const [socket, setSocket] = useState(null);
 
     const room = [currentUser, selectedUser.username].sort().join('-');
-
+    
     useEffect(() => {
-
         getMessageHistory(room)
             .then(DBmessages => {
-                console.log(DBmessages);
-                setMessages(DBmessages)
+                const processedMessages = DBmessages.map(message => ({
+                    ...message,
+                    timestamp: new Date(message.timestamp).toISOString(),
+                  }));
+                  setMessages(processedMessages);
             })
             .catch(error => console.error('Error al cargar el historial de mensajes:', error));
         const newSocket = io.connect("http://localhost:3000", {
@@ -31,6 +33,9 @@ const Chat = ({ currentUser, selectedUser }) => {
         newSocket.emit('join_chat', room);
 
         newSocket.on('receive_message', (message) => {
+            if (!message.timestamp) {
+                message.timestamp = new Date().toISOString();
+              }
             setMessages(prevMessages => {
                 // Asegura que prevMessages siempre se trate como un arreglo
                 const updatedMessages = Array.isArray(prevMessages) ? prevMessages : [];
@@ -66,7 +71,7 @@ const Chat = ({ currentUser, selectedUser }) => {
     };
 
     return (
-        <div className="h-100 ">
+        <div className="h-100 chat-container">
             <div className="row h-100 align-content-start">
                 <div className="row align-items-center py-3">
                     <div className="col-auto">
