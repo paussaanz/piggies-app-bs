@@ -248,3 +248,16 @@ $font-sizes-md: (
 .opacity-30 {
 	opacity: 0.3;
 }
+.h-header{
+	height: calc(100vh - $header * 1rem);
+	max-height: 100%;
+}
+
+$chat-tex-area : toRem(107) * 1rem;
+$chat-title : toRem(73) * 1rem;
+
+.h-chat{
+	height: calc(100vh - $header * 1rem - $chat-tex-area - $chat-title );
+	max-height: 100%;
+	overflow-y: scroll;
+}
