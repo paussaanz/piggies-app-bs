@@ -18,13 +18,15 @@ import ProfilePage from "./pages/ProfilePage";
 import Footer from "./components/Footer";
 
 function App() {
+  const hiddenPaths = ['/messages'];
+
 
   return (
     <>
       <header className="sticky-top">
         <Navbar />
       </header>
-      <main >
+      <main className={hiddenPaths.includes(location.pathname) ? "h-header" : ""}>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/services" element={<ServicesPage />} />
