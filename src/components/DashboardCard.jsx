@@ -36,9 +36,6 @@ const DashboardCard = ({ onSubmitCb }) => {
             });
     };
 
-    console.log("FORMS", forms)
-    console.log("FILTERED FORMS", filteredForms)
-
     return (
         <>
             <Swiper
@@ -46,7 +43,7 @@ const DashboardCard = ({ onSubmitCb }) => {
                 slidesPerView={3}
                 pagination={{
                     clickable: true,
-                }}
+                }} 
                 modules={[Pagination]}
                 className="dashboard-swiper pb-5"
                 style={{
@@ -57,16 +54,20 @@ const DashboardCard = ({ onSubmitCb }) => {
                 {forms.map((form, index) => (
                     <SwiperSlide className="h-100">
                         <div key={form._id} className="card mb-3 rounded-4 bg-secondary h-100">
-                            <div className="card-body h-100">
-                                <h5 className="h4 weight-regular">{form.name}</h5>
-                                <p className="card-text">{form.message}</p>
-                                <p className="card-text">{form.email}</p>
-                                <p className="d-inline-block bg-cream px-4 py-1 rounded-5 text-black">{form.phone}</p>
+                            <div className="card-body h-100 d-flex flex-column justify-content-between">
+                                <div>
+                                    <h5 className="h4 weight-regular" style={{ minHeight: '80px' }}>{form.name}</h5>
+                                    <p className="card-text">{form.message}</p>
+                                    <p className="d-inline-block bg-cream px-4 py-1 rounded-5 text-black w-max">{form.createdAt.slice(0,10)}</p>
+                                </div>
+                                <Button
+                                    outline='black'
+                                    extraClassName="w-max float-right align-self-end "
+                                    onClick={() => {
+                                        setShowModal(true)
+                                        setFormToAccept(form._id)
+                                    }}>Accept</Button>
                             </div>
-                            <Button onClick={() => {
-                                setShowModal(true)
-                                setFormToAccept(form._id)
-                            }}>Accept</Button>
                         </div>
                     </SwiperSlide>
 
