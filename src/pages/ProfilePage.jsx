@@ -5,7 +5,7 @@ import Button from "../components/Button";
 import AlertDialog from "../components/AlertDialog";
 import FormControl from "../components/Form/FormControl";
 import FormInput from "../components/Form/FormInput";
-import { editProfileService } from "../services/AuthService";
+import { editProfileService, editProfilePicService } from "../services/AuthService";
 
 const ProfilePage = () => {
   const { fetchCurrentUser, user } = useContext(AuthContext)
@@ -22,7 +22,9 @@ const ProfilePage = () => {
     confirmNewPassword: ''
   });
 
-console.log(user)
+  const [showEditPic, setShowEditPic] = useState(false);
+
+  // console.log(user)
   const getTasks = () => {
     if (activeTab !== "All Tasks") {
       return user.tasks.filter((task) => {
@@ -68,12 +70,26 @@ console.log(user)
       });
   };
 
+  const editProfilePic = (file) => {
+    const formData = new FormData();
+    formData.append('imageUrl', file);
+
+    editProfilePicService(user._id, formData)
+      .then((updatedUser) => {
+        fetchCurrentUser();
+        setShowEditPic(false); // Hide the profile picture edit UI
+      })
+      .catch(error => {
+        console.error("Failed to update profile picture:", error);
+      });
+  };
+
   const validatePasswordUpdate = () => {
     const { newPassword, confirmNewPassword } = editingProfile;
     if (!newPassword) {
       return true;
     }
-  
+
     if (!newPassword || newPassword.length < 8) {
       return false;
     }
@@ -93,7 +109,7 @@ console.log(user)
             <div className="col-10">
               <h4 className="fs-6 weight-regular pt-4 pb-3">Profile</h4>
             </div>
-            <div className="col-auto icons-black">
+            <div className="col-auto icons-black icons-small">
               <Button
                 extraClassName="p-3 icon-edit"
                 onClick={() =>
@@ -103,8 +119,8 @@ console.log(user)
             </div>
           </div>
           <div className="row align-items-center p-3">
-            <div className="col-auto">
-              <img src={user.imageUrl} className="rounded-circle" style={{ width: '100px', height: '100px', objectFit: 'cover' }} />
+            <div className="user-image-container p-0" onClick={() => setShowEditPic(true)}>
+              <img src={user.imageUrl} alt="User" className="rounded-circle user-image" />
             </div>
             <div className="col">
               <h4 className="h5 weight-regular m-0">{user.name} {user.surname}</h4>
@@ -232,6 +248,44 @@ console.log(user)
           type: "submit"
         }}
       />}
+
+      {showEditPic && (
+        <AlertDialog
+          bg_color="cream"
+          body_weight="semi-bold"
+          title="Edit your image"
+          body={
+            <form>
+              <FormControl
+                id="file-signup-input"
+                htmlFor="imageUrl">
+                <FormInput
+                  name="imageUrl"
+                  type="file"
+                  onChange={(event) => {
+                    const file = event.currentTarget.files[0];
+                    editProfilePic(file);
+                  }}
+                />
+              </FormControl>
+            </form>
+          }
+          cancelButton={{
+            text: "CLOSE",
+            onClick: () => {
+              setShowEditPic(false)
+            },
+            type: "submit"
+          }}
+          acceptButton={{
+            text: "ACCEPT",
+            onClick: () => {
+              editProfilePic()
+            },
+            type: "submit"
+          }}
+        />
+      )}
     </div >
 
 

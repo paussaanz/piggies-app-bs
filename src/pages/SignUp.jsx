@@ -7,6 +7,8 @@ import * as Yup from "yup";
 import FormInput from "../components/Form/FormInput";
 
 const initialValues = {
+  name: '',
+  surname: '',
   email: '',
   username: '',
   password: '',
@@ -14,6 +16,8 @@ const initialValues = {
 }
 
 const userSchema = Yup.object({
+  name: Yup.string("Invalid name").required("Required"),
+  surname: Yup.string("Invalid surname").required("Required"),
   email: Yup.string("Email err").email("Invalid email").required("Required"),
   username: Yup.string("Invalid username").required("Required"),
   password: Yup.string("Password err")
@@ -21,6 +25,7 @@ const userSchema = Yup.object({
     .required("Required"),
   imageUrl: Yup.mixed().required('Required field')
 });
+
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -55,9 +60,48 @@ const SignUp = () => {
 
   return (
     <div className="container">
-      <h1 className="text-uppercase h2 weight-bold pt-4 text-center">Get started</h1>
+      <h1 className="text-uppercase h2 weight-bold pt-2 text-center">Get started</h1>
 
-      <form onSubmit={handleSubmit}>
+      <form className="row" onSubmit={handleSubmit}>
+        <div className="col-6 offset-md-3">
+          <div className="row">
+            <div className="col-6">
+              <FormControl
+                text="Name"
+                error={touched.name && errors.name}
+                htmlFor="name"
+              >
+                <FormInput
+                  name="name"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.name}
+                  error={touched.name && errors.name}
+                  placeholder="Enter your name"
+                  type="text"
+                />
+              </FormControl>
+            </div>
+            <div className="col-6">
+              <FormControl
+                text="Surname"
+                error={touched.surname && errors.surname}
+                htmlFor="surname"
+              >
+                <FormInput
+                  name="surname"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.surname}
+                  error={touched.surname && errors.surname}
+                  placeholder="Enter your surname"
+                  type="text"
+                />
+              </FormControl>
+            </div>
+          </div>
+        </div>
+
         <div className="col-6 offset-md-3">
           <FormControl
             text="Username"
@@ -72,7 +116,7 @@ const SignUp = () => {
               value={values.username}
               error={touched.username && errors.username}
               placeholder="Enter a username"
-              type="username"
+              type="text"
             />
           </FormControl>
 
@@ -89,6 +133,7 @@ const SignUp = () => {
               value={values.email}
               error={touched.email && errors.email}
               placeholder="Enter an email"
+              type="email"
             />
           </FormControl>
 
@@ -107,7 +152,7 @@ const SignUp = () => {
               placeholder="Enter a password"
               type="password"
             />
-            
+
           </FormControl>
           <FormControl
             id="file-signup-input"
@@ -115,20 +160,18 @@ const SignUp = () => {
             error={touched.imageUrl && errors.imageUrl}
             htmlFor="imageUrl"
           >
-          <FormInput
-            name="imageUrl"
-            type="file"
-            label="Add your photo"
-            // value={values.avatar}
-            error={touched.imageUrl && errors.imageUrl}
-            onChange={(event) => {
-              setFieldValue("imageUrl", event.currentTarget.files[0]);
-            }}
-            onBlur={handleBlur}
-          />
-            
+            <FormInput
+              name="imageUrl"
+              type="file"
+              error={touched.imageUrl && errors.imageUrl}
+              onChange={(event) => {
+                setFieldValue("imageUrl", event.currentTarget.files[0]);
+              }}
+              onBlur={handleBlur}
+            />
+
           </FormControl>
-          <div className="text-center">
+          <div className="text-center py-4">
             <Button
               outline="primary"
               type="submit"

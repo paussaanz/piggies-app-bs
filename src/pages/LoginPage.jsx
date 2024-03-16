@@ -50,7 +50,6 @@ const Login = () => {
                         <FormInput
                             name="username"
                             type="username"
-                            label="Username"
                             placeholder="Enter your username"
                             value={values.username}
                             error={touched.username && errors.username}
@@ -66,7 +65,6 @@ const Login = () => {
                         <FormInput
                             name="password"
                             type="password"
-                            label="Password"
                             placeholder="Enter your password"
                             value={values.password}
                             error={touched.password && errors.password}
@@ -75,7 +73,7 @@ const Login = () => {
                         />
                     </FormControl>
                 </div>
-                <div className="text-center">
+                <div className="text-center py-4">
                     <Button outline="primary"
                         type="submit"
                     >
