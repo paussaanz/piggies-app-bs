@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AlertDialog from "./AlertDialog";
 import { updateTaskStatus, addUserToTask, editTaskService } from "../services/TaskService";
 import { FiEdit2 } from "react-icons/fi";
@@ -7,6 +7,7 @@ import Button from "./Button";
 import FormOptions from "./Form/FormOptions";
 import FormInput from "./Form/FormInput";
 import FormControl from "./Form/FormControl";
+import { Tooltip } from 'bootstrap'; // Asegúrate de importar Tooltip de Bootstrap
 
 
 const TaskBar = ({ getTasks, name, error, type, tasks, users }) => {
@@ -16,6 +17,13 @@ const TaskBar = ({ getTasks, name, error, type, tasks, users }) => {
     const [selectedTask, setSelectedTask] = useState(null)
     const [selectedUsers, setSelectedUsers] = useState([])
     const [editingTask, setEditingTask] = useState(null)
+
+
+  useEffect(() => {
+    // Inicializa todos los tooltips en el documento
+    const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    tooltipTriggerList.map(tooltipTriggerEl => new Tooltip(tooltipTriggerEl));
+  }, [users, tasks]);
 
     const handleEditingTask = (e) => {
         const isCheckBox = e.target.name === 'status'
@@ -90,10 +98,12 @@ const TaskBar = ({ getTasks, name, error, type, tasks, users }) => {
                         </div>
                         <div className="col-8">
                             <div className="row justify-content-end align-items-center ">
-                                <div className="col-auto">
+                                <div className="col-auto img-container">
                                     {users && task.userId.map((user) => {
                                         return (
-                                            <img className="col-8 p-0 rounded-circle object-fit-cover " key={user._id} src={user.imageUrl} alt={`User ${user.username}`} style={{ width: '50px', height: '50px'}} />
+                                            <img className="user-img p-0 rounded-circle object-fit-cover " key={user._id} src={user.imageUrl} alt={`User ${user.username}`} data-bs-toggle="tooltip"
+                                            data-bs-placement="top"
+                                            title={`@${user.username}`}/>
                                         )
                                     })}
                                 </div>
@@ -220,6 +230,7 @@ const TaskBar = ({ getTasks, name, error, type, tasks, users }) => {
                             id="taskStatus"
                             name="status"
                             type="checkbox"
+                            title={editingTask.status ? "Done" : "Pending"}
                             onChange={handleEditingTask}
                             value={editingTask.status}
                         />
