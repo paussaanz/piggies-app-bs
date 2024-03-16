@@ -3,6 +3,7 @@ body {
 	display: flex;
 	flex-direction: column;
 	min-height: 100vh;
+	overflow-x: clip;
 	// FIN El footer siempre pegado abajo
 
 	@include media-breakpoint-up(md) {}
@@ -46,6 +47,7 @@ footer {
 	object-fit: cover;
 	width: 100%;
 	border-radius: 20px;
+
 	@include media-breakpoint-up(md) {
 		aspect-ratio: 4/5;
 	}
@@ -220,7 +222,7 @@ button {
 	flex-direction: column;
 	justify-content: space-between;
 	position: fixed;
-	height:100vh;
+	height: 100vh;
 	padding: 20px 50px;
 }
 
@@ -228,249 +230,172 @@ button {
 .underline-animate {
 	position: relative;
 	cursor: pointer;
-	display: inline-block; /* Ensures the span behaves correctly for positioning */
-  }
-  
-  .underline-animate::after {
+	display: inline-block;
+	/* Ensures the span behaves correctly for positioning */
+}
+
+.underline-animate::after {
 	content: '';
 	position: absolute;
 	width: 100%;
-	height: 8px; 
-	bottom: 12px; 
+	height: 8px;
+	bottom: 12px;
 	left: 4px;
-	background-color:var(--bs-primary); 
+	background-color: var(--bs-primary);
 	transform: scaleX(0);
 	transform-origin: bottom left;
 	transition: transform 0.5s ease-in-out;
-  }
-  
-  .underline-animate:hover::after {
+}
+
+.underline-animate:hover::after {
 	transform: scaleX(1);
-  }
+}
 
-
-  /*CHAT*/
-  
-  .joinChatContainer {
-	display: flex;
-	flex-direction: column;
-	text-align: center;
-  }
-  
-  .joinChatContainer h3 {
-	font-size: 2.5rem;
-	margin-bottom: 1rem;
-  }
-  .joinChatContainer input {
-	width: 210px;
-	height: 40px;
-	margin: 7px;
-	border: 2px solid #43a047;
-	border-radius: 5px;
-	padding: 5px;
-	font-size: 16px;
-  }
-  
-  .joinChatContainer button {
-	width: 225px;
-	height: 50px;
-	margin: 7px;
-	border: none;
-	border-radius: 5px;
-	padding: 5px;
-	font-size: 16px;
-	background: #43a047;
-	color: #fff;
-	cursor: pointer;
-  }
-  
-  .joinChatContainer button:hover {
-	background: #2e7d32;
-  }
-  
-  .chat-window {
-	width: 300px;
-	height: 420px;
-  }
-  
-  .chat-window p {
-	margin: 0;
-  }
-  .chat-window .chat-header {
-	height: 45px;
-	border-radius: 6px;
-	background: #263238;
-	position: relative;
-	cursor: pointer;
-  }
-  .chat-window .chat-header p {
-	display: block;
-	padding: 0 1em 0 2em;
-	color: #fff;
-	font-weight: 700;
-	line-height: 45px;
-  }
-  
-  .chat-window .chat-body {
-	height: calc(450px - (45px + 70px));
-	border: 1px solid #263238;
-	background: #fff;
-  
-	position: relative;
-  }
-  .chat-window .chat-body .message-container {
-	width: 100%;
-	height: 100%;
-	overflow-y: scroll;
-	overflow-x: hidden;
-  }
-  
-  .chat-window .chat-body .message-container::-webkit-scrollbar {
-	display: none;
-  }
-  .chat-window .chat-body .message {
-	height: auto;
-	padding: 10px;
-	display: flex;
-  }
-  
-  .chat-window .chat-body .message .message-content {
-	width: auto;
-	height: auto;
-	min-height: 40px;
-	max-width: 120px;
-	background-color: #43a047;
-	border-radius: 5px;
-	color: white;
-	display: flex;
-	align-items: center;
-	margin-right: 5px;
-	margin-left: 5px;
-	padding-right: 5px;
-	padding-left: 5px;
-	overflow-wrap: break-word;
-	word-break: break-word;
-  }
-  
-  #you {
-	justify-content: flex-start;
-  }
-  
-  #you .message-content {
-	justify-content: flex-start;
-  }
-  
-  #you .message-meta {
-	justify-content: flex-start;
-	margin-left: 5px;
-  }
-  
-  #other {
-	justify-content: flex-end;
-  }
-  
-  #other .message-content {
-	justify-content: flex-end;
-	background-color: cornflowerblue;
-  }
-  
-  #other .message-meta {
-	justify-content: flex-end;
-	margin-right: 5px;
-  }
-  
-  .message-meta #author {
-	margin-left: 10px;
-	font-weight: bold;
-  }
-  
-  .chat-window .chat-body .message .message-meta {
-	display: flex;
-	font-size: 12px;
-  }
-  
-  .chat-window .chat-footer {
-	height: 40px;
-	border: 1px solid #263238;
-	border-top: none;
-	display: flex;
-  }
-  
-  .chat-window .chat-footer input {
-	height: 100%;
-	flex: 85%;
-	border: 0;
-	padding: 0 0.7em;
-	font-size: 1em;
-	border-right: 1px dotted #607d8b;
-  
-	outline: none;
-	font-family: "Open Sans", sans-serif;
-  }
-  
-  .chat-window .chat-footer button {
-	border: 0;
-	display: grid;
-	place-items: center;
-	cursor: pointer;
-	flex: 15%;
-	height: 100%;
-	background: transparent;
-	outline: none;
-	font-size: 25px;
-	color: lightgray;
-  }
-  
-  .chat-window .chat-footer button:hover {
-	color: #43a047;
-  }
-  .hide {
-	opacity: 0 !important;
-  }
-
-  #file-signup-input {
+#file-signup-input {
 	position: relative;
 	align-items: center;
 	justify-content: center;
-  }
+}
 
-  #file-signup-input:after {
+#file-signup-input:after {
 	content: "Upload your image";
 	align-items: center;
 	justify-content: center;
 	display: flex;
-    width: 251px;
-    height: 78px;
-    position: absolute;
-    background-color:  $cor-black;
+	width: 251px;
+	height: 73px;
+	position: absolute;
+	background-color: $cor-black;
 	color: $cor-cream;
 	font-family: 'Matrice', sans-serif;
 	font-weight: 600;
-    top: 33px;
-    border-top-left-radius: 19px;
+	top: 0;
+	border-top-left-radius: 19px;
 	border-bottom-left-radius: 19px;
 	pointer-events: none;
-    left: 0px;
-  }
+	left: 0px;
+}
 
+/*USER PROFILE IMAGE*/
+.user-image-container {
+	position: relative;
+	width: 100px;
+	height: 100px;
+	cursor: pointer;
+	border-radius: 50%;
+	overflow: hidden;
 
-  .nav-link.selected {
-
-	.nav-item-icon {
-		color: rgba(var(--bs-black-rgb), var(--bs-text-opacity))
+	img.user-image {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		border-radius: 50%;
 	}
 
-	&.selected {
-		.nav-item-icon {
-			color: rgba(var(--bs-primary-rgb), var(--bs-text-opacity));
-		}
-
-		.nav-item-text {
-			color: var(--bs-primary);
-		}
+	&::after {
+		content: "EDIT";
+		position: absolute;
+		font-family: 'Matrice', sans-serif;
+		font-weight: 600;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: rgba(0, 0, 0, 0.5); // Fondo semitransparente para el texto
+		color: $cor-cream;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		opacity: 0; // Inicialmente invisible
+		transition: opacity 0.3s ease;
+		border-radius: 50%; // Asegura que el overlay también tenga bordes redondeados
 	}
 
-  }
+	&:hover::after {
+		opacity: 1; // Hace visible el texto al pasar el mouse
+	}
+}
 
+/*CHAT CONTAINER*/
+ul {
+    list-style: none;
+    padding: 0;
+
+    li {
+        margin-bottom: 10px;
+        padding: 10px;
+        border-radius: 20px;
+        width: fit-content;
+        max-width: 60%; // Limita el ancho máximo para evitar que un mensaje ocupe todo el ancho disponible.
+        
+        // Estilos para mensajes del usuario actual
+        &.current-user {
+            background-color: $cor-primary; // Un ejemplo de color para el usuario actual
+            color: white;
+            margin-left: auto; // Alinea el mensaje a la derecha
+            margin-right: 0;
+        }
+        
+        // Estilos para mensajes de otros usuarios
+        &.other-user {
+            background-color: #E0E0E0; // Un ejemplo de color para otros usuarios
+            color: black;
+            margin-right: auto; // Alinea el mensaje a la izquierda
+            margin-left: 0;
+        }
+    }
+}
+
+
+
+.chat-container {
+	display: flex;
+	flex-direction: column;
+	// height: 100vh; // Altura del contenedor
+	position: relative; // Posicionamiento relativo para los elementos internos posicionados absolutamente
 
   
+	.textarea-fixed-bottom, button {
+	//   position: absolute;
+	  width: calc(100% - 20px); // Ajusta el ancho y resta cualquier padding/margin si es necesario
+	  bottom: 10px; // Espacio desde la parte inferior del contenedor
+	  left: 10px; // Asegura un poco de margen a la izquierda para no pegarse al borde
+	  z-index: 10; // Asegura que estén sobre otros elementos si es necesario
+	}
+  
+	.textarea-fixed-bottom {
+	  height: 50px;
+	}
+  
+  }
+  
+  .img-container {
+	display: flex;
+	flex-direction: row-reverse;
+	align-items: center;
+  
+	.user-img {
+	  position: relative; // Necesario para que z-index funcione
+	  margin-left: -15px;
+	  border: 2px solid $cor-beige;
+	  border-radius: 50%;
+	  width: 50px;
+	  height: 50px;
+	  object-fit: cover;
+  
+	  &:nth-child(n) {
+		z-index: calc(100 - n); // Aquí 'n' es un placeholder, necesitas ajustar esto en tu JSX
+	  }
+	}
+  }
+
+  .tooltip {
+	font-size: 0.875rem; // Tamaño de fuente personalizado
+	.tooltip-inner {
+	  background-color: #555; // Color de fondo personalizado
+	  color: #fff; // Color de texto personalizado
+	}
+	.arrow::before {
+	  border-top-color: #555; // Color del flecha del tooltip
+	}
+  }
