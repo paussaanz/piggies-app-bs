@@ -1,6 +1,10 @@
 // -------------- Sistema de diseño --------------
 // Las variables que se definan aquí hay que aplicarlas en las variables de bootstrap definidas a continuación
 
+// Altura del header
+$header : toRem(84);
+
+
 // Configuración fuentes generales
 $cor-font-family-sans-serif: "Matrice" !default;
 $cor-font-family-body: "Avenir" !default; // Nueva fuente para el cuerpo
@@ -321,6 +325,7 @@ $theme-colors: (
 	"danger": $danger,
 	"light": $light,
 	"dark": $dark,
+	"black": $cor-black,
 	"cream": $cor-cream,
 	"beige": $cor-beige,
 	"orange": $cor-secondary-orange,
