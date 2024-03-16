@@ -43,7 +43,7 @@ const homePage = () => {
         <>
             <section className="hero py-4 py-md-5">
                 <img src="https://res.cloudinary.com/dmbtvuj1x/image/upload/v1709386605/Piggies/piggies-logo_fovqzf.png" alt="Card image cap" width="100%" />
-                <img className="pt-1" src="./../src/assets/dist/img/hero-image.jpg" alt="Card image cap" height="540px" width="100%" />
+                <img className="pt-1" src="https://res.cloudinary.com/dmbtvuj1x/image/upload/v1708978925/Piggies/6563a956b08c1110d0c1a07d_Frame_8848_szah1r.png" alt="Card image cap" height="540px" width="100%" style={{ objectFit:"cover" }}/>
             </section>
             <section className="container services py-4 py-md-5">
                 <div className="row">
