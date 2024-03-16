@@ -3,7 +3,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
-import { Pagination, Navigation } from 'swiper/modules';
+import 'swiper/css/grid';
+import { Pagination, Navigation, Grid } from 'swiper/modules';
 import FormControl from "./Form/FormControl";
 import FormInput from "./Form/FormInput";
 import AlertDialog from "./AlertDialog";
@@ -11,10 +12,10 @@ import { useState } from "react";
 import { editTaskService } from "../services/TaskService";
 import FormOptions from "./Form/FormOptions";
 import EmailMessage from "./EmailMessage";
-import { contactClientService } from "../services/FormService";
+import { completeForm, contactClientService } from "../services/FormService";
 
 
-const ProjectManageCard = ({ form, getTasks }) => {
+const ProjectManageCard = ({ forms, getTasks }) => {
     const [showEdit, setShowEdit] = useState(false);
     const [showEmailForm, setShowEmailForm] = useState(false);
     const [showMarkAsCompleted, setShowMarkAsCompleted] = useState(false)
@@ -23,6 +24,8 @@ const ProjectManageCard = ({ form, getTasks }) => {
     const [selectedForm, setSelectedForm] = useState(null);
     const [message, setMessage] = useState('');
 
+    // const sortedForms = [...forms.filter(form => !form.completed), ...forms.filter(form => form.completed)];
+    const filteredForms = forms.filter(form => !form.completed);
 
     const handleEditingTask = (e) => {
         const isCheckBox = e.target.name === 'status'
@@ -47,37 +50,49 @@ const ProjectManageCard = ({ form, getTasks }) => {
         console.log("El mensaje enviado desde EmailMessage:", message);
     };
 
+    const handleCompleteForm = () => {
+        completeForm(selectedForm)
+            .then(() => {
+                getTasks()
+                setShowMarkAsCompleted(false)
+                setSelectedForm(null)
+            });
+    };
 
     return (
         <>
             <Swiper
                 slidesPerView={3}
+                grid={{
+                    rows: 2,
+                    fill: 'row',
+                }}
                 spaceBetween={30}
+
                 pagination={{
                     clickable: true,
                 }}
-                navigation={true}
-                modules={[Pagination, Navigation]}
-                className="dashboard-swiper pb-5 h-100"
+                modules={[Grid, Pagination]}
                 style={{
                     "--swiper-pagination-color": "#FA6900",
                     "--swiper-pagination-bullet-inactive-color": "#696969",
                 }}
+                className="mb-5"
             >
-                {form.map((form) => (
-                    <SwiperSlide className="h-100">
-                        <div key={form._id} className="card mb-3 rounded-4 bg-secondary h-100">
+                {filteredForms.map((form) => (
+                    <SwiperSlide className="h-100 " key={form._id}>
+                        <div className="card rounded-4 bg-secondary h-100">
                             <div className="card-title">
                                 <h5 className="h4 weight-regular text-center border-bottom border-black border-3 p-4">{form.name}</h5>
                             </div>
-                            <div className="card-body py-1" style={{ overflowY: 'auto', maxHeight: '400px' }}>
+                            <div className="card-body py-1" style={{ overflowY: 'auto', maxHeight: '300px', minHeight: '300px' }}>
                                 {form.tasks.map((task) => (
                                     <div className="py-1">
                                         <div className="row bg-black text-secondary p-4 rounded-5 ">
                                             <div className="col">
                                                 <h4 className="fs-6 text-capitalize">{task.name}</h4>
                                             </div>
-                                            <div className="col-auto icons-secondary">
+                                            <div className="col-auto p-0 icons-secondary icons-small">
                                                 <Button
                                                     extraClassName="icon-edit p-0"
                                                     onClick={() => {
@@ -121,7 +136,7 @@ const ProjectManageCard = ({ form, getTasks }) => {
                                     Contact the client
                                 </Button>
                             </div>
-                            <div className="text-center pb-4">
+                            <div className="text-center pb-5">
                                 <Button
                                     type="submit"
                                     color="primary"
@@ -129,8 +144,7 @@ const ProjectManageCard = ({ form, getTasks }) => {
                                     onClick={() => {
                                         setSelectedForm(form.id)
                                         setShowMarkAsCompleted(true)
-                                    }}
-                                >
+                                    }}>
                                     Mark as finished
                                 </Button>
                             </div>
@@ -148,27 +162,30 @@ const ProjectManageCard = ({ form, getTasks }) => {
                         <FormControl
                             text="Task name"
                             htmlFor="name"
-                        ></FormControl>
-                        <FormInput
-                            id="taskName"
-                            name="name"
-                            type="text"
-                            onChange={handleEditingTask}
-                            value={editingTask.name}
-                        />
+                        >
+                            <FormInput
+                                id="taskName"
+                                name="name"
+                                type="text"
+                                onChange={handleEditingTask}
+                                value={editingTask.name}
+                            />
+                        </FormControl>
                         <FormControl
                             text="Task status"
                             htmlFor="status"
-                        ></FormControl>
-                        {editingTask.status}
-                        <FormOptions
-                            checked={editingTask.status}
-                            id="taskStatus"
-                            name="status"
-                            type="checkbox"
-                            onChange={handleEditingTask}
-                            value={editingTask.status}
-                        />
+                        >
+                            <FormOptions
+                                checked={editingTask.status}
+                                className="p-0 m-0"
+                                id="taskStatus"
+                                name="status"
+                                type="checkbox"
+                                title={editingTask.status ? "DONE" : "PENDING"}
+                                onChange={handleEditingTask}
+                                value={editingTask.status}
+                            />
+                        </FormControl>
                     </form>
                 }
                 cancelButton={{
@@ -242,7 +259,9 @@ const ProjectManageCard = ({ form, getTasks }) => {
                     acceptButton={{
                         text: "ACCEPT",
                         onClick: () => {
-                        },
+                            handleCompleteForm()
+                        }
+                        ,
                         type: "submit"
                     }}
                 />
