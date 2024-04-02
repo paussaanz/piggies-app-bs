@@ -1,5 +1,4 @@
-import { Route, Routes, useLocation } from "react-router-dom";
-import io from 'socket.io-client'
+import { Route, Routes } from "react-router-dom";
 import './styles/fonts.css';
 import Navbar from "./components/Navbar/Navbar";
 import HomePage from "./pages/HomePage";
