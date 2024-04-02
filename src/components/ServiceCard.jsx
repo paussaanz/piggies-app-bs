@@ -2,7 +2,7 @@ const ServiceCard = ({service, number, imgUrl}) => {
     return (
         <div className="row g-5 align-items-center p-4 border-bottom mb-3 mb-sm-0">
                     <div className="col-3">
-                        <img className=" services-img rounded" src={imgUrl} alt="Card image cap" />
+                        <img className="aspect-services rounded" src={imgUrl} alt={`${service} service`} />
                     </div>
                     <div className="col-9">
                         <div className="row">
