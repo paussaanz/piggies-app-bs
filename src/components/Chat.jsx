@@ -9,6 +9,7 @@ import Dropdown from './Dropdown';
 import FormInput from './Form/FormInput';
 import FormControl from './Form/FormControl';
 import AlertDialog from './AlertDialog';
+import ResponsiveImg from './ResponsiveImg';
 
 const Chat = ({ currentUser, selectedUser }) => {
     const [messages, setMessages] = useState([]);
@@ -99,7 +100,6 @@ const Chat = ({ currentUser, selectedUser }) => {
 
         uploadImage(formData)
             .then((response) => {
-                console.log("ENTROOOO", response.imageUrl)
                 const imageUrl = response.imageUrl;
                 console.log("Image URL:", imageUrl);
                 const message = {
@@ -137,17 +137,17 @@ const Chat = ({ currentUser, selectedUser }) => {
                                 <div className="row align-items-end">
                                     <div className="col">
                                         {message.type === 'image' || message.type === 'gif' ? (
-                                            <img
+                                            <ResponsiveImg
                                                 src={message.content}
                                                 alt={message.type}
-                                                className={`rounded ${message.type === 'image' ? 'img-thumbnail' : 'img-thumbnail'}`}
+                                                className={`rounded ${message.type === 'image' ? 'fixed-size-image' : 'fixed-size-mage'}`}
                                             />
                                         ) : (
-                                            <p>{message.content}</p>
+                                            <p className="mb-0 tag">{message.content}</p>
                                         )}
                                     </div>
                                     <div className="col-auto">
-                                        <p className="m-0 tag">{message.timestamp.slice(11, 16)}</p>
+                                        <p className="m-0 fs-table">{message.timestamp.slice(11, 16)}</p>
                                     </div>
                                 </div>
                             </li>
@@ -240,7 +240,6 @@ const Chat = ({ currentUser, selectedUser }) => {
                         text: "SEND",
                         onClick: () => {
                             handleFileSelect(selectedFile)
-                            // setShowImgSelector(false)
                         },
                         type: "submit"
                     }} />
