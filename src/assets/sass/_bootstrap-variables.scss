@@ -63,8 +63,8 @@ $cor-font-legend: $cor-font-size-base-text * toRem(18) !default; //Body large
 $cor-font-legend-md: $cor-font-size-base-text * toRem(18) !default;
 $cor-font-tag: $cor-font-size-base-text * toRem(16) !default;// Body small
 $cor-font-tag-md: $cor-font-size-base-text * toRem(16) !default;
-// $cor-font-table: $cor-font-size-base-text * 0.9375 !default;
-// $cor-font-table-md: $cor-font-size-base-text * 0.875 !default;
+$cor-font-table: $cor-font-size-base-text * toRem(10) !default;
+$cor-font-table-md: $cor-font-size-base-text * toRem(12) !default;
 
 // Headings
 $cor-headings-line-height: 1.4 !default;

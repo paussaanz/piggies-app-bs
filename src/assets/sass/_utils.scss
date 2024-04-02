@@ -86,17 +86,17 @@ $font-sizes-md: (
 		font-size: $cor-btn-font-size-md;
 	}
 }
-// .fs-table {
-// 	font-weight: $font-weight-bold;
-// 	font-size: $cor-font-table;
-// 	margin-bottom: 0;
-// 	margin-right: $spacer * 0.25;
-// 	@include media-breakpoint-up(md) {
-// 		font-weight: $font-weight-normal;
-// 		font-size: $cor-font-table-md;
-// 		opacity: 0.6;
-// 	}
-// }
+.fs-table {
+	font-weight: $font-weight-bold;
+	font-size: $cor-font-table;
+	margin-bottom: 0;
+	margin-right: $spacer * 0.25;
+	@include media-breakpoint-up(md) {
+		font-weight: $font-weight-normal;
+		font-size: $cor-font-table-md;
+		opacity: 0.6;
+	}
+}
 
 .legend {
 	font-size: $cor-font-legend;
