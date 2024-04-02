@@ -77,7 +77,7 @@ font-size: $cor-font-size-base
 		@include button-size(0rem, 0rem, $cor-font-size-base, $cor-btn-border-radius);
 		box-shadow: none !important;
 		border: 0;
-		font-weight: $font-weight-normal;
+		font-weight: $font-weight-regular;
 
 		&[type="number"]::-webkit-inner-spin-button,
 		&[type="number"]::-webkit-outer-spin-button {
