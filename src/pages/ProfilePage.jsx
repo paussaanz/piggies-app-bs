@@ -74,6 +74,8 @@ const ProfilePage = () => {
     const formData = new FormData();
     formData.append('imageUrl', file);
 
+    console.log("FILE", file, "FORMDATA", formData)
+
     editProfilePicService(user._id, formData)
       .then((updatedUser) => {
         fetchCurrentUser();
@@ -107,7 +109,7 @@ const ProfilePage = () => {
         <div className="col-10 pt-5 ps-5">
           <div className="row">
             <div className="col-10">
-              <h4 className="fs-6 weight-regular pt-4 pb-3">Profile</h4>
+              <h4 className="tag weigh-regular pt-4 pb-3">Profile</h4>
             </div>
             <div className="col-auto icons-black icons-small">
               <Button
@@ -126,13 +128,13 @@ const ProfilePage = () => {
               <h4 className="h5 weight-regular m-0">{user.name} {user.surname}</h4>
               <div className="row">
                 <div className="col-auto">
-                  <h4 className="fs-6 weight-regular m-0 py-1">@{user.username}</h4>
+                  <h4 className="tag weight-rgular m-0 py-1">@{user.username}</h4>
                 </div>
                 <div className="col-auto">
-                  <h4 className="fs-6 weight-regular m-0 py-1">{user.email}</h4>
+                  <h4 className="tag weight-reular m-0 py-1">{user.email}</h4>
                 </div>
               </div>
-              <h4 className="fs-6 weight-regular m-0">Comm Intern</h4>
+              <h4 className="tag weight-reguar m-0">Comm Intern</h4>
             </div>
           </div>
 
