@@ -296,41 +296,6 @@ button {
 	}
 }
 
-/*CHAT CONTAINER*/
-
-.chat-box  {
-
-	ul {
-		list-style: none;
-		padding: 0;
-
-		li {
-			margin-bottom: 10px;
-			padding: 10px;
-			border-radius: 20px;
-			width: fit-content;
-			max-width: 60%; // Limita el ancho máximo para evitar que un mensaje ocupe todo el ancho disponible.
-
-			// Estilos para mensajes del usuario actual
-			&.current-user {
-				background-color: $cor-primary; // Un ejemplo de color para el usuario actual
-				color: white;
-				margin-left: auto; // Alinea el mensaje a la derecha
-				margin-right: 0;
-			}
-
-			// Estilos para mensajes de otros usuarios
-			&.other-user {
-				background-color: #E0E0E0; // Un ejemplo de color para otros usuarios
-				color: black;
-				margin-right: auto; // Alinea el mensaje a la izquierda
-				margin-left: 0;
-			}
-		}
-	}
-}
-
-
 
 .img-container {
 	display: flex;
@@ -351,7 +316,6 @@ button {
 		}
 	}
 }
-
 .tooltip {
 	font-size: 0.875rem;
 
