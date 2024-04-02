@@ -34,24 +34,6 @@ footer {
 	font-size: 3.3rem;
 }
 
-/* Services Card - Esto seguramente tenga que cambiarlo*/
-.services-img {
-	aspect-ratio: 1/1;
-	object-fit: cover;
-	width: 100%;
-	/* max-width: 150px; */
-}
-
-.projects-img {
-	aspect-ratio: 1;
-	object-fit: cover;
-	width: 100%;
-	border-radius: 20px;
-
-	@include media-breakpoint-up(md) {
-		aspect-ratio: 4/5;
-	}
-}
 
 /* Typography - MATRICE */
 
@@ -100,7 +82,7 @@ footer {
 	position: relative;
 	display: inline-block;
 
-	.projects-img {
+	.aspect-projects {
 		width: 100%;
 		border-radius: 0.5rem;
 		transition: opacity 0.5s ease;
@@ -125,7 +107,7 @@ footer {
 	}
 
 	&:hover {
-		.projects-img {
+		.aspect-projects {
 			opacity: 0.7;
 		}
 
@@ -217,7 +199,6 @@ button {
 	}
 }
 
-/*Dashboard Menu*/
 .dashboard-menu {
 	flex-direction: column;
 	justify-content: space-between;
@@ -227,14 +208,13 @@ button {
 }
 
 /*FOOTER ANIMATION*/
-.underline-animate {
+.underline-animation {
 	position: relative;
 	cursor: pointer;
 	display: inline-block;
-	/* Ensures the span behaves correctly for positioning */
 }
 
-.underline-animate::after {
+.underline-animation::after {
 	content: '';
 	position: absolute;
 	width: 100%;
@@ -247,7 +227,7 @@ button {
 	transition: transform 0.5s ease-in-out;
 }
 
-.underline-animate:hover::after {
+.underline-animation:hover::after {
 	transform: scaleX(1);
 }
 
@@ -318,7 +298,7 @@ button {
 
 /*CHAT CONTAINER*/
 
-.chat-container {
+.chat-box  {
 
 	ul {
 		list-style: none;
@@ -358,7 +338,7 @@ button {
 	align-items: center;
 
 	.user-img {
-		position: relative; // Necesario para que z-index funcione
+		position: relative; 
 		margin-left: -15px;
 		border: 2px solid $cor-beige;
 		border-radius: 50%;
@@ -367,7 +347,7 @@ button {
 		object-fit: cover;
 
 		&:nth-child(n) {
-			z-index: calc(100 - n); // Aquí 'n' es un placeholder, necesitas ajustar esto en tu JSX
+			z-index: calc(100 - n);
 		}
 	}
 }
@@ -385,39 +365,7 @@ button {
 	}
 }
 
-.img-solapada {
-	position: relative;
-	top: -160px; // Ajusta este valor según la cantidad de solapamiento que necesites
-	z-index: 10; // Asegura que la imagen se muestre sobre otros elementos si es necesario
-}
 
-¡ .member-container {
-	// display: flex;
-	// flex-direction: column; /* Organiza los elementos en una columna */
-	// align-items: center; /* Centra los elementos horizontalmente */
-	margin: 10px;
-	/* Añade margen alrededor de la tarjeta si es necesario */
-}
 
-.member-card {
-	width: 100%;
-	/* Asegura consistencia en el ancho de la imagen */
-	height: 300px;
-	/* Altura fija para la imagen de fondo */
-	background-size: cover;
-	/* Asegura que la imagen cubra completamente el div */
-	background-position: center;
-	/* Centra la imagen de fondo */
-	border-radius: 10px;
-	/* Esquinas redondeadas para la parte superior */
-	margin-bottom: 10px;
-	/* Espacio entre la imagen y el nombre */
-}
 
-.member-name {
-	width: calc(100% - 20px);
-	/* Ajusta el ancho según sea necesario, considerando el padding */
-	text-align: center;
-	/* Centra el texto dentro del botón */
-	/* No olvides tus estilos personalizados para btn y btn-outline-primary si es necesario */
-}
+
