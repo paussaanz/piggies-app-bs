@@ -1,6 +1,6 @@
 import clsx from "clsx";
 
-const Button = ({ type, onClick, children, disabled, outline, extraClassName, active, size, color, padding="px-5" }) => {
+const Button = ({ type, onClick, children, disabled, outline, extraClassName, active, size, color, ariaExpanded, bsToggle }) => {
     const classNames = clsx(
             'nav-item',
             'btn',
@@ -17,7 +17,10 @@ const Button = ({ type, onClick, children, disabled, outline, extraClassName, ac
             <button
                 type={type}
                 onClick={onClick}
-                className={classNames} >
+                className={classNames} 
+                data-bs-toggle={bsToggle} 
+                aria-expanded={ariaExpanded}
+                >
                 {children}
             </button>
         </>
