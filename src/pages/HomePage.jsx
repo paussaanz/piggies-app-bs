@@ -51,8 +51,8 @@ const homePage = () => {
                         <h2 className="fs-4 fs-md-2 text-black weight-black">SUPER TALENTED AT UNLEASHING BRANDS, PIGGIES: WHERE YOUR VISION GETS WINGS!</h2>
                     </div>
                     <div className="col-12 col-md-6 pt-5 pe-5">
-                        <p className="text-black fs-md-5">Welcome to Piggies, the vibrant heart of creativity where your brand’s story is our masterpiece! Here, we believe in the power of 'extraordinary' – where every pixel, every line, and every word is a part of a larger, more spectacular picture. Picture this: a world where your brand doesn’t just exist but thrives and captivates.</p>
-                        <p className="text-black pt-2 fs-md-5">At Piggies, we’re not just about creating pretty designs or hopping on the latest trends. Oh no, we’re about crafting a legacy, your legacy, with a pinch of our Piggies’ magic! From mastering the art of media planning to securing those prime advertising spots, our team of creative wizards and strategy maestros are here to take your brand from ‘just another name’ to ‘the name’ on everyone’s lips.</p>
+                        <p className="text-black legend">Welcome to Piggies, the vibrant heart of creativity where your brand’s story is our masterpiece! Here, we believe in the power of 'extraordinary' – where every pixel, every line, and every word is a part of a larger, more spectacular picture. Picture this: a world where your brand doesn’t just exist but thrives and captivates.</p>
+                        <p className="text-black pt-2 legend">At Piggies, we’re not just about creating pretty designs or hopping on the latest trends. Oh no, we’re about crafting a legacy, your legacy, with a pinch of our Piggies’ magic! From mastering the art of media planning to securing those prime advertising spots, our team of creative wizards and strategy maestros are here to take your brand from ‘just another name’ to ‘the name’ on everyone’s lips.</p>
                     </div>
                     <div className="col-12 col-md-6 pt-4">
                         {services.map((service) => (
@@ -88,7 +88,7 @@ const homePage = () => {
                         </div>
                         <div className="row d-inline-flex justify-content-between pt-5 align-items-center">
                             <img className="col-auto ms-5" style={{ width: '300px', height: '300px', objectFit: 'contain' }} src="https://res.cloudinary.com/dmbtvuj1x/image/upload/v1709479695/Piggies/Recurso_1logo-mio_vdltks.png" />
-                            <p className="pt-4 col-7 fs-md-5">
+                            <p className="pt-4 col-7 legend">
                                 At Piggies, we don't just communicate; we connect. We understand the power of a story well told, and our designs speak volumes, engaging audiences with their elegance and simplicity. Whether it's branding, digital marketing, or multimedia production, our work is always ahead of the curve, blending cutting-edge technology with compelling narratives. Our approach is holistic; we delve deep into understanding our clients' visions, their brand essence, and their audience. This depth of understanding translates into communication strategies that resonate, inspire, and endure.
                             </p>
                         </div>

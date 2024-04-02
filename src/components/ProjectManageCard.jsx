@@ -87,10 +87,10 @@ const ProjectManageCard = ({ forms, getTasks }) => {
                             </div>
                             <div className="card-body py-1" style={{ overflowY: 'auto', maxHeight: '300px', minHeight: '300px' }}>
                                 {form.tasks.map((task) => (
-                                    <div className="py-1">
+                                    <div key={task._id} className="py-1">
                                         <div className="row bg-black text-secondary p-4 rounded-5 ">
                                             <div className="col">
-                                                <h4 className="fs-6 text-capitalize">{task.name}</h4>
+                                                <h4 className="tag text-capitalize">{task.name}</h4>
                                             </div>
                                             <div className="col-auto p-0 icons-secondary icons-small">
                                                 <Button
@@ -110,7 +110,7 @@ const ProjectManageCard = ({ forms, getTasks }) => {
                                             </div>
 
                                             {task.userId.map((user) => (
-                                                <div className="col-auto">
+                                                <div className="col-auto" key={user._id}>
                                                     <p className="weight-regular">@{user.username}</p>
                                                 </div>
                                             ))}

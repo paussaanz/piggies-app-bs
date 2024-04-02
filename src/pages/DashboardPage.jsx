@@ -62,7 +62,7 @@ const DashboardPage = () => {
         </div>
         <div className="col-10 pt-5 ps-5">
           <h2 className="h4 weight-bold">Welcome, {user.username}</h2>
-          <h4 className="fs-6 weight-regular pt-4 pb-3">New requests</h4>
+          <h4 className="tag weight-regular pt-4 pb-3">New requests</h4>
           <div className="row justify-content-between pe-5">
             <DashboardCard onSubmitCb={fetchForms} />
           </div>

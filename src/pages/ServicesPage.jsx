@@ -21,7 +21,7 @@ const ServicesPage = () => {
                     <div className="col-4 offset-md-1 pt-3">
                         <img src="https://res.cloudinary.com/dmbtvuj1x/image/upload/v1709386709/Piggies/piggies-icon_sxwwew.png" width="100%" />
                     </div>
-                    <div className="col-6 offset-md-1 fs-md-5">
+                    <div className="col-6 offset-md-1 legend">
                         Based in Madrid, Piggies has a global impact through its designs and collaborations. 
                         Comprised of a vibrant team of designers, artists, and writers, we are committed to collaborating with innovative organizations. 
                         Our focus is on crafting tailor-made digital solutions, captivating visual content, and unforgettable brand experiences for clients worldwide

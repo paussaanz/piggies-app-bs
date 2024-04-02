@@ -15,10 +15,10 @@ const ServicePageCard = ({ number, title, img, p1, p2, categories, children }) =
                     </div>
                 </div>
                 <div className="row">
-                    <p className="col-4 text-black fs-md-5">
+                    <p className="col-4 text-black legend">
                         {p1}
                     </p>
-                    <p className="col-4 text-black fs-md-5">
+                    <p className="col-4 text-black legend">
                         {p2}
                     </p>
                 </div>

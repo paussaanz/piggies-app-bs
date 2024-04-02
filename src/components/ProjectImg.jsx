@@ -21,10 +21,10 @@ const ProjectImg = ({ imageUrl, title, description }) => {
 
     <Link to="/projects/id" className="col-12 col-md-4 project-img-container " onMouseMove={handleMouseMove} onMouseLeave={() => setStyle({})}>
         <div className="image-hover-wrapper rounded-4 overflow-hidden " style={{ transition: 'transform 1s ease' }}>
-          <img className="projects-img" src={imageUrl} alt="" style={style} />
+          <img className="aspect-projects" src={imageUrl} alt="" style={style} />
           <div className="hover-text">
             <h1 className="h2 text-uppercase text-center weight-bold">{title}</h1>
-            <p className="fs-6 text-uppercase text-center weight-regular">{description}</p>
+            <p className="tag text-uppercase text-center weight-regular">{description}</p>
           </div>
         </div>
     </Link>
