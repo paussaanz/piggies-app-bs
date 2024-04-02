@@ -6,3 +6,7 @@ export const getMessageHistory = (room) => {
     return authenticatedHttp.get(`/messages/${room}`);
 };
 
+export const uploadImage = (data) => {
+    return authenticatedHttp.post(`/uploadImage`, data);
+};
+
