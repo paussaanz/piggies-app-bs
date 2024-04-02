@@ -55,7 +55,7 @@ const Navbar = () => {
                     <ul className="navbar-nav align-items-center">
 
                 {navbarItems.map((item, index) => (
-                    <NavLink to={item.to} className={({ isActive }) => {
+                    <NavLink to={item.to} key={item.text} className={({ isActive }) => {
 
                         return "nav-link" + (isActive ? " selected p-0" : " p-0")
                     }
@@ -69,21 +69,6 @@ const Navbar = () => {
                         </li>
                     </NavLink>
                 ))}
-                        {/* <li className="nav-item text-uppercase">
-                            <Link to="/services" className="btn btn-link weight-extra-bold text-black text-decoration-none">
-                                Services
-                            </Link>
-                        </li>
-                        <li className="nav-item text-uppercase">
-                            <Link to="/projects" className="btn btn-link weight-extra-bold text-black text-decoration-none">
-                                Projects
-                            </Link>
-                        </li>
-                        <li className="nav-item text-uppercase">
-                            <Link to="/about" className="btn btn-link weight-extra-bold text-black text-decoration-none">
-                                About
-                            </Link>
-                        </li> */}
                         <Link to="/contact">
                             <Button outline="primary">
                                 Contact

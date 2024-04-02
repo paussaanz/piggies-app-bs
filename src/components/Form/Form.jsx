@@ -75,6 +75,7 @@ const Form = () => {
                     {
                         services.map((service, index) => (
                             <FormOptions
+                                key={service._id}
                                 checked={values.service.includes(service._id)}
                                 number={`0${index + 1}`}
                                 title={service.name}
@@ -176,18 +177,18 @@ const Form = () => {
 
             <div className="row py-5 justify-content-between">
                 <div className="col-4">
-                    <h5 className="text-uppercase text-primary weight-regular fs-md-5"> Contact Info</h5>
+                    <h5 className="text-uppercase text-primary weight-regular legend"> Contact Info</h5>
                     <div className="pt-2 text-black weight-regular">
                         <p className="mb-0"> piggiescompany@example.com</p>
                         <p> +1 (555) 555-5555</p>
                     </div>
                 </div>
                 <div className="col-3">
-                    <h5 className="text-uppercase text-primary weight-regular fs-md-5"> HQ</h5>
+                    <h5 className="text-uppercase text-primary weight-regular legend"> HQ</h5>
                     <p className="primary-color weight-regular mb-0 pt-2 col-8"> 567 Meadowbrook Avenue, Springland 98765</p>
                 </div>
                 <div className="col-3">
-                    <h5 className="text-uppercase text-primary weight-regular fs-md-5"> FOLLOW US</h5>
+                    <h5 className="text-uppercase text-primary weight-regular legend"> FOLLOW US</h5>
                 </div>
             </div>
 

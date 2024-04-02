@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 const AboutPage = () => {
     const info = [
         {
@@ -76,14 +74,14 @@ const AboutPage = () => {
                     </div>
                 </div>
                 <div className="col-12 offset-8">
-                    <img className="img-solapada" style={{ width: '300px', height: '300px', objectFit: 'contain' }} src="https://res.cloudinary.com/dmbtvuj1x/image/upload/v1710571466/Recurso_1logo-mio_exwpbu.png" />
+                    <img className="overlay-image" style={{ width: '300px', height: '300px', objectFit: 'contain' }} src="https://res.cloudinary.com/dmbtvuj1x/image/upload/v1710571466/Recurso_1logo-mio_exwpbu.png" />
                 </div>
                 <div className="col-12 pb-3">
                     <h2 className="h3 weight-semi-bold text-center">Our company's essence is rooted in a steadfast commitment to integrity, relentless innovation, an unwavering pursuit of excellence. </h2>
                 </div>
                 <div className="row py-5">
                     {info.map((info) => (
-                        <div className="col-4 text-center pt-4">
+                        <div key={info.title} className="col-4 text-center pt-4">
                             <h4>{info.title}</h4>
                             <p className="col-10 offset-1">{info.body}</p>
                         </div>
@@ -93,20 +91,20 @@ const AboutPage = () => {
                     <h4 className="h3 weight-bold">Meet the team</h4>
                     <div className="row pt-2" >
                         {teamMembers.map((member) => (
-                           <div className="member-container col-3">
-                           <div 
-                             className="member-card" 
-                             style={{ backgroundColor:"grey" }}
-                           >
-                           </div>
-                           <div className="member-name btn btn-outline-primary p-2 w-100">
-                           <p className="p-0 m-0">{member.name}</p>
+                            <div key={member.name} className="col-3">
+                                <div
+                                    className="card-member"
+                                    style={{ backgroundColor: "grey" }}
+                                >
+                                </div>
+                                <div className="btn btn-outline-primary p-2 w-100">
+                                    <p className="p-0 m-0">{member.name}</p>
 
-                             <p className="p-0 m-0 mt-2 tag ">{member.position}</p>
-                           </div>
-                           
-                         </div>
-                         
+                                    <p className="p-0 m-0 mt-2 tag ">{member.position}</p>
+                                </div>
+
+                            </div>
+
 
                         ))}
                     </div>
@@ -116,8 +114,8 @@ const AboutPage = () => {
                 <div className="col-12 py-5">
                     <h4 className="h3 weight-bold">Where to find us</h4>
                     <div className="row text-center">
-                        {cities.map((city) => (
-                            <div className="col-3 py-3">
+                        {cities.map((city, index) => (
+                            <div key={index} className="col-3 py-3">
                                 <h4 className="h5">{city.name}</h4>
                                 <p className="p-0 m-0">{city.address}</p>
                                 <p className="p-0 m-0">{city.address}</p>

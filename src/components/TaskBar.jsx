@@ -73,7 +73,7 @@ const TaskBar = ({ getTasks, name, error, type, tasks, users }) => {
         <>
             {tasks.map(task =>
             (
-                <div className="container-fluid pe-5 pb-2">
+                <div className="container-fluid pe-5 pb-2" key={task._id}>
                     <div className="row bg-beige p-4 rounded-3 align-items-center">
                         <form className="d-flex col-1">
                             <label className="visually-hidden" htmlFor={name}></label>

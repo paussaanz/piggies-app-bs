@@ -52,8 +52,8 @@ const DashboardCard = ({ onSubmitCb }) => {
                 }}
             >
                 {forms.map((form, index) => (
-                    <SwiperSlide className="h-100">
-                        <div key={form._id} className="card mb-3 rounded-4 bg-secondary h-100">
+                    <SwiperSlide key={form._id} className="h-100">
+                        <div className="card mb-3 rounded-4 bg-secondary h-100">
                             <div className="card-body h-100 d-flex flex-column justify-content-between">
                                 <div>
                                     <h5 className="h4 weight-regular" style={{ minHeight: '80px' }}>{form.name}</h5>
