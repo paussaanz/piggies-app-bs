@@ -69,9 +69,17 @@
 
 .icon {
 	&-arrow-right {
-		@extend %icon-flex;
-
+		// @extend %icon-flex;
+		
 		&.btn-outline-primary {
+			&:hover {
+				&:before {
+					$cor-color-icons-svg: $cor-color-icons-svg-cream;
+					background-image: url('data:image/svg+xml;utf8,<svg stroke="#{$cor-color-icons-svg}" fill="#{$cor-color-icons-svg}" stroke-width="0" viewBox="0 0 24 24" height="2rem" width="2rem" xmlns="http://www.w3.org/2000/svg"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg>');
+				}
+			}
+		}
+		&.btn-outline-black {
 			&:hover {
 				&:before {
 					$cor-color-icons-svg: $cor-color-icons-svg-cream;
@@ -97,6 +105,8 @@
 			.icons-black & {
 				$cor-color-icons-svg: $cor-color-icons-svg-black-piggies;
 				background-image: url('data:image/svg+xml;utf8,<svg stroke="#{$cor-color-icons-svg}" fill="#{$cor-color-icons-svg}" stroke-width="0" viewBox="0 0 24 24" height="2rem" width="2rem" xmlns="http://www.w3.org/2000/svg"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg>');
+
+				
 			}
 		}
 
@@ -263,16 +273,17 @@
 				$cor-color-icons-svg: $cor-color-icons-svg-black-piggies;
 				background-image: url('data:image/svg+xml;utf8, <svg stroke="#{$cor-color-icons-svg}" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>');
 			}
+
 			.icons-small & {
 				@extend %icon-styles-small;
 			}
-	
+
 			.icons-extra-small & {
 				@extend %icon-styles-extra-small;
 			}
 		}
 
-		
+
 	}
 
 	&-dashboard {
