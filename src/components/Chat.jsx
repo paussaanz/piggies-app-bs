@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import io from 'socket.io-client';
+import ScrollToBottom from 'react-scroll-to-bottom';
 import { getAccessToken } from '../stores/AccessTokenStore';
 import { getMessageHistory, uploadImage } from '../services/MessageService';
 import Button from "../components/Button";
@@ -11,6 +12,7 @@ import FormControl from './Form/FormControl';
 import AlertDialog from './AlertDialog';
 import ResponsiveImg from './ResponsiveImg';
 
+
 const Chat = ({ currentUser, selectedUser }) => {
     const [messages, setMessages] = useState([]);
     const [showGifSearchBar, setShowGifSearchBar] = useState(false);
@@ -21,13 +23,33 @@ const Chat = ({ currentUser, selectedUser }) => {
 
     const room = [currentUser, selectedUser.username].sort().join('-');
 
+    const formatDateLabel = (date) => {
+        const messageDate = new Date(date);
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        const yesterday = new Date(today);
+        yesterday.setDate(yesterday.getDate() - 1);
+
+        if (messageDate >= today) return "Today";
+        else if (messageDate >= yesterday) return "Yesterday";
+        else return messageDate.toLocaleDateString();
+    };
+
     useEffect(() => {
         getMessageHistory(room)
             .then(DBmessages => {
-                const processedMessages = DBmessages.map(message => ({
-                    ...message,
-                    timestamp: new Date(message.timestamp).toISOString(),
-                }));
+                let processedMessages = [];
+                let lastDateLabel = null;
+
+                DBmessages.forEach(message => {
+                    const dateLabel = formatDateLabel(message.timestamp);
+                    if (lastDateLabel !== dateLabel) {
+                        processedMessages.push({ type: 'dateLabel', content: dateLabel, id: `label-${dateLabel}` });
+                        lastDateLabel = dateLabel;
+                    }
+                    processedMessages.push({ ...message, timestamp: new Date(message.timestamp).toISOString() });
+                });
+
                 setMessages(processedMessages);
             })
             .catch(error => console.error('Error al cargar el historial de mensajes:', error));
@@ -42,13 +64,19 @@ const Chat = ({ currentUser, selectedUser }) => {
         newSocket.emit('join_chat', room);
 
         newSocket.on('receive_message', (message) => {
-            if (!message.timestamp) {
-                message.timestamp = new Date().toISOString();
-            }
-            setMessages(prevMessages => {
-                // Asegura que prevMessages siempre se trate como un arreglo
-                const updatedMessages = Array.isArray(prevMessages) ? prevMessages : [];
-                return [...updatedMessages, message];
+            setMessages((prevMessages) => {
+                const newMessage = { ...message, timestamp: new Date(message.timestamp).toISOString() };
+                const lastMessage = prevMessages[prevMessages.length - 1];
+
+                // Check if the new message is from a different day than the last message
+                if (lastMessage && formatDateLabel(lastMessage.timestamp) !== formatDateLabel(newMessage.timestamp)) {
+                    const dateLabel = formatDateLabel(newMessage.timestamp);
+                    // Insert a new date label before the message if it's a different day
+                    return [...prevMessages, { type: 'dateLabel', content: dateLabel, id: `label-${dateLabel}` }, newMessage];
+                } else {
+                    // If it's the same day, just add the new message
+                    return [...prevMessages, newMessage];
+                }
             });
         });
 
@@ -63,7 +91,8 @@ const Chat = ({ currentUser, selectedUser }) => {
             content: currentMessage,
             from: currentUser,
             to: selectedUser.username,
-            type: "text"
+            type: "text",
+            timestamp: new Date().toISOString()
         };
 
         socket.emit('send_message', message);
@@ -131,33 +160,46 @@ const Chat = ({ currentUser, selectedUser }) => {
                     </div>
                 </div>
                 <div className="col-12 px-0 chat-box">
-                    <ul className=" bg-black mb-0 p-3 h-chat">
-                        {messages.map((message, index) => (
-                            <li key={index} className={message.from === currentUser ? "current-user" : "other-user"}>
-                                <div className="row align-items-end">
-                                    <div className="col">
-                                        {message.type === 'image' || message.type === 'gif' ? (
-                                            <ResponsiveImg
-                                                src={message.content}
-                                                alt={message.type}
-                                                className={`rounded ${message.type === 'image' ? 'fixed-size-image' : 'fixed-size-mage'}`}
-                                            />
-                                        ) : (
-                                            <p className="mb-0 tag">{message.content}</p>
-                                        )}
+                    <ScrollToBottom className="h-chat bg-black">
+                        <ul className=" bg-black mb-0 p-3">
+                            {messages.map((message, index) => (
+                                message.type === 'dateLabel' ?
+                                    <div className="row justify-content-center">
+                                        <p key={message.id} className="text-center text-cream tag border rounded-pill col-2">{message.content}</p>
                                     </div>
-                                    <div className="col-auto">
-                                        <p className="m-0 fs-table">{message.timestamp.slice(11, 16)}</p>
-                                    </div>
-                                </div>
-                            </li>
-                        ))}
-                    </ul>
+                                    :
+                                    <li key={index} className={message.from === currentUser ? "current-user" : "other-user"}>
+                                        <div className="row align-items-end">
+                                            <div className="col">
+                                                {message.type === 'image' || message.type === 'gif' ? (
+                                                    <div className="image-timestamp-container">
+                                                        <ResponsiveImg
+                                                            src={message.content}
+                                                            alt={message.type}
+                                                            className="rounded fixed-size-image"
+                                                        />
+                                                        <p className="image-timestamp">{message.timestamp.slice(11, 16)}</p>
+                                                    </div>
+
+                                                ) : (
+                                                    <p className="mb-0 tag">{message.content}</p>
+                                                )}
+                                            </div>
+                                            {message.type !== 'image' && message.type !== 'gif' && (
+                                                <div className="col-auto">
+                                                    <p className="m-0 fs-table">{message.timestamp.slice(11, 16)}</p>
+                                                </div>
+                                            )}
+                                        </div>
+                                    </li>
+                            ))}
+                        </ul>
+                    </ScrollToBottom>
                 </div>
 
-                <div className="col-12 mt-auto">
+                <div className="col-12">
                     <div className="row border-top p-3 bg-cream">
-                        <div className="col-1 d-flex align-content-center">
+                        <div className="col-1 d-flex justify-content-center align-items-center">
                             <Dropdown
                                 gif={<Button
                                     outline='black'
@@ -175,9 +217,8 @@ const Chat = ({ currentUser, selectedUser }) => {
                                 </Button>}
                             />
                         </div>
-                        <div className="col-9">
-
-                            <form className="form-floating">
+                        <div className="col">
+                            <form className="custom-chat-form form-floating">
                                 <FormTextArea
                                     id="message"
                                     name="message"
@@ -189,13 +230,18 @@ const Chat = ({ currentUser, selectedUser }) => {
                                     value={currentMessage}
                                     placeholder="MESSAGE"
                                 />
+                                <div className="custom-chat-form__button d-flex align-content-center icons-black">
+                                    <Button
+                                        outline='black'
+                                        extraClassName={"icon-arrow-right border border-start-0 border-black p-0"}
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            sendMessage()
+                                        }
+                                        }>
+                                    </Button>
+                                </div>
                             </form>
-                        </div>
-                        <div className="col-2 d-flex align-content-center">
-                            <Button
-                                outline='black'
-                                onClick={sendMessage}>Send
-                            </Button>
                         </div>
                     </div>
                 </div>
