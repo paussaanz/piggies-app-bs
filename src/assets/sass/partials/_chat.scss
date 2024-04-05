@@ -1,39 +1,76 @@
-.chat-box  {
+.chat-box {
 
-	ul {
-		list-style: none;
-		padding: 0;
+    ul {
+        list-style: none;
+        padding: 0;
 
-		li {
-			margin-bottom: 10px;
-			padding: 10px;
-			border-radius: 20px;
-			width: fit-content;
-			max-width: 60%;
+        li {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 20px;
+            width: fit-content;
+            max-width: 60%;
 
-			&.current-user {
-				background-color: $cor-primary; 
-				color: white;
-				margin-left: auto; 
-				margin-right: 0;
-			}
+            &.current-user {
+                background-color: $cor-primary;
+                color: white;
+                margin-left: auto;
+                margin-right: 0;
+            }
 
-			&.other-user {
-				background-color: #E0E0E0; 
-				color: black;
-				margin-right: auto; 
-				margin-left: 0;
-			}
-		}
-	}
+            &.other-user {
+                background-color: #E0E0E0;
+                color: black;
+                margin-right: auto;
+                margin-left: 0;
+            }
+        }
+    }
 
     .fixed-size-image {
-        width: 400px; // Ejemplo de ancho fijo
-        height: 300px; // Ejemplo de alto fijo
-        object-fit: cover; // Mantiene la relación de aspecto sin deformar la imagen
-        border-radius: 50%; // Opcional: si quieres que todas las imágenes sean circulares
+        width: 400px;
+        height: 300px;
+        object-fit: cover;
+    }
+    
+    .image-timestamp-container {
+        position: relative;
+        display: inline-block; 
+        border-radius: 10px;
+        overflow: hidden;
+    
+        .image-timestamp {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            color: white;
+            background: linear-gradient(to top left, rgba(0, 0, 0, 0.5) -5%, rgba(0, 0, 0, 0) 50%);
+            border-bottom-right-radius: 10px;
+            padding: 5px;
+            margin: 0px;
+            padding-top: 25px;
+            padding-left: 40px;
+            font-size: 0.75rem;
+        }
+    
     }
 }
 
-
-
+.custom-chat-form {
+    
+    textarea {
+      padding-right: 70px;
+      resize: none;
+  
+    }
+  
+    &__button button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+      width: 60px;
+      border-radius: 0 20px 20px 0;
+      box-sizing: border-box;
+    }
+  }
