@@ -1,5 +1,4 @@
 import ProjectCard from "../components/ProjectCard";
-import Footer from "../components/Footer";
 
 const ProjectsPage = () => {
     return (
