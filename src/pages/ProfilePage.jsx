@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import AuthContext from "../contexts/AuthContext";
 import Tabbar from "../components/Tabbar";
 import Button from "../components/Button";
+import ThemeToggler from "../components/ThemeToggler"
 import AlertDialog from "../components/AlertDialog";
 import FormControl from "../components/Form/FormControl";
 import FormInput from "../components/Form/FormInput";
@@ -24,7 +25,6 @@ const ProfilePage = () => {
 
   const [showEditPic, setShowEditPic] = useState(false);
 
-  // console.log(user)
   const getTasks = () => {
     if (activeTab !== "All Tasks") {
       return user.tasks.filter((task) => {
@@ -118,6 +118,7 @@ const ProfilePage = () => {
                   setShowEditProfile(true)
                 }
               />
+              <ThemeToggler/>
             </div>
           </div>
           <div className="row align-items-center p-3">

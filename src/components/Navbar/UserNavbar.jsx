@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom";
-import { IconContext } from "react-icons";
-import { FaBell } from "react-icons/fa";
 import { useEffect, useState } from "react";
+import { useTheme } from "../../contexts/ThemeContext";
+import Button from "../Button";
 
 
 const UserNavbar = ({ currentUser }) => {
     const [navbarClass, setNavbarClass] = useState('navbar-visible');
     const [lastScrollY, setLastScrollY] = useState(window.scrollY);
+    const { theme } = useTheme();
 
     useEffect(() => {
         const controlNavbar = () => {
@@ -24,7 +25,7 @@ const UserNavbar = ({ currentUser }) => {
     }, [lastScrollY]);
 
     return (
-        <nav className={`navbar navbar-expand-lg py-4 border-bottom sticky-top bg-cream ${navbarClass}`}>
+        <nav className={`navbar navbar-expand-lg py-4 border-bottom sticky-top ${theme} ${navbarClass}`}>
             <div className="container-fluid">
                 <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
                     <div className="navbar-nav align-items-center w-100 justify-content-between px-5">
@@ -32,11 +33,9 @@ const UserNavbar = ({ currentUser }) => {
                             {location.pathname}
                         </li>
                         <div className="d-flex align-items-center gap-4">
-                            <IconContext.Provider value={{ className: "text-black", size: "1.5rem" }}>
-                                <li className="nav-item img-fluid ">
-                                    <FaBell />
-                                </li>
-                            </IconContext.Provider>
+                            <li className=" nav-item img-fluid icon-bell">
+                            </li>
+                           
                             <Link to="/profile">
                                 {currentUser ? (
                                     <li className="nav-item">

@@ -7,9 +7,11 @@ import { FiLogOut } from "react-icons/fi";
 import { BsPersonCircle } from "react-icons/bs";
 import { logout } from "../../stores/AccessTokenStore";
 import { useState } from "react";
+import { useTheme } from "../../contexts/ThemeContext";
 
 const DashboardMenu = () => {
     const [activeTab, setActiveTab] = useState(0);
+    const { theme } = useTheme();
 
     const menuItems = [
         { to: "/dashboard", icon: <LuLayoutDashboard />, text: "Dashboard" },
@@ -20,7 +22,7 @@ const DashboardMenu = () => {
 
 
     return (
-        <div className="border-end">
+        <div className={`border-end ${theme}`}>
             <div className="col-2 d-flex d-inline-block dashboard-menu border-end">
                 <Link to="/dashboard">
                     <img className="nav-logo" src="https://res.cloudinary.com/dmbtvuj1x/image/upload/v1709386605/Piggies/piggies-logo_fovqzf.png" alt="Brand logo" />

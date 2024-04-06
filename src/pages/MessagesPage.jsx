@@ -25,16 +25,16 @@ function MessagingPage() {
         </div>
         <div className="col-10 h-100">
           <div className="row  bg-cream h-100">
-            <div className="col-2 border-end">
+            <div className="col-2 border-end user-chatlist">
               {dbUsers.map((dbUser) => (
-                <div className="row py-2 border-bottom align-items-center" key={dbUser.id} onClick={() => {
+                <div className="row py-2 border-bottom align-items-center"   key={dbUser.id} onClick={() => {
                   handleUserSelect(dbUser)
                 }}>
                   <div className="col-auto">
                     <img src={dbUser.imageUrl} style={{ borderRadius: '50%', width: '55px', height: '55px', objectFit: 'cover' }} />
                   </div>
                   <div className="col">
-                    <p className="m-0">@{dbUser.username}
+                    <p className="m-0  text-truncate" style={{maxWidth: "120px"}}>@{dbUser.username}
                       {dbUser.username === user.username ? " (tú)" : ""}
                     </p>
                   </div>

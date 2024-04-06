@@ -303,7 +303,7 @@ button {
 	align-items: center;
 
 	.user-img {
-		position: relative; 
+		position: relative;
 		margin-left: -15px;
 		border: 2px solid $cor-beige;
 		border-radius: 50%;
@@ -316,6 +316,7 @@ button {
 		}
 	}
 }
+
 .tooltip {
 	font-size: 0.875rem;
 
@@ -337,27 +338,94 @@ button {
 /* YourCustomScrollToBottomStyles.css */
 
 .react-scroll-to-bottom--css-ygucu-1tj0vk3 {
-    background-color: #007bff !important;
-    color: white;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    cursor: pointer;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-    transition: background-color 0.3s;
+	background-color: #007bff !important;
+	color: white;
+	border-radius: 50%;
+	width: 40px;
+	height: 40px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: none;
+	cursor: pointer;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+	transition: background-color 0.3s;
 }
 
 .react-scroll-to-bottom--css-ygucu-1tj0vk3:hover {
-    background-color: #0056b3; /* Darker blue */
+	background-color: #0056b3;
+	/* Darker blue */
 }
 
 /* Optional: Adjust the position of the button if needed */
 .rstb .rstb-button {
-    bottom: 20px;
-    right: 20px;
-    position: absolute;
+	bottom: 20px;
+	right: 20px;
+	position: absolute;
+}
+
+/* Estilos para el tema oscuro */
+body.dark {
+	background-color: var(--bs-black);
+	color: var(--bs-cream);
+
+	.list-unstyled {
+		.nav-item {
+			button {
+				color: var(--bs-cream) !important;
+				
+			}
+		}
+
+		.nav-link {
+			.nav-item {
+				color: var(--bs-cream) !important;
+				&:hover{
+					color: var(--bs-primary);
+				}
+			}
+		}
+	}
+
+	.AlertDialogContent {
+		color: var(--bs-black)
+	}
+
+	.btn {
+		color: var(--bs-cream);
+
+		&-cream {
+			color: var(--bs-black);
+		}
+
+		&-outline-black {
+			color: var(--bs-black);
+
+			&:hover {
+				color: var(--bs-cream);
+			}
+		}
+
+		&-outline-primary {
+			background-color: var(--bs-black);
+			border-color: transparent;
+			color: var(--bs-cream);
+
+			&:hover {
+				background-color: var(--bs-primary);
+				color: var(--bs-cream);
+			}
+		}
+	}
+
+	.task-bar {
+		color: var(--bs-black);
+	}
+
+	.chat-container{
+		color: var(--bs-black);
+	}
+	.user-chatlist{
+		color: var(--bs-black)
+	}
 }

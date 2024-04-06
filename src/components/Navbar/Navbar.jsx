@@ -69,6 +69,7 @@ const Navbar = () => {
                         </li>
                     </NavLink>
                 ))}
+
                         <Link to="/contact">
                             <Button outline="primary">
                                 Contact
