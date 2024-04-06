@@ -7,7 +7,8 @@ import Button from "./Button";
 import FormOptions from "./Form/FormOptions";
 import FormInput from "./Form/FormInput";
 import FormControl from "./Form/FormControl";
-import { Tooltip } from 'bootstrap'; // Asegúrate de importar Tooltip de Bootstrap
+import { Tooltip } from 'bootstrap';
+import { createUserNotifications } from "../services/NotificationService";
 
 
 const TaskBar = ({ getTasks, name, error, type, tasks, users }) => {
@@ -19,11 +20,11 @@ const TaskBar = ({ getTasks, name, error, type, tasks, users }) => {
     const [editingTask, setEditingTask] = useState(null)
 
 
-  useEffect(() => {
-    // Inicializa todos los tooltips en el documento
-    const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-    tooltipTriggerList.map(tooltipTriggerEl => new Tooltip(tooltipTriggerEl));
-  }, [users, tasks]);
+    useEffect(() => {
+        // Inicializa todos los tooltips en el documento
+        const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+        tooltipTriggerList.map(tooltipTriggerEl => new Tooltip(tooltipTriggerEl));
+    }, [users, tasks]);
 
     const handleEditingTask = (e) => {
         const isCheckBox = e.target.name === 'status'
@@ -57,10 +58,18 @@ const TaskBar = ({ getTasks, name, error, type, tasks, users }) => {
         if (selectedTask) {
             addUserToTask(selectedTask._id, selectedUsers)
                 .then(() => {
+                    console.log(selectedUsers)
                     setShowUsers(false);
                     setSelectedTask(null);
                     setSelectedUsers([]);
                     getTasks()
+                    createUserNotifications(selectedUsers, selectedTask._id)
+                        .then(() => {
+                            console.log(selectedUsers, selectedTask._id)
+                        })
+                        .catch(error => {
+                            console.error("Error:", error);
+                        });
                 })
                 .catch(error => {
                     console.error("Error al asignar la tarea:", error);
@@ -74,7 +83,7 @@ const TaskBar = ({ getTasks, name, error, type, tasks, users }) => {
             {tasks.map(task =>
             (
                 <div className="container-fluid pe-5 pb-2" key={task._id}>
-                    <div className="row bg-beige p-4 rounded-3 align-items-center">
+                    <div className="row bg-beige p-4 rounded-3 align-items-center task-bar">
                         <form className="d-flex col-1">
                             <label className="visually-hidden" htmlFor={name}></label>
                             <input
@@ -102,12 +111,12 @@ const TaskBar = ({ getTasks, name, error, type, tasks, users }) => {
                                     {users && task.userId.map((user) => {
                                         return (
                                             <img className="user-img p-0 rounded-circle object-fit-cover " key={user._id} src={user.imageUrl} alt={`User ${user.username}`} data-bs-toggle="tooltip"
-                                            data-bs-placement="top"
-                                            title={`@${user.username}`}/>
+                                                data-bs-placement="top"
+                                                title={`@${user.username}`} />
                                         )
                                     })}
                                 </div>
-                               {users &&  <div className="col-auto">
+                                {users && <div className="col-auto">
                                     <Button
                                         color="cream"
                                         padding="p-2"

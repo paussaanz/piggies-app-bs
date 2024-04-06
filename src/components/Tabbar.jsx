@@ -24,16 +24,20 @@ const Tabbar = ({ getTasks, tasks, activeTab, setActiveTab, users }) => {
         <div className="d-flex g-3 py-5">
           {
             tabs.map(tab => (
-                <Button key={tab.key} extraClassName={"me-3"} active={tab.title === activeTab} onClick={() => setActiveTab(tab.title)}>
-                     {tab.title}
-                </Button>
+              <Button
+                key={tab.key}
+                extraClassName="me-3"
+                active={tab.title === activeTab}
+                onClick={() => setActiveTab(tab.title)}>
+                {tab.title}
+              </Button>
             ))
           }
         </div>
 
       </div>
       <div className="pb-4">
-        <TaskBar getTasks={getTasks} tasks={tasks} users={users} type="checkbox"/> 
+        <TaskBar getTasks={getTasks} tasks={tasks} users={users} type="checkbox" />
       </div>
     </div>
   )

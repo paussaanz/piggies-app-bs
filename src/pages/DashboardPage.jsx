@@ -4,6 +4,7 @@ import AuthContext from "../contexts/AuthContext";
 import Tabbar from "../components/Tabbar";
 import { getAllForms } from "../services/FormService";
 import { getUsers } from "../services/UserService";
+import NotificationsPanel from "../components/NotificationsPanel";
 
 const DashboardPage = () => {
   const [activeTab, setActiveTab] = useState('All Tasks');
@@ -58,6 +59,7 @@ const DashboardPage = () => {
   return (
     <div className="container-fluid">
       <div className="row justify-content-center">
+        <NotificationsPanel />
         <div className="col-2">
         </div>
         <div className="col-10 pt-5 ps-5">
