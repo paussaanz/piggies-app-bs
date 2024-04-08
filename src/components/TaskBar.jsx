@@ -55,28 +55,37 @@ const TaskBar = ({ getTasks, name, error, type, tasks, users }) => {
     }
 
     const addUsersTask = () => {
+
+        const currentTaskUserIds = selectedTask.userId.map(user => user._id.toString());
+
+        const usersToAdd = selectedUsers.filter(id => !currentTaskUserIds.includes(id));
+        const usersToRemove = currentTaskUserIds.filter(id => !selectedUsers.includes(id));
+ 
+
         if (selectedTask) {
             addUserToTask(selectedTask._id, selectedUsers)
                 .then(() => {
-                    console.log(selectedUsers)
                     setShowUsers(false);
                     setSelectedTask(null);
                     setSelectedUsers([]);
-                    getTasks()
-                    createUserNotifications(selectedUsers, selectedTask._id)
-                        .then(() => {
-                            console.log(selectedUsers, selectedTask._id)
-                        })
-                        .catch(error => {
-                            console.error("Error:", error);
-                        });
+                    getTasks();
+    
+                    if (usersToAdd.length > 0 ) {
+                        createUserNotifications(usersToAdd, selectedTask._id, true) 
+                            .then()
+                            .catch(error => console.error("Error:", error));
+                    }
+                    
+                    if (usersToRemove.length > 0) {
+                        createUserNotifications(usersToRemove, selectedTask._id, false) 
+                            .then() 
+                            .catch(error => console.error("Error:", error));
+                    }
                 })
-                .catch(error => {
-                    console.error("Error al asignar la tarea:", error);
-                });
+                .catch(error => console.error("Error al asignar la tarea:", error));
         }
-
-    }
+    };
+    
 
     return (
         <>
