@@ -9,4 +9,8 @@ const authenticatedHttp = createHttp(true);
     return authenticatedHttp.post(`/notifications/create`, { users, taskId, added });
     
   }
+  export const markAsRead = ( userId ) => {
+    return authenticatedHttp.post(`/notifications/markAsRead/${userId}`);
+    
+  }
   
