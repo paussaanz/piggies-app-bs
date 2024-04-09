@@ -45,33 +45,53 @@ const UserNavbar = ({ currentUser }) => {
         return () => window.removeEventListener('scroll', controlNavbar);
     }, [lastScrollY]);
 
+    /* USE EFFECT SIN EL INTERVALO PERO NO SE ACTUALIZA AUTOMATICAMENTE */
+    // useEffect(() => {
+    //     if (user && user.id) {
+    //         getUserNotifications(user.id)
+    //             .then(notifications => {
+    //                 setNotifications(notifications);
+    //                 const unreadExists = notifications.some(notification => !notification.read);
+    //                 setHasUnread(unreadExists);
+    //             })
+    //             .catch(error => {
+    //                 console.error("Error:", error);
+    //             });
+    //     }
+    // }, [user]);
+
     useEffect(() => {
         let isMounted = true;
 
         const fetchNotifications = () => {
-        if (user && user.id) {
-            getUserNotifications(user.id)
-                .then(notifications => {
-                    if (isMounted) {
-                    setNotifications(notifications);
-                    const unreadExists = notifications.some(notification => !notification.read);
-                    setHasUnread(unreadExists);
-                    }
-                })
-                .catch(error => {
-                    console.error("Error:", error);
-                });
-        }
-    }
+            if (user && user.id) {
+                getUserNotifications(user.id)
+                    .then(notifications => {
+                        if (isMounted) {
+                            setNotifications(notifications);
+                            const unreadExists = notifications.some(notification => !notification.read);
+                            setHasUnread(unreadExists);
+                            console.log("NOTIS", notifications)
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error:", error);
+                    });
+            }
+        };
 
-    /*DESCOMENTAR ESTO PAL FRIDAY, NOTIFICACIONES AUTOMATICAS*/ 
-    // const intervalId = setInterval(fetchNotifications, 7000);
+        fetchNotifications();
 
-    // return () => {
-    //     isMounted = false;
-    //     clearInterval(intervalId);
-    // };
-}, [user]); 
+        /*DESCOMENTAR PARA EL FRIDAY, NOTIFICACIONES AUTOMÁTICAS */
+        // const intervalId = setInterval(fetchNotifications, 6000);
+
+        // return () => {
+        //     isMounted = false;
+        //     clearInterval(intervalId);
+        // };
+
+    }, [user]);
+
 
 
     return (
@@ -112,10 +132,12 @@ const UserNavbar = ({ currentUser }) => {
                 body={
                     <>
                         {notifications.map(notification => (
-                            <div >
+                            <div>
                                 <p className={`text-center tag pt-2 pb-4 text-uppercase ${notification.added ? "text-success" : "text-danger"}`}>
                                     {notification.added ? `YOU HAVE BEEN ADDED TO ${notification.taskId.name}` : `YOU ARE NO LONGER ADDED TO ${notification.taskId.name}`}
                                 </p>
+
+
                             </div>
                         ))}
 
