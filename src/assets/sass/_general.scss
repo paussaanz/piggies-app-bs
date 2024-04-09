@@ -429,3 +429,15 @@ body.dark {
 		color: var(--bs-black)
 	}
 }
+
+.unread-dot {
+    height: 8px;
+    width: 8px;
+    background-color: red;
+    border-radius: 50%;
+    display: inline-block;
+    /* Adjust positioning as needed */
+    position: absolute;
+    top: 25px;
+    right: 115px;
+}
