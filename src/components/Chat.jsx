@@ -68,13 +68,10 @@ const Chat = ({ currentUser, selectedUser }) => {
                 const newMessage = { ...message, timestamp: new Date(message.timestamp).toISOString() };
                 const lastMessage = prevMessages[prevMessages.length - 1];
 
-                // Check if the new message is from a different day than the last message
                 if (lastMessage && formatDateLabel(lastMessage.timestamp) !== formatDateLabel(newMessage.timestamp)) {
                     const dateLabel = formatDateLabel(newMessage.timestamp);
-                    // Insert a new date label before the message if it's a different day
                     return [...prevMessages, { type: 'dateLabel', content: dateLabel, id: `label-${dateLabel}` }, newMessage];
                 } else {
-                    // If it's the same day, just add the new message
                     return [...prevMessages, newMessage];
                 }
             });
