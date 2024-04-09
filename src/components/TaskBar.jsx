@@ -12,7 +12,7 @@ import { createUserNotifications } from "../services/NotificationService";
 
 
 const TaskBar = ({ getTasks, name, error, type, tasks, users }) => {
-    const [showModal, setShowModal] = useState(false);
+    const [showCompletedTask, setShowCompletedTask] = useState(false);
     const [showUsers, setShowUsers] = useState(false);
     const [showEdit, setShowEdit] = useState(false);
     const [selectedTask, setSelectedTask] = useState(null)
@@ -40,9 +40,11 @@ const TaskBar = ({ getTasks, name, error, type, tasks, users }) => {
         updateTaskStatus(selectedTask._id)
             .then((task) => {
                 getTasks()
-                setShowModal(false);
+                setShowCompletedTask(false);
                 setSelectedTask(null)
             })
+            .catch(error => console.error("Error al asignar la tarea:", error));
+
     }
 
     const editTask = () => {
@@ -52,6 +54,8 @@ const TaskBar = ({ getTasks, name, error, type, tasks, users }) => {
                 setShowEdit(false);
                 setSelectedTask(null)
             })
+            .catch(error => console.error("Error al asignar la tarea:", error));
+
     }
 
     const addUsersTask = () => {
@@ -60,7 +64,7 @@ const TaskBar = ({ getTasks, name, error, type, tasks, users }) => {
 
         const usersToAdd = selectedUsers.filter(id => !currentTaskUserIds.includes(id));
         const usersToRemove = currentTaskUserIds.filter(id => !selectedUsers.includes(id));
- 
+
 
         if (selectedTask) {
             addUserToTask(selectedTask._id, selectedUsers)
@@ -69,23 +73,23 @@ const TaskBar = ({ getTasks, name, error, type, tasks, users }) => {
                     setSelectedTask(null);
                     setSelectedUsers([]);
                     getTasks();
-    
-                    if (usersToAdd.length > 0 ) {
-                        createUserNotifications(usersToAdd, selectedTask._id, true) 
+
+                    if (usersToAdd.length > 0) {
+                        createUserNotifications(usersToAdd, selectedTask._id, true)
                             .then()
                             .catch(error => console.error("Error:", error));
                     }
-                    
+
                     if (usersToRemove.length > 0) {
-                        createUserNotifications(usersToRemove, selectedTask._id, false) 
-                            .then() 
+                        createUserNotifications(usersToRemove, selectedTask._id, false)
+                            .then()
                             .catch(error => console.error("Error:", error));
                     }
                 })
                 .catch(error => console.error("Error al asignar la tarea:", error));
         }
     };
-    
+
 
     return (
         <>
@@ -105,7 +109,7 @@ const TaskBar = ({ getTasks, name, error, type, tasks, users }) => {
                                 aria-label="Checkbox"
                                 onClick={(e) => {
                                     e.preventDefault()
-                                    setShowModal(true);
+                                    setShowCompletedTask(true);
                                     setSelectedTask(task)
                                 }}
                             />
@@ -157,15 +161,15 @@ const TaskBar = ({ getTasks, name, error, type, tasks, users }) => {
                 </div>
             ))}
 
-            {showModal && <AlertDialog
+            {showCompletedTask && <AlertDialog
                 bg_color="cream"
                 body_weight="semi-bold"
-                title="Are you sure you want to accept?"
-                body="If you accept this request, the client will be sent an email."
+                title="Are you sure you want to mark as completed?"
+                body="If you accept this request, this task will be marked as completed."
                 cancelButton={{
                     text: "CLOSE",
                     onClick: () => {
-                        setShowModal(false)
+                        setShowCompletedTask(false)
                         setSelectedTask(null)
                     },
                     type: "submit"
@@ -173,7 +177,7 @@ const TaskBar = ({ getTasks, name, error, type, tasks, users }) => {
                 acceptButton={{
                     text: "ACCEPT",
                     onClick: () => {
-                        setShowModal(false)
+                        setShowCompletedTask(false)
                         updateTask()
                     },
                     type: "submit"
