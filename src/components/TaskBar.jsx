@@ -39,6 +39,7 @@ const TaskBar = ({ getTasks, name, error, type, tasks, users }) => {
     const updateTask = () => {
         updateTaskStatus(selectedTask._id)
             .then((task) => {
+                console.log("task", task)
                 getTasks()
                 setShowCompletedTask(false);
                 setSelectedTask(null)
@@ -50,9 +51,14 @@ const TaskBar = ({ getTasks, name, error, type, tasks, users }) => {
     const editTask = () => {
         editTaskService(editingTask._id, editingTask)
             .then((task) => {
+                console.log(editingTask.userId.id)
                 getTasks()
                 setShowEdit(false);
                 setSelectedTask(null)
+                createUserNotifications(editingTask.userId, editingTask._id, true)
+                    .then()
+                    .catch(error => console.error("Error:", error));
+
             })
             .catch(error => console.error("Error al asignar la tarea:", error));
 
