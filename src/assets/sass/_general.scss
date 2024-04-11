@@ -373,14 +373,15 @@ body.dark {
 		.nav-item {
 			button {
 				color: var(--bs-cream) !important;
-				
+
 			}
 		}
 
 		.nav-link {
 			.nav-item {
 				color: var(--bs-cream) !important;
-				&:hover{
+
+				&:hover {
 					color: var(--bs-primary);
 				}
 			}
@@ -422,22 +423,35 @@ body.dark {
 		color: var(--bs-black);
 	}
 
-	.chat-container{
+	.chat-container {
 		color: var(--bs-black);
 	}
-	.user-chatlist{
+
+	.user-chatlist {
 		color: var(--bs-black)
+	}
+
+	.nav-logo {
+		.logo-color {
+			fill: var(--bs-cream)
+		}
+	}
+}
+
+.nav-logo {
+	.logo-color {
+		fill: var(--bs-black)
 	}
 }
 
 .unread-dot {
-    height: 8px;
-    width: 8px;
-    background-color: red;
-    border-radius: 50%;
-    display: inline-block;
-    /* Adjust positioning as needed */
-    position: absolute;
-    top: 25px;
-    right: 115px;
+	height: 8px;
+	width: 8px;
+	background-color: red;
+	border-radius: 50%;
+	display: inline-block;
+	/* Adjust positioning as needed */
+	position: absolute;
+	top: 25px;
+	right: 115px;
 }
