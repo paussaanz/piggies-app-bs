@@ -65,9 +65,15 @@ const Chat = ({ currentUser, selectedUser }) => {
 
         newSocket.on('receive_message', (message) => {
             setMessages((prevMessages) => {
-                const newMessage = { ...message, timestamp: new Date(message.timestamp).toISOString() };
+                const isValidTimestamp = message.timestamp && !isNaN(new Date(message.timestamp).getTime());
+                const safeTimestamp = isValidTimestamp ? new Date(message.timestamp).toISOString() : new Date().toISOString();
+        
+                const newMessage = { ...message, timestamp: safeTimestamp };
+                console.log("MENSAJE", newMessage);
+                console.log("TIMESTAMP", message.timestamp);
+        
                 const lastMessage = prevMessages[prevMessages.length - 1];
-
+        
                 if (lastMessage && formatDateLabel(lastMessage.timestamp) !== formatDateLabel(newMessage.timestamp)) {
                     const dateLabel = formatDateLabel(newMessage.timestamp);
                     return [...prevMessages, { type: 'dateLabel', content: dateLabel, id: `label-${dateLabel}` }, newMessage];
@@ -76,6 +82,7 @@ const Chat = ({ currentUser, selectedUser }) => {
                 }
             });
         });
+        
 
         return () => newSocket.disconnect();
     }, [room, currentUser, selectedUser.username]);
