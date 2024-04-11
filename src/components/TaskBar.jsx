@@ -43,6 +43,12 @@ const TaskBar = ({ getTasks, name, error, type, tasks, users }) => {
                 getTasks()
                 setShowCompletedTask(false);
                 setSelectedTask(null)
+
+                const taskStatus = editingTask.status ? false : true;
+
+                createUserNotifications(editingTask.userId, editingTask._id, 'statusChange', taskStatus)
+                    .then()
+                    .catch(error => console.error("Error:", error));
             })
             .catch(error => console.error("Error al asignar la tarea:", error));
 
@@ -51,11 +57,13 @@ const TaskBar = ({ getTasks, name, error, type, tasks, users }) => {
     const editTask = () => {
         editTaskService(editingTask._id, editingTask)
             .then((task) => {
-                console.log(editingTask.userId.id)
                 getTasks()
                 setShowEdit(false);
                 setSelectedTask(null)
-                createUserNotifications(editingTask.userId, editingTask._id, true)
+                /*COMM: NO ENTIENDO POR QUÉ VA AL REVES*/
+                const taskStatus = editingTask.status ? true : false;
+
+                createUserNotifications(editingTask.userId, editingTask._id, 'statusChange', taskStatus)
                     .then()
                     .catch(error => console.error("Error:", error));
 
@@ -81,13 +89,13 @@ const TaskBar = ({ getTasks, name, error, type, tasks, users }) => {
                     getTasks();
 
                     if (usersToAdd.length > 0) {
-                        createUserNotifications(usersToAdd, selectedTask._id, true)
+                        createUserNotifications(usersToAdd, selectedTask._id, 'add')
                             .then()
                             .catch(error => console.error("Error:", error));
                     }
 
                     if (usersToRemove.length > 0) {
-                        createUserNotifications(usersToRemove, selectedTask._id, false)
+                        createUserNotifications(usersToRemove, selectedTask._id, 'remove')
                             .then()
                             .catch(error => console.error("Error:", error));
                     }

@@ -2,34 +2,35 @@ import { useContext, useEffect, useState } from "react";
 import { getUserNotifications } from "../services/NotificationService";
 import AuthContext from "../contexts/AuthContext";
 
-const NotificationsPanel = (userId) => {
-    const [notifcations, setNotifications] = useState([]);
-    const { user } = useContext(AuthContext)
+const NotificationsPanel = () => {
+  const [notifications, setNotifications] = useState([]);
+  const { user } = useContext(AuthContext)
 
-    const getNotifications = () => {
-        getUserNotifications(user.id)
-          .then(userNotifications => {
-            setNotifications(userNotifications)
-            console.log(userNotifications)
-          })
-          .catch(error => {
-            console.error("Error:", error);
-          });
-      }
+  useEffect(() => {
+    if (user && user.id) {
+      getUserNotifications(user.id)
+        .then(userNotifications => {
+          setNotifications(userNotifications);
+        })
+        .catch(error => {
+          console.error("Error:", error);
+        });
+    }
+  }, []);
 
-    //   getNotifications()
-      console.log(notifcations)
-
-    return (
-        <div>
-            <h2>Notificaciones</h2>
-            {notifcations.map(notifcation => (
-                <div key={notifcation._id}>
-                     <p>{notifcation.mensaje}</p>
-                </div>
-            ))} 
-        </div>
-    );
+  return (
+    <div className="AlertDialogOverlay">
+      <div className="AlertDialogContent bg-cream">
+        {notifications.map(notification => (
+          <div >
+            <p className={`text-center tag pt-2 pb-4 text-uppercase ${notification.added ? "text-success" : "text-danger"}`}>
+              {notification.added ? `YOU HAVE BEEN ADDED TO ${notification.taskId.name}` : `YOU ARE NO LONGER ADDED TO ${notification.taskId.name}`}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 };
 
 export default NotificationsPanel;

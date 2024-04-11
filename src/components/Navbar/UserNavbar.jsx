@@ -45,7 +45,7 @@ const UserNavbar = ({ currentUser }) => {
         return () => window.removeEventListener('scroll', controlNavbar);
     }, [lastScrollY]);
 
-    /* USE EFFECT SIN EL INTERVALO PERO NO SE ACTUALIZA AUTOMATICAMENTE */
+    /* COMM: USE EFFECT SIN EL INTERVALO PERO NO SE ACTUALIZA AUTOMATICAMENTE */
     // useEffect(() => {
     //     if (user && user.id) {
     //         getUserNotifications(user.id)
@@ -82,8 +82,8 @@ const UserNavbar = ({ currentUser }) => {
 
         fetchNotifications();
 
-        /*DESCOMENTAR PARA EL FRIDAY, NOTIFICACIONES AUTOMÁTICAS */
-        // const intervalId = setInterval(fetchNotifications, 6000);
+        /*COMM: DESCOMENTAR PARA EL FRIDAY, NOTIFICACIONES AUTOMÁTICAS */
+        // const intervalId = setInterval(fetchNotifications, 1000);
 
         // return () => {
         //     isMounted = false;
@@ -129,19 +129,23 @@ const UserNavbar = ({ currentUser }) => {
                 bg_color="cream"
                 text_color="black"
                 body_weight="semi-bold"
+                title={<div className="padding-bottom">
+                    <h4>NOTIFICATIONS</h4>
+                </div>}
                 body={
-                    <>
+                    <div className="border-top">
                         {notifications.map(notification => (
-                            <div>
-                                <p className={`text-center tag pt-2 pb-4 text-uppercase ${notification.added ? "text-success" : "text-danger"}`}>
-                                    {notification.added ? `YOU HAVE BEEN ADDED TO ${notification.taskId.name}` : `YOU ARE NO LONGER ADDED TO ${notification.taskId.name}`}
-                                </p>
+                            <div className="border-bottom" key={notification._id}> 
 
+                                <p className={`text-center tag p-4 text-uppercase m-0 ${notification.message === "La tarea ha sido marcada como completada." || notification.message === "Has sido añadido a la tarea."
+                                        ? "text-success" 
+                                        : "text-danger"
+                                    }`}> {notification.message}</p>
 
                             </div>
                         ))}
 
-                    </>
+                    </div>
                 }
                 cancelButton={{
                     text: "CLOSE",
