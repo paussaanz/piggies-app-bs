@@ -48,8 +48,9 @@ const ProjectManageCard = ({ forms, getTasks }) => {
     };
 
     const handleCompleteForm = () => {
-        completeForm(selectedForm)
+        completeForm(selectedForm.id)
             .then(() => {
+                console.log("FORM", selectedForm )
                 getTasks()
                 setShowMarkAsCompleted(false)
                 setSelectedForm(null)
@@ -127,7 +128,9 @@ const ProjectManageCard = ({ forms, getTasks }) => {
                                     extraClassName="px-5 py-3"
                                     onClick={() => {
                                         setShowEmailForm(true)
-                                        setSelectedForm(form.id)
+                                        setSelectedForm(form)
+                                        console.log("FORMM", form)
+                                        console.log("FORMMID", form)
                                     }}
                                 >
                                     Contact the client
@@ -139,8 +142,9 @@ const ProjectManageCard = ({ forms, getTasks }) => {
                                     color="primary"
                                     extraClassName="px-5 py-3"
                                     onClick={() => {
-                                        setSelectedForm(form.id)
+                                        setSelectedForm(form)
                                         setShowMarkAsCompleted(true)
+                                        
                                     }}>
                                     Mark as finished
                                 </Button>
@@ -227,7 +231,7 @@ const ProjectManageCard = ({ forms, getTasks }) => {
                                 return;
                             }
 
-                            contactClientService(selectedForm, { message })
+                            contactClientService(selectedForm.id, { message })
                                 .then(() => {
                                     setShowEmailForm(false);
                                     setMessage('');
