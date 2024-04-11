@@ -6,15 +6,13 @@ import Tabbar from "../components/Tabbar";
 
 const ProjectsManagementPage = () => {
     const [forms, setForms] = useState([]);
-    const [activeTab, setActiveTab] = useState('All Forms'); // Establecer pestaña activa inicial
+    const [activeTab, setActiveTab] = useState('All Forms'); 
     const location = useLocation();
     const currentPage = location.pathname;
 
     const fetchForms = () => {
-        console.log("Active Tab:", activeTab); // Diagnóstico
         getAllForms(true)
             .then(allForms => {
-                console.log("All Forms:", allForms); // Diagnóstico
                 let filteredForms;
                 if (activeTab === 'All Forms') {
                     filteredForms = allForms;
@@ -24,7 +22,6 @@ const ProjectsManagementPage = () => {
                     filteredForms = allForms.filter(form => form.completed);
                 }
         
-                console.log("Filtered Forms:", filteredForms); // Diagnóstico
                 setForms(filteredForms);
             })
             .catch(error => {
@@ -48,7 +45,7 @@ const ProjectsManagementPage = () => {
                     forms={forms}
                     activeTab={activeTab}
                     setActiveTab={setActiveTab}
-                    getForms={fetchForms} 
+                    getTasks={fetchForms} 
                 />
                 </div>
                 <div className="col-2">
