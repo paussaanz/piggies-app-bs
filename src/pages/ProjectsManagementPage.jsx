@@ -10,15 +10,6 @@ const ProjectsManagementPage = () => {
     const location = useLocation();
     const currentPage = location.pathname;
 
-    // const fetchForms = () => {
-    //     getAllForms(true)
-    //         .then(acceptedForms => {
-    //             setForms(acceptedForms)
-    //         })
-    //         .catch(error => {
-    //             console.error("Error:", error);
-    //         });
-    // }
     const fetchForms = () => {
         console.log("Active Tab:", activeTab); // Diagnóstico
         getAllForms(true)
@@ -47,22 +38,7 @@ const ProjectsManagementPage = () => {
 
 
     return (
-        // <div className="container-fluid">
-        //     <div className="row justify-content-center pe-5">
-        //         {/* <Tabbar
-        //             currentPage={currentPage}
-        //             forms={forms}
-        //             activeTab={activeTab}
-        //             setActiveTab={setActiveTab}
-        //             getForms={fetchForms} // Asegúrate de implementar y pasar esta función si es necesaria
-        //         /> */}
-        //         <div className="col-2">
-        //         </div>
-        //         <div className="col-10 pt-5 ps-5">
-        //             <ProjectManageCard forms={forms} getTasks={fetchForms} />
-        //         </div>
-        //     </div>
-        // </div>
+
         <div className="container-fluid">
             <div className="row justify-content-center pe-5">
                 <div className="col-2"></div>

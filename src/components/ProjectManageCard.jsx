@@ -24,9 +24,6 @@ const ProjectManageCard = ({ forms, getTasks }) => {
     const [selectedForm, setSelectedForm] = useState(null);
     const [message, setMessage] = useState('');
 
-    // const sortedForms = [...forms.filter(form => !form.completed), ...forms.filter(form => form.completed)];
-    const filteredForms = forms.filter(form => !form.completed);
-
     const handleEditingTask = (e) => {
         const isCheckBox = e.target.name === 'status'
         const value = e.target.value;
@@ -79,7 +76,7 @@ const ProjectManageCard = ({ forms, getTasks }) => {
                 }}
                 className="mb-5"
             >
-                {filteredForms.map((form) => (
+                {forms.map((form) => (
                     <SwiperSlide className="h-100 " key={form._id}>
                         <div className="card rounded-4 bg-secondary h-100">
                             <div className="card-title">
