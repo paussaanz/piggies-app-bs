@@ -42,7 +42,7 @@ const ProjectsManagementPage = () => {
         <div className="container-fluid">
             <div className="row justify-content-center pe-5">
                 <div className="col-2"></div>
-            <div className="col-10 pt-5 ps-5">
+            <div className="col-10 ps-5">
                 <Tabbar
                     currentPage={currentPage}
                     forms={forms}

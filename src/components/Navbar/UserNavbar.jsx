@@ -96,7 +96,7 @@ const UserNavbar = ({ currentUser }) => {
 
     return (
         <>
-            <nav className={`navbar navbar-expand-lg py-4 border-bottom sticky-top ${theme} ${navbarClass}`}>
+            <nav className={`navbar navbar-expand-lg py-4 border-bottom sticky-top bg-cream ${theme} ${navbarClass}`}>
                 <div className="container-fluid">
                     <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
                         <div className="navbar-nav align-items-center w-100 justify-content-between px-5">

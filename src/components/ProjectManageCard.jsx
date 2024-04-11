@@ -133,7 +133,7 @@ const ProjectManageCard = ({ forms, getTasks }) => {
                                     Contact the client
                                 </Button>
                             </div>
-                            <div className="text-center pb-5">
+                            <div className="text-center pb-3">
                                 <Button
                                     type="submit"
                                     color="primary"

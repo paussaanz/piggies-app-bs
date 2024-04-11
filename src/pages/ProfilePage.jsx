@@ -108,7 +108,7 @@ const ProfilePage = () => {
       <div className="row justify-content-center">
         <div className="col-2">
         </div>
-        <div className="col-10 pt-5 ps-5">
+        <div className="col-10 ps-5">
           <div className="row">
             <div className="col-10">
               <h4 className="tag weigh-regular pt-4 pb-3">Profile</h4>
