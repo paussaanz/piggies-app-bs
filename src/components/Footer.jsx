@@ -18,7 +18,7 @@ const Footer = () => {
         <div className="container py-5">
             <h1 className="text-uppercase weight-black col-9 display-2 primary-color pb-2">WE ALWAYS SEEK
                 NEW ADVENTURES.<br />
-                <Link to="/contact" className="underline-animation pe-4"> Let's Talk</Link>
+                <Link to="/contact" className="link-black pe-4 text-black text-decoration-none underline-animation"> Let's Talk</Link>
                 <IconContext.Provider value={{ className: "text-black gap-2", size: "4.5rem" }}>
                     <PiArrowUpRightBold />
                 </IconContext.Provider>
