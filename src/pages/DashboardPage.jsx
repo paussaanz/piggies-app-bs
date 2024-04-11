@@ -4,12 +4,16 @@ import AuthContext from "../contexts/AuthContext";
 import Tabbar from "../components/Tabbar";
 import { getAllForms } from "../services/FormService";
 import { getUsers } from "../services/UserService";
+import { useLocation } from "react-router-dom";
 
 const DashboardPage = () => {
   const [activeTab, setActiveTab] = useState('All Tasks');
   const [tasks, setTasks] = useState([])
   const [users, setUsers] = useState([])
   const { user } = useContext(AuthContext)
+  const location = useLocation();
+  const currentPage = location.pathname;
+
 
   const getTasks = () => {
     if (activeTab !== "All Tasks") {
@@ -40,12 +44,12 @@ const DashboardPage = () => {
 
   const fetchUsers = () => {
     getUsers()
-        .then(users => {
-            setUsers(users)
-        })
-        .catch(error => {
-            console.error("Error:", error);
-        })
+      .then(users => {
+        setUsers(users)
+      })
+      .catch(error => {
+        console.error("Error:", error);
+      })
   }
 
 
@@ -66,7 +70,7 @@ const DashboardPage = () => {
           <div className="row justify-content-between pe-5">
             <DashboardCard onSubmitCb={fetchForms} />
           </div>
-          <Tabbar getTasks={fetchForms} tasks={getTasks()} users={users}  activeTab={activeTab} setActiveTab={setActiveTab} />
+          <Tabbar currentPage={currentPage} getTasks={fetchForms} tasks={getTasks()} users={users} activeTab={activeTab} setActiveTab={setActiveTab} />
         </div>
       </div>
 

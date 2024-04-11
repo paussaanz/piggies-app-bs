@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import AuthContext from "../contexts/AuthContext";
 import Tabbar from "../components/Tabbar";
 import Button from "../components/Button";
@@ -7,6 +7,7 @@ import AlertDialog from "../components/AlertDialog";
 import FormControl from "../components/Form/FormControl";
 import FormInput from "../components/Form/FormInput";
 import { editProfileService, editProfilePicService } from "../services/AuthService";
+import { useLocation } from "react-router-dom";
 
 const ProfilePage = () => {
   const { fetchCurrentUser, user } = useContext(AuthContext)
@@ -22,14 +23,15 @@ const ProfilePage = () => {
     newPassword: '',
     confirmNewPassword: ''
   });
-
+  const location = useLocation();
+  const currentPage = location.pathname;
   const [showEditPic, setShowEditPic] = useState(false);
 
   const getTasks = () => {
     if (activeTab !== "All Tasks") {
       return user.tasks.filter((task) => {
         if (activeTab === 'Done') {
-          return task.status === true
+          return task.status === true 
         } else {
           return task.status === false
         }
@@ -139,7 +141,7 @@ const ProfilePage = () => {
             </div>
           </div>
 
-          <Tabbar getTasks={fetchCurrentUser} tasks={getTasks()} activeTab={activeTab} setActiveTab={setActiveTab} />
+          <Tabbar currentPage={currentPage} getTasks={fetchCurrentUser} tasks={getTasks()} activeTab={activeTab} setActiveTab={setActiveTab} />
 
         </div>
       </div>
