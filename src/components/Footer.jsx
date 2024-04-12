@@ -8,7 +8,49 @@ const Footer = () => {
     const hiddenPaths = ['/contact', '/dashboard', '/messages', '/profile', '/projects-management', '/profile', '/login', '/register'];
     const location = useLocation();
 
-    if (hiddenPaths.includes(location.pathname)) {
+    if (location.pathname === "/contact") {
+        return (
+            <div className="container py-5">
+                <div className="row py-5">
+                    <div className="col-4">
+                        <h5 className="text-uppercase text-primary weight-regular legend"> Contact Info</h5>
+                        <div className="pt-2 text-black weight-regular">
+                            <a className="mb-0 text-black text-decoration-none " href="mailto:piggiescompany@example.com"> piggiescompany@example.com</a>
+                            <p> +1 (555) 555-5555</p>
+                        </div>
+                    </div>
+                    <div className="col-3">
+                        <h5 className="text-uppercase text-primary weight-regular legend"> HQ</h5>
+                        <p className="primary-color weight-regular mb-0 pt-2 col-8"> 567 Meadowbrook Avenue, Springland 98765</p>
+                    </div>
+                    <div className="col-3">
+                        <div className="row">
+                            <div className="col-12">
+                                <h5 className="text-uppercase text-primary weight-regular legend"> FOLLOW US</h5>
+                            </div>
+                            <div className="col-auto p-0 icons-smll icons-black">
+                                <Button
+                                    extraClassName="icon-twitter p-1">
+                                </Button>
+                            </div>
+                            <div className="col-auto p-0 icons-sall icons-black">
+                                <Button
+                                    extraClassName="icon-behance p-1">
+                                </Button>
+                            </div>
+                            <div className="col-auto p-0 icons-sall icons-black">
+                                <Button
+                                    extraClassName="icon-instagram p-1">
+                                </Button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        )
+    }
+    else if (hiddenPaths.includes(location.pathname)) {
         return (
             null
         );

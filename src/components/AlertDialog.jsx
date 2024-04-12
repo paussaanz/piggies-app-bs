@@ -23,6 +23,7 @@ const AlertDialog = ({
                 <div className="pt-4" style={{ display: 'flex', gap: '25px', justifyContent: justifyContent }}>
                     {cancelButton && (
                         <Button
+                            extraClassName="cancel-btn"
                             onClick={cancelButton.onClick}
                             type={cancelButton.type}
                             color={cancelButton.color}

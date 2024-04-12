@@ -31,7 +31,7 @@ const ProfilePage = () => {
     if (activeTab !== "All Tasks") {
       return user.tasks.filter((task) => {
         if (activeTab === 'Done') {
-          return task.status === true 
+          return task.status === true
         } else {
           return task.status === false
         }
@@ -109,18 +109,20 @@ const ProfilePage = () => {
         <div className="col-2">
         </div>
         <div className="col-10 ps-5">
-          <div className="row">
+          <div className="row pt-3">
             <div className="col-10">
               <h4 className="tag weigh-regular pt-4 pb-3">Profile</h4>
             </div>
-            <div className="col-auto icons-black icons-small">
+            <div className="col-auto pe-4 icons-black icons-extra-small">
+              <ThemeToggler />
+            </div>
+            <div className="col-auto icons-black icons-small ps-4">
               <Button
                 extraClassName="p-3 icon-edit"
                 onClick={() =>
                   setShowEditProfile(true)
                 }
               />
-              <ThemeToggler/>
             </div>
           </div>
           <div className="row align-items-center p-3">

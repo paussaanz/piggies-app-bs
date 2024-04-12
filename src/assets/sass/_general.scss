@@ -366,9 +366,17 @@ button {
 
 /* Estilos para el tema oscuro */
 body.dark {
-	background-color: var(--bs-black);
+	background-color: var(--bs-black) !important;
 	color: var(--bs-cream);
-
+.navbar{
+	background-color:var(--bs-black) !important ;
+}
+.tabbar{
+	background-color: var(--bs-black)!important;
+}
+.cancel-btn{
+background-color: var(--bs-secondary)!important;
+}
 	.list-unstyled {
 		.nav-item {
 			button {

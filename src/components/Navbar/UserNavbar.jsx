@@ -60,6 +60,41 @@ const UserNavbar = ({ currentUser }) => {
     //     }
     // }, [user]);
 
+    function formatTime(date) {
+        const hours = date.getHours();
+        const minutes = date.getMinutes();
+
+        const formattedHours = hours.toString().padStart(2, '0');
+        const formattedMinutes = minutes.toString().padStart(2, '0');
+
+        return `${formattedHours}:${formattedMinutes}`;
+    }
+
+
+    function formatDateLabel(date) {
+        const notificationDate = new Date(date);
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        const yesterday = new Date(today);
+        yesterday.setDate(yesterday.getDate() - 1);
+
+        if (notificationDate >= today) return "Today";
+        else if (notificationDate >= yesterday) return "Yesterday";
+        else return notificationDate.toLocaleDateString();
+    }
+
+    const processedNotifications = [];
+    let lastDateLabel = "";
+
+    notifications.forEach(notification => {
+        const dateLabel = formatDateLabel(notification.createdAt);
+        if (lastDateLabel !== dateLabel) {
+            processedNotifications.push({ type: 'dateLabel', content: dateLabel, id: `label-${dateLabel}` });
+            lastDateLabel = dateLabel;
+        }
+        processedNotifications.push({ ...notification, type: 'notification' });
+    });
+
     useEffect(() => {
         let isMounted = true;
 
@@ -110,7 +145,6 @@ const UserNavbar = ({ currentUser }) => {
                                 }}>
                                     {hasUnread && <span className="unread-dot"></span>}
                                 </li>
-
                                 <Link to="/profile">
                                     {currentUser ? (
                                         <li className="nav-item">
@@ -133,18 +167,25 @@ const UserNavbar = ({ currentUser }) => {
                     <h4>NOTIFICATIONS</h4>
                 </div>}
                 body={
-                    <div className="border-top">
-                        {notifications.map(notification => (
-                            <div className="border-bottom" key={notification._id}> 
-
-                                <p className={`text-center tag p-4 text-uppercase m-0 ${notification.message === "La tarea ha sido marcada como completada." || notification.message === "Has sido añadido a la tarea."
-                                        ? "text-success" 
-                                        : "text-danger"
-                                    }`}> {notification.message}</p>
-
-                            </div>
+                    <div className="text-start">
+                        {processedNotifications.map((notification) => (
+                            notification.type === 'dateLabel' ? (
+                                <div key={notification.id} className="date-label text-center my-2 py-2">
+                                    {notification.content}
+                                </div>
+                            ) : (
+                                <div className="border-bottom border-top p-4" key={notification._id}>
+                                    <p className={`tag text-uppercase m-0 weight-semi-bold ${notification.message === "You have been added to a new task." || notification.message === "A task you were working on has been marked as done."
+                                        ? "text-primary"
+                                        : "text-black"
+                                        }`}> {notification.message}</p>
+                                    <div className="row pt-2">
+                                        <p className="fs-table col">{notification.taskId?.name}</p>
+                                        <p className="fs-table col-auto text-uppercase">  {formatTime(new Date(notification.createdAt))}</p>
+                                    </div>
+                                </div>
+                            )
                         ))}
-
                     </div>
                 }
                 cancelButton={{
@@ -154,6 +195,7 @@ const UserNavbar = ({ currentUser }) => {
                     },
                     type: "submit"
                 }}
+
             />
             }
         </>

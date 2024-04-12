@@ -60,7 +60,14 @@ const DashboardCard = ({ onSubmitCb }) => {
                                     <p className="card-text">{form.message}</p>
                                     <p className="d-inline-block bg-cream px-4 py-1 rounded-5 text-black w-max">{form.createdAt.slice(0,10)}</p>
                                 </div>
-                                <Button
+                                {/* <Button
+                                    outline='black'
+                                    extraClassName="w-max float-right align-self-end "
+                                    onClick={() => {
+                                        setShowModal(true)
+                                        setFormToAccept(form._id)
+                                    }}>Reject</Button>  */}
+                                    <Button
                                     outline='black'
                                     extraClassName="w-max float-right align-self-end "
                                     onClick={() => {

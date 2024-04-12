@@ -1,14 +1,20 @@
 import React from 'react';
-import { useTheme } from '../contexts/ThemeContext'; 
+import { useTheme } from '../contexts/ThemeContext';
+import Button from './Button';
 
 
 const ThemeToggler = () => {
-    const { toggleTheme } = useTheme();
+  const { toggleTheme } = useTheme();
 
-    return (
-      <button onClick={toggleTheme}>Cambiar Tema</button>
-    );
-  };
+  return (
+      <Button
+        extraClassName="p-3 icon-moon"
+        onClick={toggleTheme}>
+      </Button>
+  );
+};
 
 export default ThemeToggler;
+
+
 

@@ -97,7 +97,7 @@ const Tabbar = ({ currentPage, getTasks, tasks, getForms, forms, activeTab, setA
 
   return (
     <div>
-      <div className="text-center sticky-top w-100 bg-cream" style={{  zIndex: '1030' }}>
+      <div className="text-center sticky-top w-100 bg-cream tabbar" style={{  zIndex: '1' }}>
         <div className="d-flex g-3 py-5">
           {renderTabs(tabs[currentPage] || [])}
         </div>
