@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { acceptForm, getAllForms } from "../services/FormService";
+import { acceptForm, getAllForms, rejectForm } from "../services/FormService";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from 'swiper/modules';
 import AlertDialog from "./AlertDialog";
@@ -13,8 +13,9 @@ import 'swiper/css/pagination';
 const DashboardCard = ({ onSubmitCb }) => {
     const [forms, setForms] = useState([]);
     const [filteredForms, setFilteredForms] = useState([])
-    const [formToAccept, setFormToAccept] = useState(null)
+    const [formSelected, setFormSelected] = useState(null)
     const [showModal, setShowModal] = useState(false)
+    const [showRejectModal, setShowRejectModal] = useState(false)
 
     useEffect(() => {
         getAllForms()
@@ -27,12 +28,22 @@ const DashboardCard = ({ onSubmitCb }) => {
 
     //COMM: Por qué si pongo forms como dependencia en el array no para de hacer peticiones constantemente?
     const handleAccept = () => {
-        acceptForm(formToAccept)
+        acceptForm(formSelected)
             .then(() => {
-                setForms(forms.filter(form => form._id !== formToAccept));
+                setForms(forms.filter(form => form._id !== formSelected));
                 onSubmitCb()
                 setShowModal(false)
-                setFormToAccept(null)
+                setFormSelected(null)
+            });
+    };
+
+    const handleReject = () => {
+        rejectForm(formSelected)
+            .then(() => {
+                setForms(forms.filter(form => form._id !== formSelected));
+                onSubmitCb()
+                setShowRejectModal(false)
+                setFormSelected(null)
             });
     };
 
@@ -43,7 +54,7 @@ const DashboardCard = ({ onSubmitCb }) => {
                 slidesPerView={3}
                 pagination={{
                     clickable: true,
-                }} 
+                }}
                 modules={[Pagination]}
                 className="dashboard-swiper pb-5"
                 style={{
@@ -52,32 +63,40 @@ const DashboardCard = ({ onSubmitCb }) => {
                 }}
             >
                 {forms.map((form, index) => (
+                    form && !form.rejected && (
                     <SwiperSlide key={form._id} className="h-100">
                         <div className="card mb-3 rounded-4 bg-secondary h-100">
                             <div className="card-body h-100 d-flex flex-column justify-content-between">
                                 <div>
                                     <h5 className="h4 weight-regular" style={{ minHeight: '80px' }}>{form.name}</h5>
                                     <p className="card-text">{form.message}</p>
-                                    <p className="d-inline-block bg-cream px-4 py-1 rounded-5 text-black w-max">{form.createdAt.slice(0,10)}</p>
+                                    <p className="d-inline-block bg-cream px-4 py-1 rounded-5 text-black w-max">{form.createdAt.slice(0, 10)}</p>
                                 </div>
-                                {/* <Button
-                                    outline='black'
-                                    extraClassName="w-max float-right align-self-end "
-                                    onClick={() => {
-                                        setShowModal(true)
-                                        setFormToAccept(form._id)
-                                    }}>Reject</Button>  */}
-                                    <Button
-                                    outline='black'
-                                    extraClassName="w-max float-right align-self-end "
-                                    onClick={() => {
-                                        setShowModal(true)
-                                        setFormToAccept(form._id)
-                                    }}>Accept</Button>
+                                <div className="row justify-content-end">
+                                    <div className="col-auto">
+                                        <Button
+                                            outline='cream'
+                                            extraClassName="btn-small"
+                                            onClick={() => {
+                                                setShowRejectModal(true)
+                                                setFormSelected(form._id)
+                                            }}>Reject</Button>
+                                    </div>
+                                    <div className="col-auto">
+                                        <Button
+                                            outline='black'
+                                            extraClassName="btn-small"
+                                            onClick={() => {
+                                                setShowModal(true)
+                                                setFormSelected(form._id)
+                                            }}>Accept</Button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </SwiperSlide>
-
+                                        
+                )
                 ))}
             </Swiper>
             {showModal && <AlertDialog
@@ -90,13 +109,33 @@ const DashboardCard = ({ onSubmitCb }) => {
                     text: "CLOSE",
                     onClick: () => {
                         setShowModal(false)
-                        setFormToAccept(null)
+                        setFormSelected(null)
                     },
                     type: "submit"
                 }}
                 acceptButton={{
                     text: "ACCEPT",
                     onClick: () => { handleAccept() },
+                    type: "submit"
+                }}
+            />}
+            {showRejectModal && <AlertDialog
+                bg_color="cream"
+                text_color="black"
+                body_weight="semi-bold"
+                title="Are you sure you want to reject?"
+                body="If you accept this request, the client will be sent an email. "
+                cancelButton={{
+                    text: "CLOSE",
+                    onClick: () => {
+                        setShowRejectModal(false)
+                        setFormSelected(null)
+                    },
+                    type: "submit"
+                }}
+                acceptButton={{
+                    text: "ACCEPT",
+                    onClick: () => { handleReject() },
                     type: "submit"
                 }}
             />}

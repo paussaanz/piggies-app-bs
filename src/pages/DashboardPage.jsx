@@ -29,6 +29,19 @@ const DashboardPage = () => {
     }
   }
 
+  // const fetchForms = () => {
+  //   getAllForms(true)
+  //     .then(acceptedForms => {
+  //       setTasks(acceptedForms.reduce((acc, form) => {
+  //         return [...acc, ...form.tasks]
+  //       }, []))
+  //       getTasks()
+  //     })
+  //     .catch(error => {
+  //       console.error("Error:", error);
+  //     });
+  // }
+
   const fetchForms = () => {
     getAllForms(true)
       .then(acceptedForms => {
