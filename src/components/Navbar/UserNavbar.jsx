@@ -118,12 +118,12 @@ const UserNavbar = ({ currentUser }) => {
         fetchNotifications();
 
         /*COMM: DESCOMENTAR PARA EL FRIDAY, NOTIFICACIONES AUTOMÁTICAS */
-        // const intervalId = setInterval(fetchNotifications, 1000);
+        const intervalId = setInterval(fetchNotifications, 1000);
 
-        // return () => {
-        //     isMounted = false;
-        //     clearInterval(intervalId);
-        // };
+        return () => {
+            isMounted = false;
+            clearInterval(intervalId);
+        };
 
     }, [user]);
 
