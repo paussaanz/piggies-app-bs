@@ -45,6 +45,42 @@ const Footer = () => {
                             </div>
                         </div>
                     </div>
+                    <div className="col-3">
+                    <div className="row">
+                        <div className="col-12">
+                            <h5 className="text-uppercase text-primary weight-regular legend"> USEFUL LINKS</h5>
+                        </div>
+                        <div className="col-auto">
+                            <ul className="list-unstyled tag weight-regular p-0 m-0">
+                                <li>
+                                    <Link to="/services" className="col-auto text-black text-decoration-none">
+                                        Services
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link to="/projects" className="col-auto text-black text-decoration-none">
+                                        Projects
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link to="/about" className="col-auto text-black text-decoration-none">
+                                        About
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link to="/contact" className="col-auto text-black text-decoration-none">
+                                        Contact
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link to="/login" className="col-auto text-black text-decoration-none">
+                                        Private Area
+                                    </Link>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
                 </div>
             </div>
 
@@ -105,7 +141,7 @@ const Footer = () => {
                         <div className="col-12">
                             <h5 className="text-uppercase text-primary weight-regular legend"> USEFUL LINKS</h5>
                         </div>
-                        <div className="col-auto  icons-smll icons-black">
+                        <div className="col-auto">
                             <ul className="list-unstyled tag weight-regular p-0 m-0">
                                 <li>
                                     <Link to="/services" className="col-auto text-black text-decoration-none">
