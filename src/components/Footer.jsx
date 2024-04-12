@@ -15,7 +15,7 @@ const Footer = () => {
                     <div className="col-4">
                         <h5 className="text-uppercase text-primary weight-regular legend"> Contact Info</h5>
                         <div className="pt-2 text-black weight-regular">
-                            <a className="mb-0 text-black text-decoration-none " href="mailto:piggiescompany@example.com"> piggiescompany@example.com</a>
+                            <a className="mb-0 text-black text-decoration-none" href="mailto:piggiesco@example.com"> piggiesco@example.com</a>
                             <p> +1 (555) 555-5555</p>
                         </div>
                     </div>
@@ -67,10 +67,10 @@ const Footer = () => {
             </h1>
             <img className="img-fluid col-3 offset-md-9 py-5" src="https://res.cloudinary.com/dmbtvuj1x/image/upload/v1709386709/Piggies/piggies-icon_sxwwew.png" />
             <div className="row py-5">
-                <div className="col-4">
+                <div className="col-3">
                     <h5 className="text-uppercase text-primary weight-regular legend"> Contact Info</h5>
                     <div className="pt-2 text-black weight-regular">
-                        <p className="mb-0"> piggiescompany@example.com</p>
+                        <a className="mb-0 text-black text-decoration-none" href="mailto:piggiesco@example.com"> piggiesco@example.com</a>
                         <p> +1 (555) 555-5555</p>
                     </div>
                 </div>
@@ -97,6 +97,42 @@ const Footer = () => {
                             <Button
                                 extraClassName="icon-instagram p-1">
                             </Button>
+                        </div>
+                    </div>
+                </div>
+                <div className="col-3">
+                    <div className="row">
+                        <div className="col-12">
+                            <h5 className="text-uppercase text-primary weight-regular legend"> USEFUL LINKS</h5>
+                        </div>
+                        <div className="col-auto  icons-smll icons-black">
+                            <ul className="list-unstyled tag weight-regular p-0 m-0">
+                                <li>
+                                    <Link to="/services" className="col-auto text-black text-decoration-none">
+                                        Services
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link to="/projects" className="col-auto text-black text-decoration-none">
+                                        Projects
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link to="/about" className="col-auto text-black text-decoration-none">
+                                        About
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link to="/contact" className="col-auto text-black text-decoration-none">
+                                        Contact
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link to="/login" className="col-auto text-black text-decoration-none">
+                                        Private Area
+                                    </Link>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
