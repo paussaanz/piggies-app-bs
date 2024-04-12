@@ -12,7 +12,7 @@ const Footer = () => {
         return (
             <div className="container py-5">
                 <div className="row py-5">
-                    <div className="col-4">
+                    <div className="col-3">
                         <h5 className="text-uppercase text-primary weight-regular legend"> Contact Info</h5>
                         <div className="pt-2 text-black weight-regular">
                             <a className="mb-0 text-black text-decoration-none" href="mailto:piggiesco@example.com"> piggiesco@example.com</a>
